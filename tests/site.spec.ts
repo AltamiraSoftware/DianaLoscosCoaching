@@ -163,17 +163,18 @@ test.describe('experiencia y accesibilidad', () => {
     await expect(toggle).toBeFocused();
     await page.keyboard.press('Enter');
     await expect(page.getByRole('button', { name: 'Cerrar menú' })).toHaveAttribute('aria-expanded', 'true');
-    const services = page.getByRole('navigation', { name: 'Navegación móvil' }).locator('summary');
+    const services = page.getByRole('navigation', { name: 'Navegación móvil' }).getByRole('button', { name: 'Coaching profesional' });
     await page.keyboard.press('Tab');
     await expect(services).toBeFocused();
     await page.keyboard.press('Enter');
+    await expect(services).toHaveAttribute('aria-expanded', 'true');
     await expect(page.getByRole('navigation', { name: 'Navegación móvil' }).getByRole('link', { name: 'Empiezas a liderar' })).toBeVisible();
   });
 
   test('el desplegable de coaching muestra las situaciones y se cierra con Escape', async ({ page }) => {
     await page.goto('/');
     const nav = page.getByRole('navigation', { name: 'Navegación principal' });
-    const toggle = nav.getByRole('button', { name: 'Mostrar opciones de coaching profesional' });
+    const toggle = nav.getByRole('button', { name: 'Coaching profesional' });
     await toggle.click();
     await expect(toggle).toHaveAttribute('aria-expanded', 'true');
     for (const label of ['Algo ha cambiado en tu trabajo', 'Te cuesta tomar una decisión', 'Empiezas a liderar', 'Coaching ejecutivo']) {
@@ -182,6 +183,9 @@ test.describe('experiencia y accesibilidad', () => {
     await page.keyboard.press('Escape');
     await expect(toggle).toHaveAttribute('aria-expanded', 'false');
     await expect(toggle).toBeFocused();
+    await toggle.click();
+    await nav.getByRole('link', { name: /Algo ha cambiado en tu trabajo/ }).click();
+    await expect(page).toHaveURL(/\/cambio-profesional\/$/);
   });
 
   test('el movimiento reducido muestra contenido de inmediato', async ({ page }) => {
