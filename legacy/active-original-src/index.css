@@ -1,8 +1,0 @@
-@import "tailwindcss";
-@config "../tailwind.config.js";
-
-@media (max-width: 640px) {
-  .text-\[20px\] {
-    font-size: 18px;
-  }
-}

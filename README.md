@@ -16,7 +16,7 @@ npm run build
 npm run test:e2e
 ```
 
-`npm run test:e2e` usa Playwright; instala Chromium con `npx playwright install chromium` si hace falta. Este trabajo continúa en el repositorio original [ByyLoscos/web-diana](https://github.com/ByyLoscos/web-diana). El código Vite previo queda en `legacy/` para consultar contenido y decisiones visuales, fuera del build Next.
+`npm run test:e2e` usa Playwright; instala Chromium con `npx playwright install chromium` si hace falta. La aplicación se construye desde `app/`, `components/`, `content/` y `lib/`.
 
 ## Configuración
 
@@ -41,6 +41,6 @@ Sin las tres variables de correo, el formulario muestra un error y propone conta
 
 Netlify ejecuta `npm run build` y detecta Next/OpenNext automáticamente. `netlify.toml` desactiva indexación en Deploy Preview y branch deploy. El fallback SPA se eliminó; `/gracias.html` redirige a `/gracias/` y las rutas desconocidas responden con 404.
 
-El objetivo es abrir PR desde `feat/rebuild-next` hacia `master` en `ByyLoscos/web-diana`, revisar su Deploy Preview y mantener producción sin cambios hasta aprobación. La rama local ya existe; el acceso GitHub al remoto debe estar disponible para push y PR. Antes de publicar, validar los datos legales de la titular, precios vigentes y correo de destino/remitente.
+Para publicar, crea un Deploy Preview en Netlify y comprueba rutas, formulario, metadatos y adaptación móvil antes de pasar a producción. Confirma los datos legales de la titular, precios vigentes y correo de destino/remitente antes de publicar.
 
-Consulta [AUDIT.md](AUDIT.md) para fuentes y baseline, [ARCHITECTURE.md](ARCHITECTURE.md) para decisiones técnicas, [SEO.md](SEO.md) para rutas y metadata, [QA.md](QA.md) para pruebas y Lighthouse y [FUTURE.md](FUTURE.md) para las funciones aplazadas.
+Consulta [ARCHITECTURE.md](ARCHITECTURE.md) para decisiones técnicas, [SEO.md](SEO.md) para rutas y metadata y [FUTURE.md](FUTURE.md) para posibles ampliaciones.

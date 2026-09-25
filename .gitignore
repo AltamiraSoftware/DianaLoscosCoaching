@@ -1,21 +1,35 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
+# Dependencies and generated output
+node_modules/
+.next/
+out/
+build/
+dist/
+dist-ssr/
+*.tsbuildinfo
+next-env.d.ts
 
-node_modules
-dist
-dist-ssr
+# Local configuration and secrets
+.env*
 *.local
 
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Logs, caches and test artifacts
+*.log
+logs/
+.cache/
+.npm-cache/
+.turbo/
+.netlify/
+.vercel/
+coverage/
+playwright-report/
+test-results/
+reports/
+.playwright-browsers/
+.playwright-deps/
+
+# Editor and operating system files
+.vscode/
+.idea/
 .DS_Store
 *.suo
 *.ntvs*
@@ -23,13 +37,19 @@ dist-ssr
 *.sln
 *.sw?
 
-.next/
-.env*
-*.tsbuildinfo
-playwright-report/
-test-results/
-reports/
-.playwright-browsers/
-.playwright-deps/
-.npm-cache/
-legacy/archived-assets/
+# Local agent instructions and working material
+AGENTS.md
+CLAUDE.md
+LOCAL-CODEX-PROMPT.md
+.codex/
+.agents/
+.claude/
+.cursor/
+legacy/
+AUDIT.md
+QA.md
+
+# Historical assets not used by the Next.js site
+public/icf-codigo-etico-june-2025.pdf
+public/logo_diana.png
+public/favicon-16.png
