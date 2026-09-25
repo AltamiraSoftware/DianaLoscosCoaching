@@ -1,0 +1,8 @@
+import type { Metadata } from 'next';
+import { PageIntro } from '@/components/sections/PageIntro';
+import { Container } from '@/components/ui/Container';
+import { CookieSettingsButton } from '@/components/layout/CookieSettingsButton';
+import { pageMetadata } from '@/lib/seo';
+
+export const metadata: Metadata = pageMetadata('Política de cookies', 'Información sobre almacenamiento técnico y analítica opcional en dianaloscoscoach.com.', '/cookies/');
+export default function Page() { return <><PageIntro eyebrow="Preferencias" title="Política de cookies." name="Cookies" path="/cookies/"><p>Queremos que sepas qué se guarda en tu navegador y por qué.</p></PageIntro><section className="section section-ivory"><Container><div className="legal-content"><h2>Almacenamiento necesario</h2><p>La web puede utilizar almacenamiento técnico del navegador para recordar tu elección de analítica. No se usa para elaborar perfiles publicitarios.</p><h2>Analítica opcional</h2><p>Si la analítica está configurada, Google Analytics se carga únicamente después de que aceptes. Puede instalar cookies para medir visitas y uso de la web. Si rechazas, el script no se carga. Si la analítica no está configurada, esta web no muestra el aviso ni instala sus cookies.</p><h2>Cambiar tu elección</h2><p>Puedes borrar las cookies y datos del sitio desde tu navegador. Si la analítica está activa, también puedes volver a elegir con este botón:</p><CookieSettingsButton /><h2>Enlaces externos</h2><p>Al salir hacia Doctoralia o redes sociales, esos servicios pueden utilizar sus propias cookies conforme a sus políticas.</p></div></Container></section></>; }
