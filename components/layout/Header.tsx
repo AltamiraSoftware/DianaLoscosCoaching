@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { ArrowIcon } from '@/components/ui/ArrowIcon';
+import { ChevronDownIcon } from '@/components/ui/ChevronDownIcon';
 import { TrackedLink } from '@/components/ui/TrackedLink';
 import { coachingChoices, routes, site } from '@/lib/site';
 
@@ -55,7 +56,7 @@ export function Header() {
       </Link>
       <nav className="desktop-nav" aria-label="Navegación principal">
         <details ref={coachingRef} className={`nav-dropdown ${servicePaths.has(pathname) ? 'is-active' : ''}`}>
-          <summary className="nav-link nav-dropdown-trigger">Coaching profesional <span aria-hidden="true" className="nav-chevron" /></summary>
+          <summary className="nav-link nav-dropdown-trigger">Coaching profesional <ChevronDownIcon /></summary>
           <div className="nav-dropdown-panel">
             {coachingChoices.map(choice => <Link key={choice.label} href={choice.href} className="nav-dropdown-link" aria-current={pathname === choice.href ? 'page' : undefined} onClick={() => { if (coachingRef.current) coachingRef.current.open = false; }}><span>{choice.label}</span><small>{choice.detail}</small></Link>)}
           </div>
@@ -67,7 +68,7 @@ export function Header() {
     </div>
     <nav id="mobile-navigation" className={`mobile-nav ${open ? 'is-open' : ''}`} aria-label="Navegación móvil" inert={!open}>
       <div className="container-site mobile-nav-inner">
-        <details ref={mobileCoachingRef} className="mobile-services"><summary className="mobile-nav-link mobile-services-trigger">Coaching profesional <span aria-hidden="true" className="nav-chevron" /></summary><div className="mobile-service-choices">{coachingChoices.map(choice => <Link key={choice.label} href={choice.href} className="mobile-nav-link" aria-current={pathname === choice.href ? 'page' : undefined} onClick={() => { setOpen(false); if (mobileCoachingRef.current) mobileCoachingRef.current.open = false; }}>{choice.label}<ArrowIcon diagonal /></Link>)}</div></details>
+        <details ref={mobileCoachingRef} className="mobile-services"><summary className="mobile-nav-link mobile-services-trigger">Coaching profesional <ChevronDownIcon /></summary><div className="mobile-service-choices">{coachingChoices.map(choice => <Link key={choice.label} href={choice.href} className="mobile-nav-link" aria-current={pathname === choice.href ? 'page' : undefined} onClick={() => { setOpen(false); if (mobileCoachingRef.current) mobileCoachingRef.current.open = false; }}>{choice.label}<ArrowIcon diagonal /></Link>)}</div></details>
         {routes.filter(link => ['/sobre-mi/', '/opiniones/', '/preguntas-frecuentes/', '/contacto/'].includes(link.href)).map(link => <Link key={link.href} href={link.href} className="mobile-nav-link" aria-current={pathname === link.href ? 'page' : undefined} onClick={() => setOpen(false)}>{link.label}<ArrowIcon diagonal /></Link>)}
         <TrackedLink href={site.bookingUrl} external event="cta_booking_click" label="mobile-menu" className="button button-primary">Reservar una sesión <ArrowIcon diagonal /></TrackedLink>
       </div>
