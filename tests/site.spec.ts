@@ -163,25 +163,25 @@ test.describe('experiencia y accesibilidad', () => {
     await expect(toggle).toBeFocused();
     await page.keyboard.press('Enter');
     await expect(page.getByRole('button', { name: 'Cerrar menú' })).toHaveAttribute('aria-expanded', 'true');
-    const services = page.getByRole('navigation', { name: 'Navegación móvil' }).getByRole('button', { name: 'Coaching profesional' });
+    const services = page.getByRole('navigation', { name: 'Navegación móvil' }).locator('.mobile-services > summary');
     await page.keyboard.press('Tab');
     await expect(services).toBeFocused();
     await page.keyboard.press('Enter');
-    await expect(services).toHaveAttribute('aria-expanded', 'true');
+    await expect(page.locator('.mobile-services')).toHaveAttribute('open', '');
     await expect(page.getByRole('navigation', { name: 'Navegación móvil' }).getByRole('link', { name: 'Empiezas a liderar' })).toBeVisible();
   });
 
   test('el desplegable de coaching muestra las situaciones y se cierra con Escape', async ({ page }) => {
     await page.goto('/');
     const nav = page.getByRole('navigation', { name: 'Navegación principal' });
-    const toggle = nav.getByRole('button', { name: 'Coaching profesional' });
+    const toggle = nav.locator('.nav-dropdown > summary');
     await toggle.click();
-    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    await expect(nav.locator('.nav-dropdown')).toHaveAttribute('open', '');
     for (const label of ['Algo ha cambiado en tu trabajo', 'Te cuesta tomar una decisión', 'Empiezas a liderar', 'Coaching ejecutivo']) {
       await expect(nav.getByRole('link', { name: new RegExp(label) })).toBeVisible();
     }
     await page.keyboard.press('Escape');
-    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(nav.locator('.nav-dropdown')).not.toHaveAttribute('open', '');
     await expect(toggle).toBeFocused();
     await toggle.click();
     await nav.getByRole('link', { name: /Algo ha cambiado en tu trabajo/ }).click();
