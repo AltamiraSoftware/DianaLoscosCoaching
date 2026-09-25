@@ -163,9 +163,25 @@ test.describe('experiencia y accesibilidad', () => {
     await expect(toggle).toBeFocused();
     await page.keyboard.press('Enter');
     await expect(page.getByRole('button', { name: 'Cerrar menú' })).toHaveAttribute('aria-expanded', 'true');
-    const firstLink = page.getByRole('navigation', { name: 'Navegación móvil' }).getByRole('link', { name: 'Coaching profesional' });
+    const services = page.getByRole('navigation', { name: 'Navegación móvil' }).locator('summary');
     await page.keyboard.press('Tab');
-    await expect(firstLink).toBeFocused();
+    await expect(services).toBeFocused();
+    await page.keyboard.press('Enter');
+    await expect(page.getByRole('navigation', { name: 'Navegación móvil' }).getByRole('link', { name: 'Empiezas a liderar' })).toBeVisible();
+  });
+
+  test('el desplegable de coaching muestra las situaciones y se cierra con Escape', async ({ page }) => {
+    await page.goto('/');
+    const nav = page.getByRole('navigation', { name: 'Navegación principal' });
+    const toggle = nav.getByRole('button', { name: 'Mostrar opciones de coaching profesional' });
+    await toggle.click();
+    await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+    for (const label of ['Algo ha cambiado en tu trabajo', 'Te cuesta tomar una decisión', 'Empiezas a liderar', 'Coaching ejecutivo']) {
+      await expect(nav.getByRole('link', { name: new RegExp(label) })).toBeVisible();
+    }
+    await page.keyboard.press('Escape');
+    await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+    await expect(toggle).toBeFocused();
   });
 
   test('el movimiento reducido muestra contenido de inmediato', async ({ page }) => {

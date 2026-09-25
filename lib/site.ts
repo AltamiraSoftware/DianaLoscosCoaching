@@ -29,6 +29,13 @@ export const routes = [
   { href: '/contacto/', label: 'Contacto' },
 ] as const;
 
+export const coachingChoices = [
+  { href: '/cambio-profesional/', label: 'Algo ha cambiado en tu trabajo', detail: 'Cambio profesional' },
+  { href: '/coaching-profesional/', label: 'Te cuesta tomar una decisión', detail: 'Claridad y criterio' },
+  { href: '/liderazgo-nuevos-managers/', label: 'Empiezas a liderar', detail: 'Nuevos managers' },
+  { href: '/coaching-ejecutivo/', label: 'Coaching ejecutivo', detail: 'Decisiones con responsabilidad' },
+] as const;
+
 export function absoluteUrl(path: string) {
   return `${site.url}${path.startsWith('/') ? path : `/${path}`}`;
 }
