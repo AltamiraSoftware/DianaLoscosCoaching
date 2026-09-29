@@ -4,40 +4,67 @@ import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { ArrowIcon } from '@/components/ui/ArrowIcon';
 import { ChevronDownIcon } from '@/components/ui/ChevronDownIcon';
-import { TrackedLink } from '@/components/ui/TrackedLink';
-import { coachingChoices, routes, site } from '@/lib/site';
+import { FloatingWhatsApp } from '@/components/layout/FloatingWhatsApp';
+import { HeaderBrandLinks } from '@/components/layout/HeaderBrandLinks';
 
-const mainLinks = routes.filter(({ href }) => ['/sobre-mi/', '/opiniones/', '/contacto/'].includes(href));
-const servicePaths = new Set<string>(coachingChoices.map(({ href }) => href));
+type Variant = 'desktop' | 'mobile';
+
+type NavLink = { type: 'link'; label: string; href: string; detail?: string; mobileOnly?: boolean };
+type NavDropdown = { type: 'dropdown'; id: string; label: string; children: readonly NavLink[] };
+type NavItem = NavLink | NavDropdown;
+
+const navigation: readonly NavItem[] = [
+  { type: 'link', label: 'Inicio', href: '/' },
+  {
+    type: 'dropdown', id: 'coaching', label: 'Coaching profesional', children: [
+      { type: 'link', label: 'Coaching profesional', href: '/coaching-profesional/', detail: 'Cambio, bloqueo y decisiones' },
+      { type: 'link', label: 'Cambio profesional', href: '/cambio-profesional/', detail: 'Cuando algo ha cambiado en tu trabajo' },
+      { type: 'link', label: 'Liderazgo para nuevos managers', href: '/liderazgo-nuevos-managers/', detail: 'Empiezas a liderar' },
+      { type: 'link', label: 'Coaching ejecutivo', href: '/coaching-ejecutivo/', detail: 'Decisiones con responsabilidad' },
+    ],
+  },
+  { type: 'link', label: 'Sobre mí', href: '/sobre-mi/' },
+  { type: 'link', label: 'Opiniones', href: '/opiniones/' },
+  { type: 'link', label: 'Preguntas frecuentes', href: '/preguntas-frecuentes/', mobileOnly: true },
+  { type: 'link', label: 'Contacto', href: '/contacto/' },
+];
+
+const normalizePath = (path: string) => path.replace(/\/+$/, '') || '/';
+const isRouteActive = (pathname: string, href: string) => {
+  const current = normalizePath(pathname);
+  const target = normalizePath(href);
+  return current === target || (target !== '/' && current.startsWith(`${target}/`));
+};
+const isNavigationItemActive = (item: NavItem, pathname: string) => item.type === 'dropdown'
+  ? item.children.some(child => isRouteActive(pathname, child.href))
+  : isRouteActive(pathname, item.href);
 
 export function Header() {
   const pathname = usePathname();
-  const [open, setOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [scrolled, setScrolled] = useState(false);
-  const coachingRef = useRef<HTMLDetailsElement>(null);
-  const mobileCoachingRef = useRef<HTMLDetailsElement>(null);
+  const dropdownRefs = useRef<Record<string, HTMLDivElement | null>>({});
+  const triggerRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const mobileToggleRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 28);
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
   useEffect(() => {
+    if (!openDropdown) return;
     const onPointerDown = (event: PointerEvent) => {
-      if (coachingRef.current?.open && !coachingRef.current.contains(event.target as Node)) coachingRef.current.open = false;
-      if (mobileCoachingRef.current?.open && !mobileCoachingRef.current.contains(event.target as Node)) mobileCoachingRef.current.open = false;
+      if (!dropdownRefs.current[openDropdown]?.contains(event.target as Node)) setOpenDropdown(null);
     };
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
-        if (coachingRef.current?.open) {
-          coachingRef.current.open = false;
-          coachingRef.current.querySelector('summary')?.focus();
-        } else if (mobileCoachingRef.current?.open) {
-          mobileCoachingRef.current.open = false;
-          mobileCoachingRef.current.querySelector('summary')?.focus();
-        }
+        setOpenDropdown(null);
+        triggerRefs.current[openDropdown]?.focus();
       }
     };
     document.addEventListener('pointerdown', onPointerDown);
@@ -46,32 +73,118 @@ export function Header() {
       document.removeEventListener('pointerdown', onPointerDown);
       document.removeEventListener('keydown', onKeyDown);
     };
+  }, [openDropdown]);
+
+  useEffect(() => {
+    const onPopState = () => {
+      setOpenDropdown(null);
+      setMobileOpen(false);
+    };
+    window.addEventListener('popstate', onPopState);
+    return () => window.removeEventListener('popstate', onPopState);
   }, []);
+
+  useEffect(() => {
+    if (!mobileOpen || openDropdown) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMobileOpen(false);
+        mobileToggleRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [mobileOpen, openDropdown]);
+
+  const closeNavigation = () => {
+    setOpenDropdown(null);
+    setMobileOpen(false);
+  };
+
+  const renderNavigation = (variant: Variant) => navigation
+    .filter(item => variant === 'mobile' || item.type === 'dropdown' || !item.mobileOnly)
+    .map(item => {
+      if (item.type === 'link') {
+        const exact = normalizePath(pathname) === normalizePath(item.href);
+        return <Link
+          key={`${variant}-${item.href}`}
+          href={item.href}
+          className={variant === 'desktop' ? 'nav-link' : 'mobile-nav-link'}
+          aria-current={exact ? 'page' : undefined}
+          data-active={isRouteActive(pathname, item.href)}
+          onClick={closeNavigation}
+        >{item.label}</Link>;
+      }
+
+      const key = `${variant}-${item.id}`;
+      const isOpen = openDropdown === key;
+      const isActive = isNavigationItemActive(item, pathname);
+      const selectedChild = item.children.find(child => isRouteActive(pathname, child.href));
+      return <div
+        key={key}
+        ref={node => { dropdownRefs.current[key] = node; }}
+        className={variant === 'desktop' ? 'nav-dropdown' : 'mobile-services'}
+        data-nav-dropdown={key}
+      >
+        <button
+          ref={node => { triggerRefs.current[key] = node; }}
+          type="button"
+          className={variant === 'desktop' ? 'nav-link nav-dropdown-trigger' : 'mobile-nav-link mobile-services-trigger'}
+          aria-expanded={isOpen}
+          aria-controls={`nav-${key}`}
+          data-active={isActive}
+          onClick={() => setOpenDropdown(current => current === key ? null : key)}
+        >
+          <span>{selectedChild?.label ?? item.label}</span>
+          <ChevronDownIcon />
+        </button>
+        <div
+          id={`nav-${key}`}
+          className={variant === 'desktop' ? 'nav-dropdown-panel' : 'mobile-service-choices'}
+          hidden={!isOpen}
+        >
+          {item.children.map(child => {
+            const exact = normalizePath(pathname) === normalizePath(child.href);
+            return <Link
+              key={child.href}
+              href={child.href}
+              className={variant === 'desktop' ? 'nav-dropdown-link' : 'mobile-nav-link mobile-service-link'}
+              aria-current={exact ? 'page' : undefined}
+              data-active={isRouteActive(pathname, child.href)}
+              onClick={closeNavigation}
+            >
+              <span>{child.label}</span>
+              {child.detail && <small>{child.detail}</small>}
+            </Link>;
+          })}
+        </div>
+      </div>;
+    });
+
   return <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
     <div className="container-site header-inner">
-      <Link href="/" className="brand" aria-label="Diana Loscos, ir al inicio">
+      <Link href="/" className="brand" aria-label="Diana Loscos, ir al inicio" onClick={closeNavigation}>
         <Image className="brand-mark" src="/logo_diana_square.png" alt="" width={42} height={42} />
         <span className="brand-copy"><span className="brand-name">Diana Loscos<span className="brand-dot">.</span></span>
         <span className="brand-descriptor">Coaching profesional</span></span>
       </Link>
-      <nav className="desktop-nav" aria-label="Navegación principal">
-        <details ref={coachingRef} className={`nav-dropdown ${servicePaths.has(pathname) ? 'is-active' : ''}`}>
-          <summary className="nav-link nav-dropdown-trigger">Coaching profesional <ChevronDownIcon /></summary>
-          <div className="nav-dropdown-panel">
-            {coachingChoices.map(choice => <Link key={choice.label} href={choice.href} className="nav-dropdown-link" aria-current={pathname === choice.href ? 'page' : undefined} onClick={() => { if (coachingRef.current) coachingRef.current.open = false; }}><span>{choice.label}</span><small>{choice.detail}</small></Link>)}
-          </div>
-        </details>
-        {mainLinks.map(link => <Link key={link.href} href={link.href} className="nav-link" aria-current={pathname === link.href ? 'page' : undefined}>{link.label}</Link>)}
-      </nav>
-      <TrackedLink href={site.bookingUrl} external event="cta_booking_click" label="header" className="button button-primary header-cta">Reservar una sesión <ArrowIcon diagonal /></TrackedLink>
-      <button type="button" className="menu-toggle" aria-expanded={open} aria-controls="mobile-navigation" aria-label={open ? 'Cerrar menú' : 'Abrir menú'} onClick={() => { setOpen(!open); if (mobileCoachingRef.current) mobileCoachingRef.current.open = false; }}><span /><span /></button>
+      <nav className="desktop-nav" aria-label="Navegación principal">{renderNavigation('desktop')}</nav>
+      <HeaderBrandLinks />
+      <button
+        ref={mobileToggleRef}
+        type="button"
+        className="menu-toggle"
+        aria-expanded={mobileOpen}
+        aria-controls="mobile-navigation"
+        aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
+        onClick={() => { setMobileOpen(value => !value); setOpenDropdown(null); }}
+      ><span /><span /></button>
     </div>
-    <nav id="mobile-navigation" className={`mobile-nav ${open ? 'is-open' : ''}`} aria-label="Navegación móvil" inert={!open}>
+    <nav id="mobile-navigation" className={`mobile-nav ${mobileOpen ? 'is-open' : ''}`} aria-label="Navegación móvil" inert={!mobileOpen}>
       <div className="container-site mobile-nav-inner">
-        <details ref={mobileCoachingRef} className="mobile-services"><summary className="mobile-nav-link mobile-services-trigger">Coaching profesional <ChevronDownIcon /></summary><div className="mobile-service-choices">{coachingChoices.map(choice => <Link key={choice.label} href={choice.href} className="mobile-nav-link" aria-current={pathname === choice.href ? 'page' : undefined} onClick={() => { setOpen(false); if (mobileCoachingRef.current) mobileCoachingRef.current.open = false; }}>{choice.label}<ArrowIcon diagonal /></Link>)}</div></details>
-        {routes.filter(link => ['/sobre-mi/', '/opiniones/', '/preguntas-frecuentes/', '/contacto/'].includes(link.href)).map(link => <Link key={link.href} href={link.href} className="mobile-nav-link" aria-current={pathname === link.href ? 'page' : undefined} onClick={() => setOpen(false)}>{link.label}<ArrowIcon diagonal /></Link>)}
-        <TrackedLink href={site.bookingUrl} external event="cta_booking_click" label="mobile-menu" className="button button-primary">Reservar una sesión <ArrowIcon diagonal /></TrackedLink>
+        {renderNavigation('mobile')}
       </div>
     </nav>
+    <FloatingWhatsApp />
   </header>;
 }

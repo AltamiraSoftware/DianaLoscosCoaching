@@ -1,0 +1,48 @@
+.button {
+  position: fixed;
+  z-index: 70;
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  left: calc(20px + env(safe-area-inset-left));
+  display: flex;
+  width: 56px;
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #25d366;
+  color: white;
+  box-shadow: 0 8px 32px rgb(37 211 102 / 40%);
+  transition: transform .3s, box-shadow .3s;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px rgb(37 211 102 / 50%);
+}
+
+.button:active {
+  transform: scale(.95);
+}
+
+.button:focus-visible {
+  outline: 2px solid #25d366;
+  outline-offset: 4px;
+}
+
+.brandIcon {
+  width: 28px;
+  height: 28px;
+}
+
+.shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(to bottom right, rgb(255 255 255 / 20%), transparent);
+  pointer-events: none;
+  transition: opacity .3s;
+}
+
+.button:hover .shine {
+  opacity: 0;
+}
