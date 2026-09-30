@@ -3,7 +3,7 @@ import { PageIntro } from '@/components/sections/PageIntro';
 import { ProcessSteps } from '@/components/sections/ProcessSteps';
 import { CTASection } from '@/components/sections/CTASection';
 import { Container } from '@/components/ui/Container';
-import { TrackedLink } from '@/components/ui/TrackedLink';
+import { ButtonLink } from '@/components/ui/Button';
 import { ArrowIcon } from '@/components/ui/ArrowIcon';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { TrackView } from '@/components/motion/TrackView';
@@ -15,7 +15,7 @@ export function ServiceLanding({ content }: { content: ServiceContent }) {
   return <>
     <JsonLd data={serviceSchema(content.name, content.description, content.path)} />
     <TrackView event="service_view" label={content.name} />
-    <PageIntro eyebrow={content.eyebrow} title={content.title} name={content.name} path={content.path}><p>{content.intro}</p><TrackedLink href={site.bookingUrl} external event="cta_booking_click" label={content.path} className="button button-primary">Reservar una sesión <ArrowIcon diagonal /></TrackedLink></PageIntro>
+    <PageIntro eyebrow={content.eyebrow} title={content.title} name={content.name} path={content.path}><p>{content.intro}</p><ButtonLink href={site.bookingUrl} external event="cta_booking_click" label={content.path}>Reservar una sesión <ArrowIcon diagonal /></ButtonLink></PageIntro>
     <section className="section section-mist"><Container className="interior-grid"><div className="interior-copy"><h2>{content.sectionTitle}</h2><p>{content.sectionText}</p></div><aside className="interior-aside"><h3>{content.situationTitle}</h3><ul>{content.situations.map(item => <li key={item}>{item}</li>)}</ul></aside></Container></section>
     <section className="section section-ivory"><Container><p className="eyebrow">En las sesiones</p><div className="feature-list">{content.features.map((item, index) => <article key={item.title}><span>0{index + 1}</span><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></Container></section>
     <ProcessSteps />

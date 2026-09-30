@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { Button } from '@/components/ui/Button';
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -33,5 +34,5 @@ export function AnalyticsConsent() {
     setChoice(value);
     if (value === 'accepted') loadAnalytics();
   };
-  return <aside className="cookie-banner" aria-label="Preferencias de analítica"><p>¿Nos permites medir el uso de esta web para mejorarla? Solo activamos la analítica si aceptas. <Link href="/cookies/">Más información</Link>.</p><div><button type="button" className="button button-primary" onClick={() => choose('rejected')}>Rechazar</button><button type="button" className="button button-primary" onClick={() => choose('accepted')}>Aceptar</button></div></aside>;
+  return <aside className="cookie-banner" aria-label="Preferencias de analítica"><p>¿Nos permites medir el uso de esta web para mejorarla? Solo activamos la analítica si aceptas. <Link href="/cookies/">Más información</Link>.</p><div><Button type="button" variant="secondary" onClick={() => choose('rejected')}>Rechazar</Button><Button type="button" onClick={() => choose('accepted')}>Aceptar</Button></div></aside>;
 }

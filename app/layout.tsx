@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#F7F3EB' };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-  const person = { '@context': 'https://schema.org', '@type': 'Person', '@id': absoluteUrl('/sobre-mi/#diana'), name: site.name, url: site.url, image: absoluteUrl('/perfil.jpg'), jobTitle: 'Coach profesional', email: site.email, sameAs: [site.bookingUrl, site.linkedinUrl, site.instagramUrl], knowsAbout: ['Coaching profesional', 'Coaching ejecutivo', 'Cambio profesional'] };
+  const person = { '@context': 'https://schema.org', '@type': 'Person', '@id': absoluteUrl('/sobre-mi/#diana'), name: site.name, url: site.url, image: absoluteUrl('/perfil.webp'), jobTitle: 'Coach profesional', email: site.email, sameAs: [site.bookingUrl, site.linkedinUrl, site.instagramUrl], knowsAbout: ['Coaching profesional', 'Coaching ejecutivo', 'Cambio profesional'] };
   const website = { '@context': 'https://schema.org', '@type': 'WebSite', '@id': absoluteUrl('/#website'), name: site.name, url: site.url, inLanguage: 'es-ES', publisher: { '@id': absoluteUrl('/sobre-mi/#diana') } };
   return <html lang="es" data-scroll-behavior="smooth" className={`${manrope.variable} ${newsreader.variable}`}><body><a className="skip-link" href="#main">Saltar al contenido</a><Header /><main id="main">{children}</main><Footer /><AnalyticsConsent /><JsonLd data={[person, website]} /></body></html>;
 }

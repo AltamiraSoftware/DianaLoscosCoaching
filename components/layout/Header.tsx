@@ -164,9 +164,7 @@ export function Header() {
   return <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
     <div className="container-site header-inner">
       <Link href="/" className="brand" aria-label="Diana Loscos, ir al inicio" onClick={closeNavigation}>
-        <Image className="brand-mark" src="/logo_diana_square.png" alt="" width={42} height={42} />
-        <span className="brand-copy"><span className="brand-name">Diana Loscos<span className="brand-dot">.</span></span>
-        <span className="brand-descriptor">Coaching profesional</span></span>
+        <Image className="brand-mark" src="/logo_diana_loscos.webp" alt="" width={116} height={75} />
       </Link>
       <nav className="desktop-nav" aria-label="Navegación principal">{renderNavigation('desktop')}</nav>
       <HeaderBrandLinks />

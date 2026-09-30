@@ -8,31 +8,35 @@
 .link {
   display: inline-flex;
   flex: none;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--color-petrol);
-  border-radius: 50%;
-  background: white;
-  transition: transform .2s, box-shadow .2s;
+  border: 1px solid var(--brand-teal);
+  border-radius: 12px;
+  background: var(--brand-white);
+  color: var(--brand-teal);
+  transition: transform 250ms, background-color 250ms, box-shadow 250ms;
 }
 
 .link:hover {
-  transform: scale(1.05);
-  box-shadow: 0 5px 14px rgb(24 36 41 / 12%);
+  transform: translateY(-2px);
+  background: var(--brand-cream);
+  box-shadow: 0 3px 8px rgb(16 63 60 / 10%);
 }
 
 .link:focus-visible {
-  outline: 2px solid var(--color-petrol);
+  outline: 3px solid var(--brand-teal-dark);
   outline-offset: 4px;
 }
 
 .whatsapp {
-  border-color: #14804a;
-  background: #14804a;
-  color: white;
+  border-color: var(--brand-teal);
+  background: var(--brand-teal);
+  color: var(--brand-white);
 }
+
+.whatsapp:hover { background: var(--brand-teal-dark); }
 
 .icon {
   display: block;
@@ -42,6 +46,6 @@
 
 @media (max-width: 620px) {
   .links { gap: 2px; margin-left: auto; }
-  .link { width: 32px; height: 32px; }
+  .link { width: 44px; height: 44px; }
   .icon { width: 19px; height: 19px; }
 }

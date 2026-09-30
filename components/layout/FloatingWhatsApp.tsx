@@ -14,7 +14,6 @@ export function FloatingWhatsApp() {
       aria-label="Escribir a Diana por WhatsApp"
     >
       <WhatsAppLogo className={styles.brandIcon} />
-      <span className={styles.shine} aria-hidden="true" />
     </TrackedLink>
   );
 }

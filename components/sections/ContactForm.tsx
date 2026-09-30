@@ -2,6 +2,7 @@
 
 import { useRef, useState, type FormEvent } from 'react';
 import Link from 'next/link';
+import { Button } from '@/components/ui/Button';
 import { useRouter } from 'next/navigation';
 import { trackEvent } from '@/lib/analytics';
 
@@ -37,7 +38,7 @@ export function ContactForm() {
     <div className="field"><label htmlFor="contact-message">¿Qué te gustaría trabajar? *</label><textarea id="contact-message" name="message" minLength={10} maxLength={3000} required placeholder="Puedes contarme brevemente en qué momento profesional te encuentras." /></div>
     <div className="honeypot" aria-hidden="true"><label htmlFor="contact-website">Deja este campo vacío</label><input id="contact-website" name="website" tabIndex={-1} autoComplete="off" /></div>
     <label className="form-consent"><input type="checkbox" name="privacy" value="yes" required /><span>He leído la <Link href="/privacidad/" target="_blank">política de privacidad</Link> y acepto el tratamiento de mis datos para responder a esta consulta. *</span></label>
-    <button type="submit" className="button button-primary" disabled={busy}>{busy ? 'Enviando…' : 'Enviar mensaje'}</button>
+    <Button type="submit" disabled={busy}>{busy ? 'Enviando…' : 'Enviar mensaje'}</Button>
     {error && <p className="form-status form-error" role="alert">{error}</p>}
   </form>;
 }
