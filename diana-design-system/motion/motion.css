@@ -1,0 +1,46 @@
+/*
+  Motion discreto. La animación ocurre una vez al entrar en viewport.
+  Añadir la clase .is-visible desde IntersectionObserver.
+*/
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-diana-reveal] {
+    opacity: 0;
+    transform: translateY(1rem);
+    transition:
+      opacity var(--diana-duration-slow) var(--diana-ease-emphasized),
+      transform var(--diana-duration-slow) var(--diana-ease-emphasized);
+  }
+
+  [data-diana-reveal="soft"] {
+    transform: translateY(0.5rem);
+  }
+
+  [data-diana-reveal="scale"] {
+    transform: scale(0.985);
+  }
+
+  [data-diana-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .diana-hover-lift {
+    transition:
+      box-shadow var(--diana-duration-base) var(--diana-ease-standard),
+      transform var(--diana-duration-base) var(--diana-ease-standard);
+  }
+
+  .diana-hover-lift:hover {
+    box-shadow: 0 18px 40px rgba(24, 36, 41, 0.13);
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-diana-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+}
+

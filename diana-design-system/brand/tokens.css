@@ -1,0 +1,70 @@
+/*
+  Diana Loscos · tokens de marca
+  Capa aditiva: no reescribe variables ni clases del proyecto existente.
+*/
+
+:root {
+  /* Color */
+  --diana-color-petrol: #1e5153;
+  --diana-color-petrol-deep: #122025;
+  --diana-color-clay: #c46f5a;
+  --diana-color-ink: #182429;
+  --diana-color-graphite: #465258;
+  --diana-color-ivory: #f7f3eb;
+  --diana-color-white: #ffffff;
+  --diana-color-mist: #e7eeea;
+  --diana-color-border: rgba(24, 36, 41, 0.16);
+  --diana-color-focus: #c46f5a;
+
+  /* Tipografía: las fuentes se cargan en el proyecto, no desde esta capa. */
+  --diana-font-display: "Newsreader", Georgia, serif;
+  --diana-font-body: "Manrope", Arial, sans-serif;
+
+  /* Espaciado */
+  --diana-space-1: 0.25rem;
+  --diana-space-2: 0.5rem;
+  --diana-space-3: 0.75rem;
+  --diana-space-4: 1rem;
+  --diana-space-5: 1.5rem;
+  --diana-space-6: 2rem;
+  --diana-space-7: 3rem;
+  --diana-space-8: 4rem;
+  --diana-space-9: 6rem;
+
+  /* Forma */
+  --diana-radius-sm: 0.5rem;
+  --diana-radius-md: 0.75rem;
+  --diana-radius-lg: 1.125rem;
+  --diana-radius-pill: 999px;
+  --diana-shadow-card: 0 12px 32px rgba(24, 36, 41, 0.08);
+
+  /* Motion */
+  --diana-ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --diana-ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --diana-duration-fast: 150ms;
+  --diana-duration-base: 220ms;
+  --diana-duration-slow: 420ms;
+
+  /* Accesibilidad */
+  --diana-focus-ring: 0 0 0 3px rgba(196, 111, 90, 0.36);
+}
+
+.diana-surface-ivory {
+  background: var(--diana-color-ivory);
+  color: var(--diana-color-ink);
+}
+
+.diana-surface-white {
+  background: var(--diana-color-white);
+  color: var(--diana-color-ink);
+}
+
+.diana-surface-petrol {
+  background: var(--diana-color-petrol);
+  color: var(--diana-color-white);
+}
+
+.diana-eyebrow {
+  color: var(--diana-color-petrol);
+}
+

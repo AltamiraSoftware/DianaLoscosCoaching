@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Preview · Diana design system</title>
+    <link rel="stylesheet" href="../brand/tokens.css" />
+    <link rel="stylesheet" href="../brand/typography.css" />
+    <link rel="stylesheet" href="../components/buttons-links.css" />
+    <link rel="stylesheet" href="../components/cards.css" />
+    <link rel="stylesheet" href="../motion/motion.css" />
+    <style>
+      body {
+        max-width: 1120px;
+        margin: 0 auto;
+        padding: 48px 24px 80px;
+        background: var(--diana-color-ivory);
+        color: var(--diana-color-ink);
+      }
+
+      .preview-stack {
+        display: grid;
+        gap: 48px;
+      }
+
+      .preview-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .preview-swatch {
+        min-height: 116px;
+        padding: 16px;
+        border-radius: 12px;
+        font-family: var(--diana-font-body);
+        font-size: 14px;
+      }
+
+      .preview-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      @media (max-width: 760px) {
+        .preview-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="preview-stack">
+      <section>
+        <p class="diana-type-eyebrow">Diana Loscos · componentes nuevos</p>
+        <h1 class="diana-type-display-lg">Una muestra del sistema visual.</h1>
+        <p class="diana-type-body-lg">
+          Esta preview no recrea el header. El header existente se mantiene como componente independiente.
+        </p>
+      </section>
+
+      <section class="preview-grid" aria-label="Paleta de color">
+        <div class="preview-swatch" style="background:#1e5153;color:#fff;">Petróleo<br />#1e5153</div>
+        <div class="preview-swatch" style="background:#c46f5a;color:#fff;">Arcilla<br />#c46f5a</div>
+        <div class="preview-swatch" style="background:#e7eeea;">Niebla<br />#e7eeea</div>
+      </section>
+
+      <section>
+        <div class="preview-actions">
+          <a class="diana-button diana-button--primary" href="#acciones">Reservar una sesión</a>
+          <a class="diana-button diana-button--outline" href="#acciones">Conocer el proceso</a>
+          <a class="diana-text-link" href="#acciones">Ver credenciales →</a>
+        </div>
+      </section>
+
+      <section class="preview-grid">
+        <article class="diana-card diana-hover-lift" data-diana-reveal>
+          <span class="diana-card__number">01</span>
+          <h2 class="diana-card__title">Poner nombre</h2>
+          <p class="diana-card__body">Ordenamos el contexto, la duda y lo que importa ahora.</p>
+        </article>
+        <article class="diana-card diana-card--mist diana-hover-lift" data-diana-reveal="soft">
+          <span class="diana-card__number">02</span>
+          <h2 class="diana-card__title">Abrir perspectiva</h2>
+          <p class="diana-card__body">Exploramos opciones y criterios con los que decidir.</p>
+        </article>
+        <article class="diana-card diana-card--petrol" data-diana-reveal="scale">
+          <span class="diana-card__number">03</span>
+          <h2 class="diana-card__title">Decidir y actuar</h2>
+          <p class="diana-card__body">Concretamos un primer paso posible.</p>
+        </article>
+      </section>
+    </main>
+
+    <script>
+      const items = document.querySelectorAll("[data-diana-reveal]");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      items.forEach((item) => observer.observe(item));
+    </script>
+  </body>
+</html>
+

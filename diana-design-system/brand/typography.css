@@ -1,0 +1,75 @@
+/*
+  Utilidades tipográficas. No aplicar a .site-header ni a sus descendientes.
+*/
+
+.diana-type-display-xl,
+.diana-type-display-lg,
+.diana-type-heading-lg,
+.diana-type-heading-md {
+  font-family: var(--diana-font-display);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.diana-type-display-xl {
+  font-size: clamp(2.8rem, 6vw, 5.4rem);
+  line-height: 0.94;
+}
+
+.diana-type-display-lg {
+  font-size: clamp(2.25rem, 4.5vw, 4rem);
+  line-height: 0.98;
+}
+
+.diana-type-heading-lg {
+  font-size: clamp(1.85rem, 3vw, 2.8rem);
+  line-height: 1;
+}
+
+.diana-type-heading-md {
+  font-size: clamp(1.45rem, 2vw, 2rem);
+  line-height: 1.08;
+}
+
+.diana-type-body-lg,
+.diana-type-body,
+.diana-type-small,
+.diana-type-eyebrow {
+  font-family: var(--diana-font-body);
+}
+
+.diana-type-body-lg {
+  font-size: clamp(1rem, 1.2vw, 1.125rem);
+  line-height: 1.65;
+  color: var(--diana-color-graphite);
+}
+
+.diana-type-body {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--diana-color-graphite);
+}
+
+.diana-type-small {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--diana-color-graphite);
+}
+
+.diana-type-eyebrow {
+  display: inline-flex;
+  gap: 0.4rem;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.diana-type-display-xl em,
+.diana-type-display-lg em {
+  font-style: italic;
+}
+

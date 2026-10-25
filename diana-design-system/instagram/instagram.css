@@ -1,0 +1,35 @@
+.diana-instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--diana-space-5);
+  margin-top: var(--diana-space-6);
+}
+
+.diana-instagram-card {
+  overflow: hidden;
+  border: 1px solid var(--diana-color-border);
+  border-radius: var(--diana-radius-lg);
+  background: var(--diana-color-white);
+}
+
+.diana-instagram-card .instagram-media {
+  min-width: 0 !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.diana-instagram-card__description {
+  margin: 0;
+  padding: var(--diana-space-4) var(--diana-space-5);
+  color: var(--diana-color-graphite);
+  font-family: var(--diana-font-body);
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 860px) {
+  .diana-instagram-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
