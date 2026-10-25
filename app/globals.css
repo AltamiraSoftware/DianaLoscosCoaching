@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "../diana-design-system/brand/tokens.css";
+@import "../diana-design-system/components/buttons-links.css";
 
 @theme inline {
   --brand-teal: #174f4b;
