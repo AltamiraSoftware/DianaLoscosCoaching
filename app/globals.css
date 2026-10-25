@@ -71,6 +71,26 @@ h3 { line-height: 1.18; }
 .brand-link-light:hover::after, .brand-link-light:focus-visible::after { background: var(--brand-white); }
 .button:focus-visible, .brand-link:focus-visible { outline: 3px solid var(--brand-teal-dark); outline-offset: 4px; }
 .section-about .brand-link:focus-visible, .trust-strip .brand-link:focus-visible, .cta-section .button:focus-visible { outline-color: var(--brand-white); }
+
+/* Action hierarchy: these prefixed rules do not apply to the header controls. */
+.diana-button {
+  min-height: 48px;
+  padding: .78rem 1.45rem;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 650;
+  box-shadow: none;
+  text-decoration: none;
+}
+.diana-button--primary { background: var(--diana-color-petrol); border-color: var(--diana-color-petrol); color: var(--diana-color-white); }
+.diana-button--primary:hover:not(:disabled) { background: var(--diana-color-petrol-deep); border-color: var(--diana-color-petrol-deep); color: var(--diana-color-white); transform: translateY(-1px); box-shadow: none; }
+.diana-button--secondary { background: transparent; border-color: var(--diana-color-petrol); color: var(--diana-color-petrol); }
+.diana-button--secondary:hover:not(:disabled) { background: var(--diana-color-petrol); border-color: var(--diana-color-petrol); color: var(--diana-color-white); transform: translateY(-1px); box-shadow: none; }
+.diana-button:focus-visible { outline: 3px solid var(--diana-color-focus); outline-offset: 3px; box-shadow: var(--diana-focus-ring); }
+.diana-button.button-light { background: var(--diana-color-ivory); border-color: var(--diana-color-ivory); color: var(--diana-color-petrol); }
+.diana-button.button-light:hover:not(:disabled) { background: var(--diana-color-white); border-color: var(--diana-color-white); color: var(--diana-color-petrol); }
+.diana-text-link { border-bottom: 0; text-decoration: none; }
+.diana-text-link:hover, .diana-text-link:focus-visible { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
 .nav-link::after { content: ''; position: absolute; left: 0; bottom: -2px; width: 100%; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .22s; }
 .nav-link:hover::after, .nav-link:focus-visible::after { transform: scaleX(1); }
 
@@ -140,7 +160,7 @@ h3 { line-height: 1.18; }
   .trust-grid { grid-template-columns: 1fr 1fr; gap: 18px; }.trust-grid p:nth-child(2) { border-right: 0; }.trust-grid p:nth-child(3) { grid-column: 1/2; }.trust-grid > .brand-link { grid-column: 2; align-self: center; }
   .work-list > div { grid-template-columns: 1fr; }.work-list p { grid-column: 1; }.work-list span { margin-bottom: 8px; }.process-list { display: block; }.process-list li, .process-list li + li { display: grid; grid-template-columns: 64px 1fr; gap: 15px; padding: 25px 0; border-left: 0; border-bottom: 1px solid rgba(24,36,41,.16); }.process-number { margin: 0; }.process-list h3 { margin: 0 0 8px; }
   .about-layout { grid-template-columns: 1fr; }.about-image { width: min(75%, 300px); justify-self: center; }.section-about h2 { font-size: 62px; }.section-header-row { display: block; }.doctoralia-mark { margin: -20px 0 22px; }.testimonial-grid, .service-grid, .feature-list { grid-template-columns: 1fr; }.testimonial-card { min-height: 220px; }.testimonial-card blockquote { font-size: 31px; }.service-grid { border-bottom: 0; }.service-card, .service-card + .service-card { min-height: 0; padding: 27px 0; border-left: 0; border-bottom: 1px solid rgba(24,36,41,.22); }.service-card > p:not(.eyebrow) { max-width: 400px; }.service-card .brand-link { margin-top: 8px; }
-  .pricing-panel, .contact-form { padding: 22px; }.pricing-footer .button { width: 100%; }.cta-layout { display: block; }.cta-layout h2 { font-size: 55px; }.cta-layout .button { margin-top: 28px; width: 100%; }.page-intro { padding: 63px 0 70px; }.page-intro h1 { font-size: clamp(57px, 12vw, 73px); }.interior-grid, .profile-layout, .contact-layout { grid-template-columns: 1fr; gap: 40px; }.profile-layout img { width: min(100%, 300px); }.form-grid { grid-template-columns: 1fr; gap: 0; }.footer-columns { grid-template-columns: 1fr 1fr; }.footer-bottom { display: block; }.footer-bottom div { margin-top: 12px; flex-wrap: wrap; }.cookie-banner { display: block; }.cookie-banner > div { margin-top: 14px; }.cookie-banner .button { flex: 1; }
+  .pricing-panel, .contact-form { padding: 22px; }.pricing-footer .button, .contact-form > .diana-button { width: 100%; }.cta-layout { display: block; }.cta-layout h2 { font-size: 55px; }.cta-layout .button { margin-top: 28px; width: 100%; }.page-intro { padding: 63px 0 70px; }.page-intro h1 { font-size: clamp(57px, 12vw, 73px); }.interior-grid, .profile-layout, .contact-layout { grid-template-columns: 1fr; gap: 40px; }.profile-layout img { width: min(100%, 300px); }.form-grid { grid-template-columns: 1fr; gap: 0; }.footer-columns { grid-template-columns: 1fr 1fr; }.footer-bottom { display: block; }.footer-bottom div { margin-top: 12px; flex-wrap: wrap; }.cookie-banner { display: block; }.cookie-banner > div { margin-top: 14px; }.cookie-banner .button { flex: 1; }
 }
 @media (prefers-reduced-motion: reduce) { :root { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; transform: none !important; clip-path: none !important; } .hero-stagger, .hero-portrait .portrait-frame, .motion-reveal { opacity: 1 !important; } }
 
@@ -308,6 +328,111 @@ body { background: #f8faf9; }
 .footer-columns a:hover, .footer-bottom a:hover { text-decoration: none; color: var(--brand-white); }
 .footer-columns a:hover::after, .footer-columns a:focus-visible::after,
 .footer-bottom a:hover::after, .footer-bottom a:focus-visible::after { transform: scaleX(1); background: var(--brand-white); }
+
+/* Superficies de navegación y prueba social: una jerarquía clara sin convertirlas en botones. */
+.service-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 365px;
+  padding: var(--diana-space-6);
+  border: 1px solid var(--diana-color-border);
+  border-radius: var(--diana-radius-lg);
+  background: var(--diana-color-ivory);
+  color: var(--diana-color-ink);
+  transition: border-color var(--diana-duration-base) var(--diana-ease-standard), transform var(--diana-duration-base) var(--diana-ease-standard), box-shadow var(--diana-duration-base) var(--diana-ease-standard);
+  text-align: center;
+}
+.service-card:hover, .service-card:focus-visible {
+  border-color: var(--diana-color-petrol);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgb(24 36 41 / 5%);
+}
+.service-card:focus-visible { outline: 3px solid var(--diana-color-focus); outline-offset: 3px; }
+.service-card-action, .situation-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  min-height: 48px;
+  margin-top: auto;
+  padding: .78rem 1.45rem;
+  border: 1px solid var(--diana-color-petrol);
+  border-radius: 10px;
+  background: var(--diana-color-mist);
+  color: var(--diana-color-petrol);
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: background-color var(--diana-duration-base) var(--diana-ease-standard), color var(--diana-duration-base) var(--diana-ease-standard), transform var(--diana-duration-base) var(--diana-ease-standard);
+}
+.service-card-action:hover, .service-card-action:focus-visible, .situation-action:hover, .situation-action:focus-visible { text-decoration: none; }
+.service-card:hover .service-card-action, .service-card:focus-visible .service-card-action,
+.situation-row:hover .situation-action, .situation-row:focus-visible .situation-action {
+  background: var(--diana-color-petrol);
+  color: var(--diana-color-white);
+}
+.service-card:hover .service-card-action .arrow-icon, .service-card:focus-visible .service-card-action .arrow-icon,
+.situation-row:hover .situation-action .arrow-icon, .situation-row:focus-visible .situation-action .arrow-icon { transform: translateX(3px); }
+.testimonial-card .diana-text-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .4rem;
+  min-height: 48px;
+  margin-top: 1.25rem;
+  padding: .78rem 1.45rem;
+  border: 1px solid var(--diana-color-petrol);
+  border-radius: 10px;
+  background: var(--diana-color-mist);
+  color: var(--diana-color-petrol);
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: background-color var(--diana-duration-base) var(--diana-ease-standard), color var(--diana-duration-base) var(--diana-ease-standard), transform var(--diana-duration-base) var(--diana-ease-standard);
+}
+.testimonial-card .diana-text-link:hover, .testimonial-card .diana-text-link:focus-visible {
+  background: var(--diana-color-petrol);
+  color: var(--diana-color-white);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.testimonial-card .diana-text-link:hover .arrow-icon, .testimonial-card .diana-text-link:focus-visible .arrow-icon { transform: translateX(3px); }
+.testimonial-card {
+  border: 1px solid var(--diana-color-border);
+  border-radius: var(--diana-radius-lg);
+  padding: var(--diana-space-6);
+  transition: border-color var(--diana-duration-base) var(--diana-ease-standard), transform var(--diana-duration-base) var(--diana-ease-standard), box-shadow var(--diana-duration-base) var(--diana-ease-standard);
+}
+.testimonial-card:hover, .testimonial-card:focus-within {
+  border-color: var(--diana-color-border);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgb(24 36 41 / 4%);
+}
+.page-intro-copy > .diana-button {
+  display: flex;
+  width: fit-content;
+  min-width: 224px;
+  margin: 2rem auto 0;
+  justify-content: center;
+}
+.situation-row {
+  align-items: center;
+  height: 100%;
+  border-radius: var(--diana-radius-lg);
+  transition: border-color var(--diana-duration-base) var(--diana-ease-standard), transform var(--diana-duration-base) var(--diana-ease-standard), box-shadow var(--diana-duration-base) var(--diana-ease-standard);
+}
+.situation-content { align-items: center; text-align: center; }
+.situation-row:hover, .situation-row:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgb(24 36 41 / 5%);
+}
+
+@media (max-width: 620px) {
+  .service-card { min-height: 0; padding: var(--diana-space-5); }
+  .situation-row { height: auto; }
+  .page-intro-copy > .diana-button { width: 100%; margin-top: 1.75rem; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .brand-link::after, .footer-columns a::after, .footer-bottom a::after { transform: scaleX(.28) !important; }

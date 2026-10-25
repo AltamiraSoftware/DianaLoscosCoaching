@@ -1,0 +1,45 @@
+.withReel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+  align-items: center;
+  gap: clamp(32px, 6vw, 100px);
+}
+
+.copy h2 {
+  max-width: 700px;
+  margin: 0 0 20px;
+  font-size: clamp(48px, 5vw, 74px);
+}
+
+.copy p {
+  max-width: 580px;
+  margin: 0;
+  color: #d8e1df;
+  font-size: 16px;
+}
+
+.copy :global(.button) {
+  margin-top: 32px;
+}
+
+@media (max-width: 860px) {
+  .withReel {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+}
+
+@media (max-width: 620px) {
+  .withReel {
+    gap: 36px;
+  }
+
+  .copy h2 {
+    font-size: clamp(46px, 11vw, 55px);
+  }
+
+  .copy :global(.button) {
+    width: 100%;
+    margin-top: 28px;
+  }
+}

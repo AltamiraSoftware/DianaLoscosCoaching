@@ -1,0 +1,64 @@
+.reel {
+  width: min(100%, 380px);
+  min-width: 0;
+  justify-self: end;
+}
+
+.label {
+  margin: 0 0 4px;
+  color: var(--brand-sage-light);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0 0 14px;
+  color: var(--brand-white);
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-size: 28px;
+  line-height: 1.1;
+}
+
+.frame {
+  width: 100%;
+  min-height: 430px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--brand-cream);
+}
+
+.frame :global(.instagram-media) {
+  min-width: 0 !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.fallback {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-top: 6px;
+  color: var(--brand-sage-light);
+  font-size: 12px;
+  text-decoration: none;
+  text-underline-offset: 4px;
+}
+
+.fallback:hover {
+  color: var(--brand-white);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+.fallback:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+@media (max-width: 860px) {
+  .reel {
+    justify-self: start;
+  }
+}

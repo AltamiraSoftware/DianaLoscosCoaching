@@ -1,7 +1,7 @@
 import type { ButtonHTMLAttributes, ComponentProps, CSSProperties } from 'react';
 import { TrackedLink } from '@/components/ui/TrackedLink';
 
-export type ButtonVariant = 'primary' | 'outline';
+export type ButtonVariant = 'primary' | 'secondary';
 type ButtonLinkAppearance = ButtonVariant | 'light';
 
 function buttonClass(variant: ButtonLinkAppearance, className?: string) {

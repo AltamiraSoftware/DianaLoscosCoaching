@@ -8,7 +8,7 @@ export function Footer() {
   return <footer className="site-footer">
     <Container>
       <div className="footer-top">
-        <div><p className="footer-brand">Diana Loscos<span>.</span></p><p className="footer-statement">Un espacio para pensar con claridad y avanzar con intención.</p></div>
+        <div><p className="footer-brand">Diana Loscos<span>.</span></p><p className="footer-statement">Un espacio para pensar con claridad y avanzar con intención.<br />Psicóloga · Col. M-45396 · Coaching Ejecutivo</p></div>
         <div className="footer-columns">
           <div><h2>Explora</h2><Link href="/coaching-profesional/">Coaching profesional</Link><Link href="/cambio-profesional/">Cambio profesional</Link><Link href="/liderazgo-nuevos-managers/">Nuevo liderazgo</Link><Link href="/coaching-ejecutivo/">Coaching ejecutivo</Link></div>
           <div><h2>Diana</h2><Link href="/sobre-mi/">Sobre mí</Link><Link href="/opiniones/">Opiniones</Link><Link href="/preguntas-frecuentes/">Preguntas frecuentes</Link><Link href="/contacto/">Contacto</Link></div>
