@@ -359,8 +359,8 @@ body { background: #f8faf9; }
   padding: .78rem 1.45rem;
   border: 1px solid var(--diana-color-petrol);
   border-radius: 10px;
-  background: var(--diana-color-mist);
-  color: var(--diana-color-petrol);
+  background: var(--diana-color-petrol);
+  color: var(--diana-color-white);
   font-size: 14px;
   font-weight: 650;
   text-decoration: none;
@@ -369,7 +369,7 @@ body { background: #f8faf9; }
 .service-card-action:hover, .service-card-action:focus-visible, .situation-action:hover, .situation-action:focus-visible { text-decoration: none; }
 .service-card:hover .service-card-action, .service-card:focus-visible .service-card-action,
 .situation-row:hover .situation-action, .situation-row:focus-visible .situation-action {
-  background: var(--diana-color-petrol);
+  background: var(--diana-color-petrol-deep);
   color: var(--diana-color-white);
 }
 .service-card:hover .service-card-action .arrow-icon, .service-card:focus-visible .service-card-action .arrow-icon,
@@ -384,15 +384,15 @@ body { background: #f8faf9; }
   padding: .78rem 1.45rem;
   border: 1px solid var(--diana-color-petrol);
   border-radius: 10px;
-  background: var(--diana-color-mist);
-  color: var(--diana-color-petrol);
+  background: var(--diana-color-petrol);
+  color: var(--diana-color-white);
   font-size: 14px;
   font-weight: 650;
   text-decoration: none;
   transition: background-color var(--diana-duration-base) var(--diana-ease-standard), color var(--diana-duration-base) var(--diana-ease-standard), transform var(--diana-duration-base) var(--diana-ease-standard);
 }
 .testimonial-card .diana-text-link:hover, .testimonial-card .diana-text-link:focus-visible {
-  background: var(--diana-color-petrol);
+  background: var(--diana-color-petrol-deep);
   color: var(--diana-color-white);
   text-decoration: none;
   transform: translateY(-1px);
@@ -409,6 +409,28 @@ body { background: #f8faf9; }
   transform: translateY(-1px);
   box-shadow: 0 2px 8px rgb(24 36 41 / 4%);
 }
+.testimonial-card { align-items: center; text-align: center; }
+.testimonial-card blockquote { max-width: 34rem; }
+.testimonial-card figcaption { width: 100%; justify-content: center; }
+
+/* Cabecera integrada en la paleta Diana: marfil, petróleo y tipografía del sistema. */
+.site-header {
+  background: var(--diana-color-ivory);
+  border-bottom-color: var(--diana-color-border);
+  color: var(--diana-color-ink);
+}
+.site-header.is-scrolled {
+  background: var(--diana-color-ivory);
+  box-shadow: 0 8px 24px rgb(24 36 41 / 8%);
+}
+.brand { min-height: 64px; padding: 4px 10px 6px 0; }
+.brand-mark { width: 132px; height: auto; object-fit: contain; mix-blend-mode: multiply; }
+.desktop-nav, .nav-link, .nav-dropdown-trigger, .header-actions, .menu-toggle, .mobile-nav {
+  font-family: var(--diana-font-body);
+}
+.nav-link { color: var(--diana-color-ink); letter-spacing: .02em; }
+.nav-link:hover, .nav-link:focus-visible, .nav-link[data-active="true"] { color: var(--diana-color-petrol); }
+.header-actions .button { font-family: var(--diana-font-body); }
 .page-intro-copy > .diana-button {
   display: flex;
   width: fit-content;
@@ -432,6 +454,8 @@ body { background: #f8faf9; }
   .service-card { min-height: 0; padding: var(--diana-space-5); }
   .situation-row { height: auto; }
   .page-intro-copy > .diana-button { width: 100%; margin-top: 1.75rem; }
+  .brand { padding-bottom: 5px; }
+  .brand-mark { width: 112px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
