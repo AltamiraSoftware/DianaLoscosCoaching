@@ -49,7 +49,17 @@ legacy/
 AUDIT.md
 QA.md
 
+# Local project notes and host configuration
+/.nvmrc
+/ARCHITECTURE.md
+/FUTURE.md
+/README.md
+/SEO.md
+/eslint.config.js
+/netlify.toml
+
 # Historical assets not used by the Next.js site
 public/icf-codigo-etico-june-2025.pdf
 public/logo_diana.png
 public/favicon-16.png
+diana-design-system/
