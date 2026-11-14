@@ -1,0 +1,6 @@
+.withDots::after { display: none; }
+.divider { margin-top: 25px; }
+.dark { color: var(--diana-white); }
+.dark :global(.eyebrow), .dark :global(.section-lede) { color: var(--diana-mint); }
+.withDots h2 em { color: var(--diana-story); }
+.dark h2 em { color: var(--diana-mint); }

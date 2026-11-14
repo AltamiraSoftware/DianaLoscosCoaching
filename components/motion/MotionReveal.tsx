@@ -10,7 +10,7 @@ export function MotionReveal({ children, className = '' }: { children: ReactNode
     let animation: Animation | undefined;
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        animation = node.animate([{ transform: 'translateY(16px)' }, { transform: 'translateY(0)' }], { duration: 650, easing: 'cubic-bezier(.2,.7,.2,1)' });
+        animation = node.animate([{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 650, easing: 'cubic-bezier(.2,.7,.2,1)' });
         observer.disconnect();
       }
     }, { threshold: 0.08, rootMargin: '0px 0px -24px 0px' });

@@ -1,0 +1,13 @@
+.onDark {
+  min-height: 48px;
+  padding: .78rem 1.45rem;
+  border: 1px solid var(--diana-white);
+  border-radius: var(--diana-radius-md);
+  background: var(--diana-white);
+  color: var(--diana-deep);
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: none;
+}
+.onDark:hover:not(:disabled) { background: var(--diana-mint); border-color: var(--diana-mint); }
+.onDark:focus-visible { outline: 3px solid var(--diana-mint); outline-offset: 3px; }

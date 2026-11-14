@@ -1,0 +1,3 @@
+.dots { display: block; flex: none; }
+.light { color: var(--diana-story); --dots-check: var(--diana-white); }
+.dark { color: var(--diana-mint); --dots-check: var(--diana-deep); }
