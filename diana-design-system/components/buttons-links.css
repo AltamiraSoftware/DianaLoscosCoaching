@@ -24,25 +24,25 @@
 }
 
 .diana-button--primary {
-  background: var(--diana-color-petrol);
-  color: var(--diana-color-white);
+  background: var(--diana-petrol);
+  color: var(--diana-white);
 }
 
 .diana-button--primary:hover {
-  background: var(--diana-color-petrol-deep);
-  color: var(--diana-color-white);
+  background: var(--diana-ink-deep);
+  color: var(--diana-white);
   transform: translateY(-1px);
 }
 
 .diana-button--outline {
-  border-color: var(--diana-color-petrol);
+  border-color: var(--diana-petrol);
   background: transparent;
-  color: var(--diana-color-petrol);
+  color: var(--diana-petrol);
 }
 
 .diana-button--outline:hover {
-  background: var(--diana-color-petrol);
-  color: var(--diana-color-white);
+  background: var(--diana-petrol);
+  color: var(--diana-white);
 }
 
 .diana-text-link {
@@ -50,7 +50,7 @@
   gap: 0.4rem;
   align-items: center;
   border-bottom: 1px solid currentColor;
-  color: var(--diana-color-petrol);
+  color: var(--diana-petrol);
   font-family: var(--diana-font-body);
   font-weight: 700;
   line-height: 1.4;
@@ -59,7 +59,7 @@
 }
 
 .diana-text-link:hover {
-  color: var(--diana-color-clay);
+  color: var(--diana-clay-muted);
 }
 
 .diana-button:focus-visible,

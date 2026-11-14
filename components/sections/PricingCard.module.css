@@ -1,0 +1,11 @@
+
+.section-pricing { background: var(--diana-cream); }.pricing-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 8vw; align-items: start; }.pricing-panel { padding: 32px; border: 1px solid var(--diana-ink); background: white; }.pricing-head { display: flex; justify-content: space-between; gap: 10px; padding-bottom: 25px; border-bottom: 1px solid var(--diana-ink); color: var(--diana-petrol); font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }.price-row { display: flex; justify-content: space-between; gap: 20px; padding: 22px 0; border-bottom: 1px solid rgba(24,36,41,.16); }.price-row strong, .price-row small { display: block; }.price-row strong { font-size: 15px; }.price-row small { margin-top: 5px; color: var(--diana-graphite); font-size: 11px; }.price-row > span { font-family: var(--font-newsreader), Georgia, serif; font-size: 29px; white-space: nowrap; }.pricing-footer { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 20px; padding-top: 22px; }.pricing-footer p { max-width: 320px; margin: 0; color: var(--diana-graphite); font-size: 10px; }
+@media (max-width: 860px) {
+  .pricing-layout { grid-template-columns: 1fr; gap: 42px; }
+}
+@media (max-width: 620px) {
+  .pricing-panel { padding: 22px; }.pricing-footer :global(.button) { width: 100%; }
+}
+.pricing-footer p { font-size: 12px; }
+.section-pricing { background: #f8faf9; }
+.pricing-panel { border-radius: 17px; }

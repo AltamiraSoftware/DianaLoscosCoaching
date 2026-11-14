@@ -42,19 +42,19 @@
 .diana-type-body-lg {
   font-size: clamp(1rem, 1.2vw, 1.125rem);
   line-height: 1.65;
-  color: var(--diana-color-graphite);
+  color: var(--diana-graphite);
 }
 
 .diana-type-body {
   font-size: 1rem;
   line-height: 1.6;
-  color: var(--diana-color-graphite);
+  color: var(--diana-graphite);
 }
 
 .diana-type-small {
   font-size: 0.875rem;
   line-height: 1.5;
-  color: var(--diana-color-graphite);
+  color: var(--diana-graphite);
 }
 
 .diana-type-eyebrow {

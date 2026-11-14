@@ -1,3 +1,4 @@
+import interiorStyles from '@/app/Interior.module.css';
 import type { Metadata } from 'next';
 import { PageIntro } from '@/components/sections/PageIntro';
 import { ContactForm } from '@/components/sections/ContactForm';
@@ -14,10 +15,10 @@ export default function Page() {
       <p>Si ya quieres reservar, consulta disponibilidad en Doctoralia. Si necesitas preguntar algo antes, puedes escribirme aquí.</p>
     </PageIntro>
     <section className="section section-mist">
-      <Container className="contact-layout">
+      <Container className={`contact-layout ${interiorStyles['contact-layout']}`}>
         <div>
           <p className="eyebrow">Elige tu canal</p>
-          <div className="contact-options">
+          <div className={`contact-options ${interiorStyles['contact-options']}`}>
             <TrackedLink href={site.bookingUrl} external event="cta_booking_click" label="contact">
               <span>Reserva online</span>
               <span className="contact-option-value"><DoctoraliaLogo />Doctoralia</span>
@@ -35,7 +36,7 @@ export default function Page() {
               <span className="contact-option-value"><InstagramLogo />Instagram</span>
             </TrackedLink>
           </div>
-          <p style={{ marginTop: 22, color: 'var(--color-graphite)', fontSize: 13 }}>Las sesiones son online y duran 60 minutos. El formulario es para consultas; la reserva se confirma en Doctoralia.</p>
+          <p style={{ marginTop: 22, color: 'var(--diana-graphite)', fontSize: 13 }}>Las sesiones son online y duran 60 minutos. El formulario es para consultas; la reserva se confirma en Doctoralia.</p>
         </div>
         <ContactForm />
       </Container>

@@ -14,8 +14,8 @@
 .trustLine {
   margin: 28px 0 0;
   padding-left: 13px;
-  border-left: 2px solid var(--color-clay);
-  color: var(--color-petrol);
+  border-left: 2px solid var(--diana-clay-muted);
+  color: var(--diana-petrol);
   font-size: 14px;
   font-weight: 700;
   line-height: 1.4;

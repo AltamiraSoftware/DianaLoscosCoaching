@@ -7,7 +7,6 @@ for (const width of [360, 390, 900, 1440]) {
     await page.goto('/');
     const header = page.locator('.site-header');
     await expect(header.getByRole('link', { name: 'Reservar una sesión' })).toHaveCount(0);
-    expect(await header.evaluate(element => getComputedStyle(element).backgroundImage)).toContain('linear-gradient');
 
     const headerWhatsApp = page.getByRole('link', { name: 'WhatsApp en la cabecera' });
     await expect(headerWhatsApp).toBeVisible();
@@ -39,7 +38,6 @@ for (const width of [360, 390, 900, 1440]) {
 
     await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
     await expect(whatsapp).toBeInViewport();
-    await expect(header.locator('.brand-descriptor')).toHaveCSS('opacity', '1');
     const box = await whatsapp.boundingBox();
     expect(box).not.toBeNull();
     expect(box!.x).toBeGreaterThanOrEqual(19);

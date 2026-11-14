@@ -1,0 +1,13 @@
+
+.trust-strip :global(.brand-link):focus-visible { outline-color: var(--diana-white-warm); }
+
+.trust-strip { background: var(--diana-deep); color: var(--diana-white-warm); }.trust-grid { display: grid; grid-template-columns: repeat(3, 1fr) auto; gap: 26px; align-items: center; padding-top: 29px; padding-bottom: 29px; }
+.trust-grid p { margin: 0; padding-right: 20px; border-right: 1px solid rgba(255,255,255,.24); }.trust-grid strong { display: block; font-size: 12px; }
+.trust-strip :global(.brand-link) { font-size: 12px; }
+@media (max-width: 860px) {.trust-grid { grid-template-columns: repeat(3, 1fr); }.trust-grid > :global(.brand-link) { grid-column: 1/-1; }
+}
+@media (max-width: 620px) {
+  .trust-grid { grid-template-columns: 1fr 1fr; gap: 18px; }.trust-grid p:nth-child(2) { border-right: 0; }.trust-grid p:nth-child(3) { grid-column: 1/2; }.trust-grid > :global(.brand-link) { grid-column: 2; align-self: center; }
+}
+.trust-grid span { display: block; margin-top: 4px; color: #d9e6e1; font-size: 10px; font-size: 12px; }
+.trust-strip a:focus-visible { outline-color: var(--diana-white-warm); }

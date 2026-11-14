@@ -1,5 +1,8 @@
 'use client';
 
+import styles from './AnalyticsConsent.module.css';
+
+
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
@@ -34,5 +37,5 @@ export function AnalyticsConsent() {
     setChoice(value);
     if (value === 'accepted') loadAnalytics();
   };
-  return <aside className="cookie-banner" aria-label="Preferencias de analítica"><p>¿Nos permites medir el uso de esta web para mejorarla? Solo activamos la analítica si aceptas. <Link href="/cookies/">Más información</Link>.</p><div><Button type="button" variant="secondary" onClick={() => choose('rejected')}>Rechazar</Button><Button type="button" onClick={() => choose('accepted')}>Aceptar</Button></div></aside>;
+  return <aside className={`cookie-banner ${styles['cookie-banner']}`} aria-label="Preferencias de analítica"><p>¿Nos permites medir el uso de esta web para mejorarla? Solo activamos la analítica si aceptas. <Link href="/cookies/">Más información</Link>.</p><div><Button type="button" variant="secondary" onClick={() => choose('rejected')}>Rechazar</Button><Button type="button" onClick={() => choose('accepted')}>Aceptar</Button></div></aside>;
 }

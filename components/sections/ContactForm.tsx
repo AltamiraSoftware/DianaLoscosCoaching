@@ -1,5 +1,7 @@
 'use client';
 
+import styles from './ContactForm.module.css';
+
 import { useRef, useState, type FormEvent } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
@@ -31,14 +33,14 @@ export function ContactForm() {
       setBusy(false);
     }
   };
-  return <form className="contact-form" onSubmit={submit} onFocusCapture={onFocus}>
+  return <form className={`contact-form ${styles['contact-form']}`} onSubmit={submit} onFocusCapture={onFocus}>
     <h2>Cuéntame qué pasa.</h2><p>Una nota breve es suficiente. Te responderé por correo.</p>
-    <div className="form-grid"><div className="field"><label htmlFor="contact-name">Nombre *</label><input id="contact-name" name="name" autoComplete="given-name" maxLength={100} required /></div><div className="field"><label htmlFor="contact-email">Email *</label><input id="contact-email" name="email" type="email" autoComplete="email" maxLength={254} required /></div></div>
-    <div className="field"><label htmlFor="contact-phone">Teléfono <span>(opcional)</span></label><input id="contact-phone" name="phone" type="tel" autoComplete="tel" maxLength={30} /></div>
-    <div className="field"><label htmlFor="contact-message">¿Qué te gustaría trabajar? *</label><textarea id="contact-message" name="message" minLength={10} maxLength={3000} required placeholder="Puedes contarme brevemente qué te gustaría aclarar." /></div>
-    <div className="honeypot" aria-hidden="true"><label htmlFor="contact-website">Deja este campo vacío</label><input id="contact-website" name="website" tabIndex={-1} autoComplete="off" /></div>
-    <label className="form-consent"><input type="checkbox" name="privacy" value="yes" required /><span>He leído la <Link href="/privacidad/" target="_blank">política de privacidad</Link> y acepto el tratamiento de mis datos para responder a esta consulta. *</span></label>
+    <div className={`form-grid ${styles['form-grid']}`}><div className={`field ${styles['field']}`}><label htmlFor="contact-name">Nombre *</label><input id="contact-name" name="name" autoComplete="given-name" maxLength={100} required /></div><div className={`field ${styles['field']}`}><label htmlFor="contact-email">Email *</label><input id="contact-email" name="email" type="email" autoComplete="email" maxLength={254} required /></div></div>
+    <div className={`field ${styles['field']}`}><label htmlFor="contact-phone">Teléfono <span>(opcional)</span></label><input id="contact-phone" name="phone" type="tel" autoComplete="tel" maxLength={30} /></div>
+    <div className={`field ${styles['field']}`}><label htmlFor="contact-message">¿Qué te gustaría trabajar? *</label><textarea id="contact-message" name="message" minLength={10} maxLength={3000} required placeholder="Puedes contarme brevemente qué te gustaría aclarar." /></div>
+    <div className={`honeypot ${styles['honeypot']}`} aria-hidden="true"><label htmlFor="contact-website">Deja este campo vacío</label><input id="contact-website" name="website" tabIndex={-1} autoComplete="off" /></div>
+    <label className={`form-consent ${styles['form-consent']}`}><input type="checkbox" name="privacy" value="yes" required /><span>He leído la <Link href="/privacidad/" target="_blank">política de privacidad</Link> y acepto el tratamiento de mis datos para responder a esta consulta. *</span></label>
     <Button type="submit" disabled={busy}>{busy ? 'Enviando…' : 'Enviar mensaje'}</Button>
-    {error && <p className="form-status form-error" role="alert">{error}</p>}
+    {error && <p className={`form-status form-error ${styles['form-status']} ${styles['form-error']}`} role="alert">{error}</p>}
   </form>;
 }

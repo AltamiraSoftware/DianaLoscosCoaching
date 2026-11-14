@@ -6,7 +6,7 @@
 
 .label {
   margin: 0 0 4px;
-  color: var(--brand-sage-light);
+  color: var(--diana-sage-light);
   font-size: 11px;
   font-weight: 800;
   letter-spacing: .13em;
@@ -15,7 +15,7 @@
 
 .title {
   margin: 0 0 14px;
-  color: var(--brand-white);
+  color: var(--diana-white-warm);
   font-family: var(--font-newsreader), Georgia, serif;
   font-size: 28px;
   line-height: 1.1;
@@ -26,7 +26,7 @@
   min-height: 430px;
   overflow: hidden;
   border-radius: 14px;
-  background: var(--brand-cream);
+  background: var(--diana-cream-warm);
 }
 
 .frame :global(.instagram-media) {
@@ -40,14 +40,14 @@
   align-items: center;
   min-height: 44px;
   margin-top: 6px;
-  color: var(--brand-sage-light);
+  color: var(--diana-sage-light);
   font-size: 12px;
   text-decoration: none;
   text-underline-offset: 4px;
 }
 
 .fallback:hover {
-  color: var(--brand-white);
+  color: var(--diana-white-warm);
   text-decoration: underline;
   text-decoration-thickness: 1px;
 }

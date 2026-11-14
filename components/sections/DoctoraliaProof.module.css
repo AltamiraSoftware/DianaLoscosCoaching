@@ -1,0 +1,8 @@
+
+.section-header-row { display: flex; justify-content: space-between; align-items: start; gap: 32px; }.doctoralia-mark { margin-top: 12px; color: var(--diana-petrol); font-family: var(--font-newsreader), Georgia, serif; font-size: 27px; white-space: nowrap; }
+.testimonial-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 22px; }
+@media (max-width: 620px) {.section-header-row { display: block; }.doctoralia-mark { margin: -20px 0 22px; }.testimonial-grid { grid-template-columns: 1fr; }
+}
+.doctoralia-mark { gap: 6px; }
+.doctoralia-mark { display: inline-flex; align-items: center; }
+.doctoralia-mark :global(.arrow-icon) { width: 17px; height: 17px; }

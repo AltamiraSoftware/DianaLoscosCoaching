@@ -17,9 +17,9 @@ function buttonStyle(variant: ButtonLinkAppearance, style?: CSSProperties): CSSP
   return {
     borderRadius: 'var(--diana-radius-md)',
     ...(variant === 'light' && {
-      backgroundColor: 'var(--diana-color-white)',
-      borderColor: 'var(--diana-color-white)',
-      color: 'var(--diana-color-petrol)',
+      backgroundColor: 'var(--diana-white)',
+      borderColor: 'var(--diana-white)',
+      color: 'var(--diana-petrol)',
       boxShadow: 'none',
     }),
     ...style,

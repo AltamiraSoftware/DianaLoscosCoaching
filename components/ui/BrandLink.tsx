@@ -5,7 +5,7 @@ export function BrandLink({ className, light = false, ...props }: ComponentProps
   const linkProps = {
     ...props,
     className: ['diana-text-link', className].filter(Boolean).join(' '),
-    style: { minHeight: 44, width: 'fit-content', ...(light && { color: 'var(--diana-color-white)' }) },
+    style: { minHeight: 44, width: 'fit-content', ...(light && { color: 'var(--diana-white)' }) },
   };
   return <TrackedLink {...linkProps} />;
 }

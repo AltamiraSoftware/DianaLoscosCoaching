@@ -4,17 +4,30 @@
 */
 
 :root {
+  --diana-page: #F8FAF9;
+  --diana-mist: #E6EEE9;
+  --diana-petrol: #1E5255;
+  --diana-deep: #174E4C;
+  --diana-clay: #9C4B3A;
+  --diana-story: #006059;
+  --diana-mint: #D2F4EE;
+  --diana-teal-hover: #103f3c;
+  --diana-sage: #9caf98;
+  --diana-sage-light: #cbd5c5;
+  --diana-cream-warm: #f5f0e7;
+  --diana-white-warm: #fffdf8;
+  --diana-ink-soft: #173532;
+  --diana-forest: #2F6B62;
+
   /* Color */
-  --diana-color-petrol: #1e5153;
-  --diana-color-petrol-deep: #122025;
-  --diana-color-clay: #c46f5a;
-  --diana-color-ink: #182429;
-  --diana-color-graphite: #465258;
-  --diana-color-ivory: #f7f3eb;
-  --diana-color-white: #ffffff;
-  --diana-color-mist: #e7eeea;
-  --diana-color-border: rgba(24, 36, 41, 0.16);
-  --diana-color-focus: #c46f5a;
+  --diana-ink-deep: #122025;
+  --diana-ink: #182429;
+  --diana-graphite: #465258;
+  --diana-cream: #f7f3eb;
+  --diana-white: #ffffff;
+  --diana-mist-nav: #e7eeea;
+  --diana-border: rgba(24, 36, 41, 0.16);
+  --diana-clay-muted: #c46f5a;
 
   /* Tipografía: las fuentes se cargan en el proyecto, no desde esta capa. */
   --diana-font-display: "Newsreader", Georgia, serif;
@@ -50,21 +63,21 @@
 }
 
 .diana-surface-ivory {
-  background: var(--diana-color-ivory);
-  color: var(--diana-color-ink);
+  background: var(--diana-cream);
+  color: var(--diana-ink);
 }
 
 .diana-surface-white {
-  background: var(--diana-color-white);
-  color: var(--diana-color-ink);
+  background: var(--diana-white);
+  color: var(--diana-ink);
 }
 
 .diana-surface-petrol {
-  background: var(--diana-color-petrol);
-  color: var(--diana-color-white);
+  background: var(--diana-petrol);
+  color: var(--diana-white);
 }
 
 .diana-eyebrow {
-  color: var(--diana-color-petrol);
+  color: var(--diana-petrol);
 }
 

@@ -17,8 +17,8 @@
 .trustLine {
   margin: 24px 0 0;
   padding-left: 13px;
-  border-left: 2px solid var(--color-clay);
-  color: var(--color-petrol);
+  border-left: 2px solid var(--diana-clay-muted);
+  color: var(--diana-petrol);
   font-size: 14px;
   font-weight: 700;
   letter-spacing: .02em;
@@ -139,4 +139,42 @@
   .hero .portraitCaption {
     width: 140px;
   }
+}
+
+
+
+.hero { position: relative; overflow: hidden; background: var(--diana-cream); }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(290px, .65fr); align-items: center; gap: clamp(40px, 6vw, 94px); min-height: min(740px, calc(100svh - 82px)); padding-top: clamp(64px, 8vw, 120px); padding-bottom: clamp(68px, 9vw, 130px); }
+.hero-copy { position: relative; z-index: 1; }.hero h1 { max-width: 780px; margin-bottom: 28px; font-size: clamp(58px, 7vw, 105px); }
+.hero h1 em { font-weight: 400; color: var(--diana-petrol); }.hero-lede { max-width: 650px; color: var(--diana-graphite); font-size: clamp(17px, 1.7vw, 20px); line-height: 1.75; }
+.hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 28px; margin-top: 38px; }.hero-note { margin: 24px 0 0; color: var(--diana-graphite); font-size: 11px; }
+.hero-portrait { justify-self: end; width: min(100%, 356px); margin: 0; }.portrait-frame { overflow: hidden; background: #d8dcda; border: 1px solid rgba(24,36,41,.12); aspect-ratio: 356 / 402; }
+.portrait-frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hero-portrait figcaption { display: flex; justify-content: space-between; gap: 10px; padding-top: 14px; color: var(--diana-graphite); border-top: 1px solid var(--diana-ink); margin-top: 12px; font-size: 10px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.hero-baseline { position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: rgba(24,36,41,.18); }
+.hero-stagger { animation: var(--hero-reveal-animation); }.hero-stagger-1 { animation-delay: .08s; }.hero-stagger-2 { animation-delay: .18s; }.hero-stagger-3 { animation-delay: .31s; }.hero-stagger-4 { animation-delay: .44s; }
+.hero-portrait .portrait-frame { animation: var(--portrait-reveal-animation); }
+@media (max-width: 860px) {
+  .hero-grid { grid-template-columns: 1fr 220px; gap: 22px; min-height: 0; padding-top: 70px; padding-bottom: 80px; }.hero h1 { font-size: clamp(52px, 8vw, 75px); }.hero-portrait { align-self: end; }
+}
+@media (max-width: 620px) {
+  .hero-grid { grid-template-columns: 1fr; padding-top: 60px; padding-bottom: 65px; }.hero h1 { font-size: clamp(57px, 12.5vw, 78px); }.hero-lede { font-size: 16px; line-height: 1.7; }.hero-actions { gap: 14px; margin-top: 28px; }.hero-actions :global(.button) { width: 100%; }.hero-actions :global(.brand-link) { margin-left: 2px; }.hero-portrait { justify-self: center; width: min(76%, 315px); margin-top: 32px; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-stagger, .hero-portrait .portrait-frame { opacity: 1 !important; } }
+.hero-note { font-size: 12px; }
+.hero { isolation: isolate; background: #f8faf9; }
+.hero::before { content: ''; position: absolute; z-index: -1; top: 0; right: -8%; width: 54%; height: 90%; border-radius: 0 0 0 160px; background: var(--diana-mist); opacity: .75; }
+.hero::after { content: ''; position: absolute; z-index: -1; bottom: -30%; left: -16%; width: 38%; aspect-ratio: 1; border-radius: 50%; background: var(--diana-mist); opacity: .35; }
+.hero-grid { grid-template-columns: minmax(0, 1.25fr) minmax(300px, .75fr); }
+.hero :global(.eyebrow) { display: inline-flex; width: fit-content; padding: 9px 15px; border-radius: 999px; background: #dbece7; color: var(--diana-petrol); }
+.hero h1 { font-size: clamp(54px, 6.1vw, 90px); font-weight: 650; line-height: 1.06; }
+.hero h1 em { font-weight: 600; }
+.hero-signoff { margin: 25px 0 0; color: var(--diana-forest); font-family: var(--font-newsreader), Georgia, serif; font-size: clamp(32px, 3.4vw, 48px); font-style: italic; line-height: 1; }
+.hero-portrait { width: min(100%, 390px); }
+.portrait-frame { border: 8px solid white; border-radius: 26px; box-shadow: 0 22px 55px rgba(24,36,41,.12); }
+.hero-portrait figcaption { border-color: rgba(24,36,41,.25); }
+@media (max-width: 860px) {.hero-grid { grid-template-columns: 1fr 220px; } }
+@media (max-width: 620px) {
+  .hero-grid { grid-template-columns: 1fr; }.hero::before { width: 83%; right: -32%; height: 55%; border-radius: 0 0 0 100px; }
+  .hero-portrait { width: min(80%, 315px); }
 }

@@ -4,14 +4,14 @@
   gap: var(--diana-space-4);
   min-height: 100%;
   padding: clamp(1.25rem, 2.5vw, 2rem);
-  border: 1px solid var(--diana-color-border);
+  border: 1px solid var(--diana-border);
   border-radius: var(--diana-radius-lg);
-  background: var(--diana-color-white);
+  background: var(--diana-white);
   box-shadow: var(--diana-shadow-card);
 }
 
 .diana-card__number {
-  color: var(--diana-color-petrol);
+  color: var(--diana-petrol);
   font-family: var(--diana-font-body);
   font-size: 0.7rem;
   font-weight: 700;
@@ -20,7 +20,7 @@
 
 .diana-card__title {
   margin: 0;
-  color: var(--diana-color-ink);
+  color: var(--diana-ink);
   font-family: var(--diana-font-display);
   font-size: clamp(1.35rem, 2vw, 1.75rem);
   font-weight: 500;
@@ -29,30 +29,30 @@
 
 .diana-card__body {
   margin: 0;
-  color: var(--diana-color-graphite);
+  color: var(--diana-graphite);
   font-family: var(--diana-font-body);
   font-size: 0.95rem;
   line-height: 1.6;
 }
 
 .diana-card--mist {
-  background: var(--diana-color-mist);
+  background: var(--diana-mist-nav);
   box-shadow: none;
 }
 
 .diana-card--petrol {
-  border-color: var(--diana-color-petrol);
-  background: var(--diana-color-petrol);
+  border-color: var(--diana-petrol);
+  background: var(--diana-petrol);
   box-shadow: none;
 }
 
 .diana-card--petrol .diana-card__number,
 .diana-card--petrol .diana-card__title,
 .diana-card--petrol .diana-card__body {
-  color: var(--diana-color-white);
+  color: var(--diana-white);
 }
 
 .diana-card--petrol .diana-card__number {
-  color: var(--diana-color-mist);
+  color: var(--diana-mist-nav);
 }
 

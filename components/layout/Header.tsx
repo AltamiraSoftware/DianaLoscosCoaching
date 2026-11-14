@@ -1,5 +1,7 @@
 'use client';
 
+import headerStyles from './Header.module.css';
+
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -110,7 +112,7 @@ export function Header() {
         return <Link
           key={`${variant}-${item.href}`}
           href={item.href}
-          className={variant === 'desktop' ? 'nav-link' : 'mobile-nav-link'}
+          className={variant === 'desktop' ? `nav-link ${headerStyles['nav-link']}` : `mobile-nav-link ${headerStyles['mobile-nav-link']}`}
           aria-current={exact ? 'page' : undefined}
           data-active={isRouteActive(pathname, item.href)}
           onClick={closeNavigation}
@@ -124,13 +126,13 @@ export function Header() {
       return <div
         key={key}
         ref={node => { dropdownRefs.current[key] = node; }}
-        className={variant === 'desktop' ? 'nav-dropdown' : 'mobile-services'}
+        className={variant === 'desktop' ? `nav-dropdown ${headerStyles['nav-dropdown']}` : `mobile-services ${headerStyles['mobile-services']}`}
         data-nav-dropdown={key}
       >
         <button
           ref={node => { triggerRefs.current[key] = node; }}
           type="button"
-          className={variant === 'desktop' ? 'nav-link nav-dropdown-trigger' : 'mobile-nav-link mobile-services-trigger'}
+          className={variant === 'desktop' ? `nav-link nav-dropdown-trigger ${headerStyles['nav-link']} ${headerStyles['nav-dropdown-trigger']}` : `mobile-nav-link mobile-services-trigger ${headerStyles['mobile-nav-link']} ${headerStyles['mobile-services-trigger']}`}
           aria-expanded={isOpen}
           aria-controls={`nav-${key}`}
           data-active={isActive}
@@ -141,7 +143,7 @@ export function Header() {
         </button>
         <div
           id={`nav-${key}`}
-          className={variant === 'desktop' ? 'nav-dropdown-panel' : 'mobile-service-choices'}
+          className={variant === 'desktop' ? `nav-dropdown-panel ${headerStyles['nav-dropdown-panel']}` : `mobile-service-choices ${headerStyles['mobile-service-choices']}`}
           hidden={!isOpen}
         >
           {item.children.map(child => {
@@ -149,7 +151,7 @@ export function Header() {
             return <Link
               key={child.href}
               href={child.href}
-              className={variant === 'desktop' ? 'nav-dropdown-link' : 'mobile-nav-link mobile-service-link'}
+              className={variant === 'desktop' ? `nav-dropdown-link ${headerStyles['nav-dropdown-link']}` : `mobile-nav-link mobile-service-link ${headerStyles['mobile-nav-link']} ${headerStyles['mobile-service-link']}`}
               aria-current={exact ? 'page' : undefined}
               data-active={isRouteActive(pathname, child.href)}
               onClick={closeNavigation}
@@ -162,25 +164,25 @@ export function Header() {
       </div>;
     });
 
-  return <header className={`site-header ${scrolled ? 'is-scrolled' : ''}`}>
-    <div className="container-site header-inner">
-      <Link href="/" className="brand" aria-label="Diana Loscos, ir al inicio" onClick={closeNavigation}>
-        <Image className="brand-mark" src="/logo_diana_loscos.webp" alt="" width={116} height={75} />
+  return <header className={`site-header ${scrolled ? 'is-scrolled' : ''} ${headerStyles['site-header']}`}>
+    <div className={`container-site header-inner ${headerStyles['header-inner']} ${headerStyles['header-inner']}`}>
+      <Link href="/" className={`brand ${headerStyles['brand']} ${headerStyles['brand']}`} aria-label="Diana Loscos, ir al inicio" onClick={closeNavigation}>
+        <Image className={`brand-mark ${headerStyles['brand-mark']} ${headerStyles['brand-mark']}`} src="/logo_diana_loscos.webp" alt="" width={116} height={75} />
       </Link>
-      <nav className="desktop-nav" aria-label="Navegación principal">{renderNavigation('desktop')}</nav>
+      <nav className={`desktop-nav ${headerStyles['desktop-nav']} ${headerStyles['desktop-nav']}`} aria-label="Navegación principal">{renderNavigation('desktop')}</nav>
       <HeaderBrandLinks />
       <button
         ref={mobileToggleRef}
         type="button"
-        className="menu-toggle"
+        className={`menu-toggle ${headerStyles['menu-toggle']} ${headerStyles['menu-toggle']}`}
         aria-expanded={mobileOpen}
         aria-controls="mobile-navigation"
         aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
         onClick={() => { setMobileOpen(value => !value); setOpenDropdown(null); }}
       ><span /><span /></button>
     </div>
-    <nav id="mobile-navigation" className={`mobile-nav ${mobileOpen ? 'is-open' : ''}`} aria-label="Navegación móvil" inert={!mobileOpen}>
-      <div className="container-site mobile-nav-inner">
+    <nav id="mobile-navigation" className={`mobile-nav ${mobileOpen ? 'is-open' : ''} ${headerStyles['mobile-nav']}`} aria-label="Navegación móvil" inert={!mobileOpen}>
+      <div className={`container-site mobile-nav-inner ${headerStyles['mobile-nav-inner']} ${headerStyles['mobile-nav-inner']}`}>
         {renderNavigation('mobile')}
       </div>
     </nav>

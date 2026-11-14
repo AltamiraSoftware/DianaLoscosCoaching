@@ -7,9 +7,9 @@
 
 .diana-instagram-card {
   overflow: hidden;
-  border: 1px solid var(--diana-color-border);
+  border: 1px solid var(--diana-border);
   border-radius: var(--diana-radius-lg);
-  background: var(--diana-color-white);
+  background: var(--diana-white);
 }
 
 .diana-instagram-card .instagram-media {
@@ -21,7 +21,7 @@
 .diana-instagram-card__description {
   margin: 0;
   padding: var(--diana-space-4) var(--diana-space-5);
-  color: var(--diana-color-graphite);
+  color: var(--diana-graphite);
   font-family: var(--diana-font-body);
   font-size: 0.875rem;
   line-height: 1.55;

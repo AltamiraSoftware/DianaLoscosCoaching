@@ -12,31 +12,31 @@
   height: 44px;
   align-items: center;
   justify-content: center;
-  border: 1px solid var(--brand-teal);
+  border: 1px solid var(--diana-deep);
   border-radius: 12px;
-  background: var(--brand-white);
-  color: var(--brand-teal);
+  background: var(--diana-white-warm);
+  color: var(--diana-deep);
   transition: transform 250ms, background-color 250ms, box-shadow 250ms;
 }
 
 .link:hover {
   transform: translateY(-2px);
-  background: var(--brand-cream);
+  background: var(--diana-cream-warm);
   box-shadow: 0 3px 8px rgb(16 63 60 / 10%);
 }
 
 .link:focus-visible {
-  outline: 3px solid var(--brand-teal-dark);
+  outline: 3px solid var(--diana-teal-hover);
   outline-offset: 4px;
 }
 
 .whatsapp {
-  border-color: var(--brand-teal);
-  background: var(--brand-teal);
-  color: var(--brand-white);
+  border-color: var(--diana-deep);
+  background: var(--diana-deep);
+  color: var(--diana-white-warm);
 }
 
-.whatsapp:hover { background: var(--brand-teal-dark); }
+.whatsapp:hover { background: var(--diana-teal-hover); }
 
 .icon {
   display: block;
