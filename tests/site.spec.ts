@@ -135,6 +135,7 @@ test.describe('experiencia y accesibilidad', () => {
 
   for (const path of ['/', '/coaching-profesional/', '/contacto/']) {
     test('sin infracciones WCAG detectadas por axe en ' + path, async ({ page }) => {
+      await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.goto(path);
       const result = await new AxeBuilder({ page })
         .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
@@ -190,6 +191,14 @@ test.describe('experiencia y accesibilidad', () => {
     await expect(sections.nth(0)).toHaveAttribute('id', 'inicio');
     await expect(sections.nth(1)).toHaveAttribute('id', 'contacto');
     await expect(sections.nth(1).locator('form')).toBeVisible();
+    await expect(sections).toHaveCount(11);
+    await expect(sections.nth(2)).toHaveAttribute('id', 'para-quien');
+    await expect(sections.nth(3)).toHaveAttribute('id', 'proceso');
+    await expect(sections.nth(4)).toContainText('¿Qué puedes llevarte de las sesiones?');
+    await expect(sections.nth(5)).toHaveAttribute('id', 'sobre-mi');
+    await expect(sections.nth(8)).toHaveAttribute('id', 'inversion');
+    await expect(sections.nth(9)).toContainText('Respuestas claras antes de empezar.');
+    await expect(sections.nth(10)).toHaveAttribute('id', 'hablemos');
   });
 
   test('la home presenta seis situaciones y tres reels antes de cargarlos', async ({ page }) => {
@@ -211,6 +220,19 @@ test.describe('experiencia y accesibilidad', () => {
       await first.click();
       await expect(first).toHaveAttribute('aria-expanded', 'false');
     }
+  });
+
+  test('el contenido del cierre aparece al entrar en pantalla', async ({ page }) => {
+    await page.addInitScript(() => {
+      const animate = Element.prototype.animate;
+      Element.prototype.animate = function (keyframes, options) {
+        if (this.getAttribute('data-scroll-reveal') === 'cta-copy') document.documentElement.dataset.ctaAnimation = JSON.stringify(keyframes);
+        return animate.call(this, keyframes, options);
+      };
+    });
+    await page.goto('/');
+    await page.locator('[data-scroll-reveal="cta-copy"]').last().scrollIntoViewIfNeeded();
+    await expect.poll(() => page.locator('html').getAttribute('data-cta-animation')).toContain('translateY(12px)');
   });
 
   test('el movimiento reducido muestra contenido de inmediato', async ({ page }) => {
@@ -353,6 +375,23 @@ test.describe('conversión', () => {
     await expect(form.getByRole('alert')).toContainText('No se pudo enviar');
   });
 
+  test('el formulario de la home envía el teléfono y la franja elegida', async ({ page }) => {
+    let sent: Record<string, string> = {};
+    await page.route('**/api/contact', route => { sent = route.request().postDataJSON(); return route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }); });
+    await page.goto('/');
+    const form = page.locator('#contacto form');
+    await form.getByRole('textbox', { name: /^Nombre/i }).fill('Ana');
+    await form.getByRole('textbox', { name: /Email/i }).fill('ana@example.com');
+    await form.getByRole('textbox', { name: /Teléfono/i }).fill('600123456');
+    await form.getByLabel(/hora te viene mejor/i).selectOption('mediodia');
+    await form.getByRole('textbox', { name: /qué es lo que más te está removiendo/i }).fill('Quiero aclarar mi siguiente paso.');
+    await form.getByRole('checkbox').check();
+    await form.getByRole('button', { name: /Enviar mensaje/i }).click();
+    await expect(page).toHaveURL(/\/gracias\/$/);
+    expect(sent.phone).toBe('600123456');
+    expect(sent.callWindow).toBe('mediodia');
+  });
+
   test('el envío correcto confirma y registra el evento', async ({ page }) => {
     await page.route('**/api/contact', route => route.fulfill({ status: 200, contentType: 'application/json', body: '{"ok":true}' }));
     await page.goto('/contacto/');
@@ -403,4 +442,13 @@ test('consentimiento: se pueden aceptar los reels sin activar analítica', async
   await page.locator('#proceso').scrollIntoViewIfNeeded();
   await expect.poll(() => requests).toBe(1);
   expect(await page.evaluate(() => [localStorage.getItem('analytics-consent'), localStorage.getItem('external-content-consent')])).toEqual(['rejected', 'accepted']);
+});
+
+
+test('consentimiento: el aviso es accesible con movimiento reducido', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  await expect(page.getByRole('complementary', { name: 'Preferencias de privacidad' })).toBeVisible();
+  const result = await new AxeBuilder({ page }).include('aside[aria-label="Preferencias de privacidad"]').withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
+  expect(result.violations, JSON.stringify(result.violations, null, 2)).toEqual([]);
 });

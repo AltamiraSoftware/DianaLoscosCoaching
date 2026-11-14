@@ -13,5 +13,5 @@ export function HomeContactForm() {
 }
 
 export function HomeClosing() {
-  return <section id="hablemos" className={styles.section}><Container><div className={styles.closing}><div><SectionHeading eyebrow={home.closing.eyebrow} title={home.closing.title} tone="dark"><p>{home.closing.description}</p></SectionHeading><ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="final" variant="onDark">{home.closing.action}</ButtonLink></div><div><InstagramReel reel={instagramReels.home} /><p className={styles.motto}>{home.closing.motto}</p></div></div></Container></section>;
+  return <section id="hablemos" className={styles.section}><Container><div className={styles.closing}><div data-scroll-reveal="cta-copy"><SectionHeading eyebrow={home.closing.eyebrow} title={home.closing.title} tone="dark"><p>{home.closing.description}</p></SectionHeading><ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="final" variant="onDark">{home.closing.action}</ButtonLink></div><div data-scroll-reveal="cta-media"><InstagramReel reel={instagramReels.home} /><p className={styles.motto}>{home.closing.motto}</p></div></div></Container></section>;
 }
