@@ -9,6 +9,8 @@ import { usePathname } from 'next/navigation';
 import { ChevronDownIcon } from '@/components/ui/ChevronDownIcon';
 import { FloatingWhatsApp } from '@/components/layout/FloatingWhatsApp';
 import { HeaderBrandLinks } from '@/components/layout/HeaderBrandLinks';
+import { ButtonLink } from '@/components/ui/Button';
+import { site } from '@/lib/site';
 
 type Variant = 'desktop' | 'mobile';
 
@@ -165,16 +167,17 @@ export function Header() {
     });
 
   return <header className={`site-header ${scrolled ? 'is-scrolled' : ''} ${headerStyles['site-header']}`}>
-    <div className={`container-site header-inner ${headerStyles['header-inner']} ${headerStyles['header-inner']}`}>
-      <Link href="/" className={`brand ${headerStyles['brand']} ${headerStyles['brand']}`} aria-label="Diana Loscos, ir al inicio" onClick={closeNavigation}>
-        <Image className={`brand-mark ${headerStyles['brand-mark']} ${headerStyles['brand-mark']}`} src="/logo_diana_loscos.webp" alt="" width={116} height={75} />
+    <div className={`container-site header-inner ${headerStyles['header-inner']}`}>
+      <Link href="/" className={`brand ${headerStyles['brand']}`} aria-label="Diana Loscos, ir al inicio" onClick={closeNavigation}>
+        <Image className={`brand-mark ${headerStyles['brand-mark']}`} src="/logo_diana_loscos.webp" alt="" unoptimized width={116} height={75} />
       </Link>
-      <nav className={`desktop-nav ${headerStyles['desktop-nav']} ${headerStyles['desktop-nav']}`} aria-label="Navegación principal">{renderNavigation('desktop')}</nav>
+      <nav className={`desktop-nav ${headerStyles['desktop-nav']}`} aria-label="Navegación principal">{renderNavigation('desktop')}</nav>
+      <ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="header" className={headerStyles.desktopBooking}>Reservar sesión</ButtonLink>
       <HeaderBrandLinks />
       <button
         ref={mobileToggleRef}
         type="button"
-        className={`menu-toggle ${headerStyles['menu-toggle']} ${headerStyles['menu-toggle']}`}
+        className={`menu-toggle ${headerStyles['menu-toggle']}`}
         aria-expanded={mobileOpen}
         aria-controls="mobile-navigation"
         aria-label={mobileOpen ? 'Cerrar menú' : 'Abrir menú'}
@@ -182,8 +185,9 @@ export function Header() {
       ><span /><span /></button>
     </div>
     <nav id="mobile-navigation" className={`mobile-nav ${mobileOpen ? 'is-open' : ''} ${headerStyles['mobile-nav']}`} aria-label="Navegación móvil" inert={!mobileOpen}>
-      <div className={`container-site mobile-nav-inner ${headerStyles['mobile-nav-inner']} ${headerStyles['mobile-nav-inner']}`}>
+      <div className={`container-site mobile-nav-inner ${headerStyles['mobile-nav-inner']}`}>
         {renderNavigation('mobile')}
+        <ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="header" className={headerStyles.mobileBooking}>Reservar sesión</ButtonLink>
       </div>
     </nav>
     <FloatingWhatsApp />

@@ -15,7 +15,7 @@
 .mobile-nav { display: none;
   font-family: var(--diana-font-body);
 }
-.brand-mark { width: 116px; height: auto; border-radius: 0; width: 132px; height: auto; object-fit: contain; mix-blend-mode: multiply; }
+.brand-mark { width: 116px; height: auto; border-radius: 0; width: 132px; height: auto; object-fit: contain; }
 .desktop-nav { display: flex; align-items: center; justify-content: flex-end; gap: clamp(14px, 1.6vw, 26px); flex: 1;
   font-family: var(--diana-font-body);
 }
@@ -102,4 +102,18 @@
   .header-inner { gap: 8px; }
   .brand-mark { width: 84px; }
   .menu-toggle { width: 44px; height: 44px; padding: 10px; }
+}
+.desktopBooking { flex: none; white-space: nowrap; min-height: 44px; padding: 9px 12px; font-size: 12px; }
+.mobileBooking { display: none; }
+@media (min-width: 861px) and (max-width: 1120px) {
+  .header-inner { gap: 8px; }
+  .brand { padding-right: 0; }
+  .brand-mark { width: 105px; }
+  .desktop-nav { gap: 8px; }
+  .nav-link, .nav-dropdown-trigger { font-size: 10px; letter-spacing: 0; }
+  .desktopBooking { padding-inline: 9px; }
+}
+@media (max-width: 860px) {
+  .site-header .desktopBooking { display: none; }
+  .mobile-nav .mobileBooking { display: flex; width: 100%; margin-top: 18px; min-height: 44px; }
 }

@@ -246,6 +246,33 @@ test.describe('conversión', () => {
     expect(events).toContain('doctoralia_click');
   });
 
+  for (const width of [390, 1024]) {
+    test(`la cabecera permite reservar y registra el clic a ${width}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 844 });
+      await page.context().route('https://www.doctoralia.es/**', route => route.fulfill({ status: 200, body: '<html></html>' }));
+      await page.goto('/');
+      await page.evaluate(() => {
+        window.addEventListener('diana:analytics', event => {
+          const detail = (event as CustomEvent<{ event: string; label: string }>).detail;
+          if (detail.event === 'cta_booking_click') document.documentElement.dataset.headerEvent = detail.label;
+        });
+      });
+      if (width < 861) await page.getByRole('button', { name: 'Abrir menú' }).click();
+      const link = width < 861
+        ? page.getByRole('navigation', { name: 'Navegación móvil' }).getByRole('link', { name: 'Reservar sesión' })
+        : page.locator('.header-inner').getByRole('link', { name: 'Reservar sesión' });
+      await expect(link).toBeVisible();
+      await expect(link).toHaveAttribute('target', '_blank');
+      await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+      const popupPromise = page.waitForEvent('popup');
+      await link.click();
+      const popup = await popupPromise;
+      await expect(popup).toHaveURL(/^https:\/\/www\.doctoralia\.es\//);
+      await popup.close();
+      await expect(page.locator('html')).toHaveAttribute('data-header-event', 'header');
+    });
+  }
+
   test('el formulario rechaza campos vacíos y email inválido', async ({ page }) => {
     await page.goto('/contacto/');
     const form = page.locator('form.contact-form');

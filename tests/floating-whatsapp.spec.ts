@@ -6,7 +6,7 @@ for (const width of [360, 390, 900, 1440]) {
     await page.setViewportSize({ width, height: 844 });
     await page.goto('/');
     const header = page.locator('.site-header');
-    await expect(header.getByRole('link', { name: 'Reservar una sesión' })).toHaveCount(0);
+    await expect(header.getByRole('link', { name: 'Reservar sesión', exact: true })).toHaveCount(width <= 860 ? 0 : 1);
 
     const headerWhatsApp = page.getByRole('link', { name: 'WhatsApp en la cabecera' });
     await expect(headerWhatsApp).toBeVisible();

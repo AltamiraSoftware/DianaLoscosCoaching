@@ -1,39 +1,7 @@
-# Contrato de preservación del header
+# Contrato de la cabecera
 
-Estado: **bloqueado para rediseño**.
+La cabecera mantiene su posición sticky y su estado al hacer scroll. El enlace de marca usa `/logo_diana_loscos.webp`, una imagen transparente, y lleva al inicio.
 
-La petición es ampliar la web, no rehacer el componente de navegación. Antes de cualquier cambio en la landing, comprobar que el header sigue conservando su identidad actual.
+La navegación de escritorio y la navegación móvil comparten las mismas rutas: el desplegable de coaching conserva sus cinco opciones. El menú móvil y los desplegables conservan sus controles de teclado y atributos accesibles. Los iconos de WhatsApp, Instagram y Doctoralia permanecen junto a la navegación y el botón flotante de WhatsApp permanece abajo a la izquierda.
 
-## Debe conservarse
-
-- El contenedor ".site-header" y su comportamiento sticky.
-- El logo y su asset actual "assets/logo_diana_loscos.webp".
-- Las piezas ".brand-mark", ".brand-copy", ".brand-name", ".brand-descriptor" y el punto de marca.
-- La navegación desktop, incluido el dropdown de servicios.
-- El icono y enlace de WhatsApp.
-- El CTA de Doctoralia "Reservar sesión".
-- El menú móvil y su comportamiento accesible.
-- La altura, separación y tratamiento visual que ya tiene el header de producción.
-
-## No hacer
-
-- No reemplazarlo por un header genérico, hamburguesa simple o barra de diseño nueva.
-- No cambiar el logo por texto plano ni rasterizarlo de nuevo.
-- No eliminar WhatsApp ni el CTA para ganar espacio.
-- No introducir una animación continua, un gradiente nuevo o un fondo opaco distinto.
-- No aplicar reglas globales a "header", "nav", ".brand" o ".button" sin revisar su impacto.
-
-## Cambios permitidos
-
-- Corregir una URL de navegación o de reserva.
-- Añadir atributos de accesibilidad que no modifiquen el diseño.
-- Actualizar el destino de una sección tras crear una página real.
-- Ajustar un bug responsive conservando jerarquía, orden y controles.
-
-## Checklist de revisión
-
-- Desktop: logo, dropdown, WhatsApp y CTA visibles sin solapamientos.
-- Móvil: el menú abre y cierra con teclado, y los enlaces tienen un área táctil de al menos 44 px.
-- Scroll: la cabecera sigue fija y no tapa títulos de secciones ancladas.
-- Accesibilidad: foco visible, logo con enlace a inicio y botones con etiqueta accesible.
-
+El botón «Reservar sesión» abre Doctoralia en otra pestaña y registra `cta_booking_click`. En escritorio aparece junto a los iconos; en móvil está al final del menú. Los ajustes de espacio, foco y tamaño deben conservar la legibilidad, las áreas táctiles y la ausencia de solapamientos.
