@@ -1,5 +1,5 @@
 import interiorStyles from '@/app/Interior.module.css';
-import heroBase from '@/components/sections/Hero.module.css';
+import heroBase from './SharedHero.module.css';
 import homeStyles from '../HomeSections.module.css';
 import type { Metadata } from 'next';
 import Image from 'next/image';

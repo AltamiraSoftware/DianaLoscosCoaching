@@ -57,3 +57,9 @@
 @media (prefers-reduced-motion: reduce) {
   .situation-row:is(:hover, :focus-visible) .situation-action::after { transform: scaleX(1) !important; }
 }
+.homeCard { align-items: flex-start; min-height: 270px; padding: 28px; border-radius: 22px; background: var(--diana-white); text-align: left; }
+.homeCard .situation-number { color: var(--diana-clay); font-size: 28px; }
+.homeCard .situation-content { align-items: flex-start; text-align: left; }
+.homeCard .situation-content strong { margin: 14px 0 6px; font-size: clamp(25px, 2.2vw, 32px); }
+.homeCard .situation-content > span:not(.situation-action) { margin: 0 0 20px; font-size: 16px; line-height: 1.65; }
+@media (max-width: 620px) { .homeCard { display: flex; min-height: 0; } }

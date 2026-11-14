@@ -36,7 +36,6 @@ export function InstagramReel({ reel }: { reel: Reel }) {
   }, []);
 
   return <aside className={styles.reel} aria-label={`Reel de Instagram: ${reel.title}`}>
-    <p className={styles.label}>Una reflexión de Diana</p>
     <p className={styles.title}>{reel.title}</p>
     <div ref={frameRef} className={styles.frame}>
       {shouldLoad && <blockquote

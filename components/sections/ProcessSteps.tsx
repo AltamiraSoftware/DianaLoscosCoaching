@@ -1,14 +1,18 @@
-import styles from './ProcessSteps.module.css';
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/sections/SectionHeading';
 import { MotionReveal } from '@/components/motion/MotionReveal';
-
-const steps = [
-  { number: '01', title: 'Poner nombre', description: 'Ordenamos el contexto, la duda y lo que importa.' },
-  { number: '02', title: 'Abrir perspectiva', description: 'Miramos opciones, patrones y criterios que quizá no estaban visibles.' },
-  { number: '03', title: 'Decidir y actuar', description: 'Concretamos un primer paso posible y revisable.' },
-] as const;
+import { ButtonLink } from '@/components/ui/Button';
+import { ProcessReel } from './ProcessReel';
+import { instagramReels } from './CTASection';
+import { home } from '@/content/home';
+import { site } from '@/lib/site';
+import styles from './ProcessSteps.module.css';
 
 export function ProcessSteps() {
-  return <section id="proceso" className="section section-mist"><Container><MotionReveal><SectionHeading eyebrow="Cómo trabajo" title="Un proceso con espacio para pensar y dirección para avanzar."><p>Partimos de lo que ocurre en tu vida o en tu trabajo. Claridad, criterio y acción nos ayudan a comprender tu situación y elegir un siguiente paso que tenga sentido para ti.</p></SectionHeading></MotionReveal><ol className={styles.list}>{steps.map(step => <li key={step.number}><span className={styles.number}>{step.number}</span><div><h3>{step.title}</h3><p>{step.description}</p></div></li>)}</ol></Container></section>;
+  const reels = [instagramReels.home, instagramReels.personal, instagramReels.professional];
+  return <section id="proceso" className={`section ${styles.section}`}><Container>
+    <MotionReveal><SectionHeading eyebrow={home.process.eyebrow} title={home.process.title} tone="light"><p>{home.process.description}</p></SectionHeading></MotionReveal>
+    <ol className={styles.list}>{home.process.steps.map((step, index) => <li key={step.number}><ProcessReel reel={reels[index]} /><span className={styles.number}>{step.number}</span><h3>{step.title}</h3><p>{step.description}</p></li>)}</ol>
+    <div className={styles.footer}><p>{home.process.trust}</p><ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="proceso">{home.process.action}</ButtonLink></div>
+  </Container></section>;
 }

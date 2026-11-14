@@ -1,3 +1,4 @@
+import { home } from '@/content/home';
 import homeStyles from './HomeSections.module.css';
 import Image from 'next/image';
 import { ButtonLink } from '@/components/ui/Button';
@@ -24,7 +25,7 @@ export default function Home() {
   return <>
     <Hero />
     <ContactSection />
-    <section id="para-quien" className="section section-ivory"><Container><MotionReveal><SectionHeading eyebrow="¿Te reconoces?" title="Hay momentos en los que seguir igual deja de ser una opción."><p>No hace falta tenerlo todo claro para empezar. A veces basta con saber que necesitas mirar tu situación de otra forma.</p></SectionHeading></MotionReveal><div className={`situation-list ${homeStyles['situation-list']}`}><SituationCard number="01" title="Algo ha cambiado en tu vida" description="Quieres entender lo que estás viviendo y qué necesitas ahora." href="/contacto/" /><SituationCard number="02" title="Estás ante una decisión" description="En lo personal o en el trabajo, buscas mirar tus opciones con más perspectiva." href="/contacto/" /><SituationCard number="03" title="Quieres avanzar en tu trabajo" description="Buscas dar un paso con intención ante un cambio profesional." href="/cambio-profesional/" /></div></Container></section>
+    <section id="para-quien" className={`section ${homeStyles.situations}`}><Container><MotionReveal><SectionHeading eyebrow={home.situations.eyebrow} title={home.situations.title} tone="light"><p>{home.situations.description}</p></SectionHeading></MotionReveal><div className={homeStyles.situationsGrid}>{home.situations.cards.map(card => <SituationCard key={card.number} {...card} homeStyle />)}</div><p className={homeStyles.situationsClosing}>{home.situations.closing}</p></Container></section>
     <ProcessSteps />
     <section id="sobre-mi" className={`section section-about ${homeStyles['section-about']}`}><Container className={`about-layout ${homeStyles['about-layout']}`}><div className={`about-image ${homeStyles['about-image']}`}><Image src="/perfil.webp" alt="Diana Loscos, coach profesional" width={356} height={402} loading="eager" sizes="(max-width: 760px) 75vw, 320px" /></div><div><p className="eyebrow">La persona detrás del proceso</p><h2>Hola, soy Diana.</h2><p>Me interesan las conversaciones que ayudan a mirar con honestidad lo que ocurre y a encontrar una forma de avanzar que encaje contigo.</p><p>Mi formación combina Psicología y Coaching Ejecutivo. Trabajo con personas que atraviesan cambios profesionales, decisiones difíciles o nuevas responsabilidades.</p><ButtonLink href="/sobre-mi/" variant="light">Conoce mi enfoque <ArrowIcon diagonal /></ButtonLink></div></Container></section>
     <DoctoraliaProof />

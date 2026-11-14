@@ -16,3 +16,8 @@
   .situation-list { grid-template-columns: 1fr; }
   .service-grid { gap: 12px; }
 }
+.situations { background: var(--diana-page); }
+.situationsGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.situationsClosing { margin: 32px 0 0; padding: clamp(25px, 4vw, 48px); border-left: 4px solid var(--diana-story); border-radius: 0 20px 20px 0; background: var(--diana-mist); color: var(--diana-deep); font-family: var(--font-newsreader), Georgia, serif; font-size: clamp(26px, 3vw, 40px); line-height: 1.2; }
+@media (max-width: 860px) { .situationsGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .situationsGrid { grid-template-columns: 1fr; } }

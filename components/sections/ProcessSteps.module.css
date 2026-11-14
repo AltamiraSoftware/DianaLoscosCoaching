@@ -1,3 +1,15 @@
-.list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--diana-ink); }.list li { position: relative; padding: 28px 38px 0 0; }.list li + li { padding-left: 30px; border-left: 1px solid rgba(24,36,41,.16); }.number { display: block; margin-bottom: 36px; color: var(--diana-clay-muted); font-family: var(--font-newsreader), Georgia, serif; font-size: 30px; }.list h3 { font-family: var(--font-newsreader), Georgia, serif; font-size: clamp(28px, 2.5vw, 38px); font-weight: 400; }.list p { max-width: 330px; color: var(--diana-graphite); font-size: 14px; line-height: 1.75; }
-@media (max-width: 620px) { .list { display: block; }.list li, .list li + li { display: grid; grid-template-columns: 64px 1fr; gap: 15px; padding: 25px 0; border-left: 0; border-bottom: 1px solid rgba(24,36,41,.16); }.number { margin: 0; }.list h3 { margin: 0 0 8px; } }
-.number { color: #A0523F; }
+.section { background: var(--diana-mist); }
+.list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 3vw, 36px); margin: 0; padding: 0; list-style: none; }
+.list li { min-width: 0; }
+.number { display: block; margin: 24px 0 12px; color: var(--diana-clay); font-family: var(--font-newsreader), Georgia, serif; font-size: 28px; }
+.list h3 { margin: 0 0 12px; font-family: var(--font-newsreader), Georgia, serif; font-size: clamp(27px, 2.5vw, 36px); font-weight: 500; }
+.list p { max-width: 50ch; color: var(--diana-graphite); font-size: 16px; line-height: 1.7; }
+.reelFrame { overflow: hidden; width: 100%; aspect-ratio: 9 / 16; border-radius: 22px; background: var(--diana-deep); }
+.reelPoster { position: relative; display: flex; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: center; gap: 14px; overflow: hidden; border: 0; color: white; background: var(--diana-deep); }
+.reelPoster img { object-fit: cover; opacity: .54; }
+.play, .reelLabel { position: relative; z-index: 1; }
+.play { display: grid; width: 64px; height: 64px; place-items: center; padding-left: 4px; border: 1px solid white; border-radius: 50%; background: rgb(23 78 76 / 85%); font-size: 22px; }
+.reelLabel { font-size: 14px; font-weight: 700; }
+.footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 24px; margin-top: 48px; }
+.footer p { margin: 0; color: var(--diana-deep); font-size: 14px; font-weight: 700; }
+@media (max-width: 620px) { .list { grid-template-columns: 1fr; gap: 42px; } .reelFrame { max-width: 360px; } .footer { align-items: stretch; flex-direction: column; } }

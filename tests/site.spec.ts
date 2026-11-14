@@ -182,13 +182,23 @@ test.describe('experiencia y accesibilidad', () => {
     await expect(page).toHaveURL(/\/cambio-profesional\/$/);
   });
 
+  test('la home presenta seis situaciones y tres reels antes de cargarlos', async ({ page }) => {
+    await page.goto('/');
+    const situations = page.locator('#para-quien');
+    await expect(situations.getByRole('link', { name: /Explorar esta situación/ })).toHaveCount(6);
+    await expect(situations.getByRole('link', { name: /Quieres avanzar en tu trabajo/ })).toHaveAttribute('href', '/coaching-profesional/');
+    const process = page.locator('#proceso');
+    await expect(process.getByRole('button', { name: /Cargar reel:/ })).toHaveCount(3);
+    await expect(process.locator('script[src*="instagram.com"]')).toHaveCount(0);
+  });
+
   test('el movimiento reducido muestra contenido de inmediato', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
     await expect(page.locator('main h1')).toBeVisible();
     const motion = await page.evaluate(() => {
       const heading = document.querySelector('main h1');
-      const portrait = document.querySelector('.hero-portrait .portrait-frame');
+      const portrait = document.querySelector('#inicio figure > div');
       const reveal = document.querySelector('.motion-reveal');
       if (!heading || !portrait || !reveal) return null;
       return {
