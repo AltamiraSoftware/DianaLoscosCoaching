@@ -11,10 +11,12 @@ export const site = {
   professionalRegistration: 'M-45396',
 } as const;
 
+export const SHOW_PRICES = true;
+
 export const prices = [
   { name: 'Sesión individual', price: '60 €', detail: '60 minutos · online', source: 'Doctoralia y web de Diana' },
-  { name: 'Proceso de 6 sesiones', price: '330 €', detail: 'Para trabajar un objetivo con continuidad', source: 'Web de Diana' },
-  { name: 'Proceso de 10 sesiones', price: '520 €', detail: 'Para acompañar un proceso más amplio', source: 'Web de Diana' },
+  { name: 'Proceso de 6 sesiones', price: '330 €', perSession: '55 € por sesión', saving: 'Ahorras 30 €', detail: 'Para trabajar un objetivo con continuidad', source: 'Web de Diana' },
+  { name: 'Proceso de 10 sesiones', price: '520 €', perSession: '52 € por sesión', saving: 'Ahorras 80 €', detail: 'Para acompañar un proceso más amplio', source: 'Web de Diana' },
 ] as const;
 
 export const routes = [

@@ -192,6 +192,17 @@ test.describe('experiencia y accesibilidad', () => {
     await expect(process.locator('script[src*="instagram.com"]')).toHaveCount(0);
   });
 
+  test('las preguntas frecuentes comparten ocho respuestas y son accesibles', async ({ page }) => {
+    for (const path of ['/', '/preguntas-frecuentes/']) {
+      await page.goto(path);
+      const first = page.getByRole('button', { name: /¿Cómo son las sesiones\?/ });
+      await expect(first).toHaveAttribute('aria-expanded', 'true');
+      await expect(page.getByRole('button', { name: /¿Es confidencial\?/ })).toBeVisible();
+      await first.click();
+      await expect(first).toHaveAttribute('aria-expanded', 'false');
+    }
+  });
+
   test('el movimiento reducido muestra contenido de inmediato', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
@@ -227,7 +238,7 @@ test.describe('conversión', () => {
         document.documentElement.dataset.analyticsEvents += ',' + (event as CustomEvent<{ event: string }>).detail.event;
       });
     });
-    for (const selector of ['.testimonial-grid', '.service-grid', '.pricing-panel']) {
+    for (const selector of ['.testimonial-grid', '.service-grid', '#inversion']) {
       await page.locator(selector).scrollIntoViewIfNeeded();
     }
     await expect.poll(async () => (await page.locator('html').getAttribute('data-analytics-events')) || '').toContain('pricing_view');

@@ -7,3 +7,5 @@
     grid-template-columns: 1fr;
   }
 }
+
+.services { background: var(--diana-mist); }

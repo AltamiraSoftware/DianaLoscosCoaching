@@ -1,11 +1,11 @@
-import styles from './PricingCard.module.css';
-import { prices, site } from '@/lib/site';
+import { prices, SHOW_PRICES, site } from '@/lib/site';
+import { home } from '@/content/home';
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/sections/SectionHeading';
 import { ButtonLink } from '@/components/ui/Button';
-import { ArrowIcon } from '@/components/ui/ArrowIcon';
 import { TrackView } from '@/components/motion/TrackView';
+import styles from './PricingCard.module.css';
 
 export function PricingCard() {
-  return <section id="inversion" className={`section section-pricing ${styles['section-pricing']}`}><Container><span id="precios" /><TrackView event="pricing_view" label="home" /><div className={`pricing-layout ${styles['pricing-layout']}`}><SectionHeading eyebrow="Inversión" title="Claridad también en el precio."><p>Empieza con una sesión individual o consulta la opción de proceso que encaje con lo que quieres trabajar.</p></SectionHeading><div className={`pricing-panel ${styles['pricing-panel']}`}><div className={`pricing-head ${styles['pricing-head']}`}><span>Sesiones online</span><span>60 min por sesión</span></div>{prices.map(price => <div className={`price-row ${styles['price-row']}`} key={price.name}><div><strong>{price.name}</strong><small>{price.detail}</small></div><span>{price.price}</span></div>)}<div className={`pricing-footer ${styles['pricing-footer']}`}><p>Precios publicados por Diana; la sesión individual figura también en Doctoralia. Confirma condiciones y disponibilidad al reservar.</p><p>El coaching no sustituye atención psicológica, médica ni psiquiátrica.</p><ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="pricing">Reservar una sesión <ArrowIcon diagonal /></ButtonLink></div></div></div></Container></section>;
+  return <section id="inversion" className={`section ${styles.section}`}><Container><span id="precios" /><TrackView event="pricing_view" label="home" /><SectionHeading eyebrow={home.pricing.eyebrow} title={home.pricing.title} tone="light"><p>{home.pricing.description}</p></SectionHeading>{SHOW_PRICES ? <div className={styles.grid}>{prices.map((price, index) => <article className={`${styles.card} ${index === 1 ? styles.recommended : ''}`} key={price.name}>{index === 1 && <span className={styles.badge}>{home.pricing.recommended}</span>}<h3>{price.name}</h3><p>{price.detail}</p>{'perSession' in price && <p className={styles.perSession}>{price.perSession} <span className={styles.saving}>{price.saving}</span></p>}<strong>{price.price}</strong><ButtonLink href={index === 0 ? site.bookingUrl : '/contacto/'} external={index === 0} event={index === 0 ? 'cta_booking_click' : undefined} label="pricing" variant={index === 1 ? 'onDark' : 'primary'}>{home.pricing.items[index].action}</ButtonLink></article>)}</div> : <ButtonLink href="/contacto/">{home.pricing.fallbackAction}</ButtonLink>}<p className={styles.note}>{home.pricing.note}</p></Container></section>;
 }
