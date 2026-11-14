@@ -182,6 +182,14 @@ test.describe('experiencia y accesibilidad', () => {
     await expect(page).toHaveURL(/\/cambio-profesional\/$/);
   });
 
+  test('el formulario es la segunda sección de la home', async ({ page }) => {
+    await page.goto('/');
+    const sections = page.locator('main > section');
+    await expect(sections.nth(0)).toHaveAttribute('id', 'inicio');
+    await expect(sections.nth(1)).toHaveAttribute('id', 'contacto');
+    await expect(sections.nth(1).locator('form')).toBeVisible();
+  });
+
   test('la home presenta seis situaciones y tres reels antes de cargarlos', async ({ page }) => {
     await page.goto('/');
     const situations = page.locator('#para-quien');
@@ -300,7 +308,7 @@ test.describe('conversión', () => {
     await expect(form).toBeVisible();
     const name = form.getByRole('textbox', { name: /^Nombre/i });
     const email = form.getByRole('textbox', { name: /Email|Correo/i });
-    const message = form.getByRole('textbox', { name: /qué te gustaría trabajar/i });
+    const message = form.getByRole('textbox', { name: /qué es lo que más te está removiendo/i });
     await expect(name).toBeVisible();
     await expect(email).toBeVisible();
     await expect(message).toBeVisible();
@@ -320,7 +328,27 @@ test.describe('conversión', () => {
     expect(await email.evaluate((node) => (node as HTMLInputElement).validity.typeMismatch)).toBe(true);
     expect(await form.evaluate((node) => (node as HTMLFormElement).checkValidity())).toBe(false);
     const phone = form.locator('input[type="tel"]');
-    if (await phone.count()) await expect(phone).not.toHaveAttribute('required', '');
+    await expect(phone).toHaveAttribute('required', '');
+  });
+
+  test('el formulario de la home muestra errores por campo y de envío', async ({ page }) => {
+    await page.route('**/api/contact', route => route.fulfill({ status: 503, contentType: 'application/json', body: '{"error":"no disponible"}' }));
+    await page.goto('/');
+    const form = page.locator('#contacto form');
+    await form.getByRole('button', { name: /Enviar mensaje/ }).click();
+    const phone = form.getByRole('textbox', { name: /Teléfono/ });
+    await expect(phone).toHaveAttribute('aria-invalid', 'true');
+    const errorId = await phone.getAttribute('aria-describedby');
+    expect(errorId).toBeTruthy();
+    await expect(page.locator(`[id="${errorId}"]`)).toBeVisible();
+    await form.getByRole('textbox', { name: /^Nombre/i }).fill('Ana');
+    await form.getByRole('textbox', { name: /Email/i }).fill('ana@example.com');
+    await phone.fill('600123456');
+    await form.getByLabel(/hora te viene mejor/i).selectOption('tarde');
+    await form.getByRole('textbox', { name: /qué es lo que más te está removiendo/i }).fill('Quiero aclarar mi siguiente paso.');
+    await form.getByRole('checkbox').check();
+    await form.getByRole('button', { name: /Enviar mensaje/ }).click();
+    await expect(form.getByRole('alert')).toContainText('No se pudo enviar');
   });
 
   test('el envío correcto confirma y registra el evento', async ({ page }) => {
@@ -334,7 +362,9 @@ test.describe('conversión', () => {
     });
     await page.getByRole('textbox', { name: /^Nombre/i }).fill('Ana');
     await page.getByRole('textbox', { name: /Email|Correo/i }).fill('ana@example.com');
-    await page.getByRole('textbox', { name: /qué te gustaría trabajar/i }).fill('Quiero aclarar mi siguiente paso profesional.');
+    await page.getByRole('textbox', { name: /qué es lo que más te está removiendo/i }).fill('Quiero aclarar mi siguiente paso profesional.');
+    await page.getByRole('textbox', { name: /Teléfono/i }).fill('+34 600 123 456');
+    await page.getByLabel(/hora te viene mejor/i).selectOption('manana');
     await page.getByRole('checkbox').check();
     await page.getByRole('button', { name: /Enviar mensaje/i }).click();
     await expect(page).toHaveURL(/\/gracias\/$/);

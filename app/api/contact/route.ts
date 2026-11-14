@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { parseContactBody } from '@/lib/contact';
+import { home } from '@/content/home';
 
 export async function POST(request: Request) {
   let body: unknown;
@@ -7,7 +8,8 @@ export async function POST(request: Request) {
   const result = parseContactBody(body);
   if (result.kind === 'spam') return NextResponse.json({ ok: true });
   if (result.kind === 'invalid') return NextResponse.json({ error: 'Revisa los campos del formulario.' }, { status: 400 });
-  const { name, email, phone, message } = result.data;
+  const { name, email, phone, callWindow, message } = result.data;
+  const callWindowLabel = home.contact.callWindows.find(item => item.value === callWindow)?.label ?? callWindow;
   const apiKey = process.env.BREVO_API_KEY;
   const fromEmail = process.env.CONTACT_FROM_EMAIL;
   const toEmail = process.env.CONTACT_TO_EMAIL;
@@ -22,7 +24,7 @@ export async function POST(request: Request) {
         to: [{ email: toEmail }],
         replyTo: { email, name },
         subject: 'Nueva consulta desde dianaloscoscoach.com',
-        textContent: `Nombre: ${name}\nEmail: ${email}\nTeléfono: ${phone || 'No indicado'}\n\nMensaje:\n${message}`,
+        textContent: `Nombre: ${name}\nEmail: ${email}\nTeléfono: ${phone}\nFranja de llamada: ${callWindowLabel}\n\nMensaje:\n${message}`,
       }),
       cache: 'no-store',
     });

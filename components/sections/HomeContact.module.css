@@ -1,0 +1,7 @@
+.section { padding: clamp(72px, 9vw, 140px) 0; background: var(--diana-deep); color: var(--diana-white); scroll-margin-top: 100px; }
+.layout { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(40px, 7vw, 100px); align-items: start; }
+.guarantee { max-width: 52ch; color: var(--diana-mint); font-size: 14px; line-height: 1.7; }
+.closing { display: grid; grid-template-columns: minmax(0, 1fr) minmax(260px, 380px); gap: clamp(40px, 7vw, 100px); align-items: center; }
+.motto { margin: 20px 0 0; color: var(--diana-mint); font-family: var(--font-newsreader), Georgia, serif; font-size: 28px; font-style: italic; }
+@media (max-width: 860px) { .layout, .closing { grid-template-columns: 1fr; } }
+.layout :global(.contact-form) { color: var(--diana-ink); }
