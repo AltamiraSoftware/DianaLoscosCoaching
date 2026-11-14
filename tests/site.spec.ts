@@ -1,6 +1,8 @@
 import AxeBuilder from '@axe-core/playwright';
 import { expect, test, type Page } from '@playwright/test';
 
+test.beforeEach(async ({ page }, info) => { if (!info.title.startsWith('consentimiento:')) await page.addInitScript(() => { localStorage.setItem('analytics-consent', 'rejected'); localStorage.setItem('external-content-consent', 'rejected'); }); });
+
 const canonicalOrigin = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dianaloscoscoach.com').replace(/\/$/, '');
 const pagePaths = [
   '/',
@@ -372,4 +374,33 @@ test.describe('conversión', () => {
     expect(events).toContain('contact_form_start');
     expect(events).toContain('contact_form_submit');
   });
+});
+
+
+test('consentimiento: Instagram solo se carga al pulsar un reel', async ({ page }) => {
+  let requests = 0;
+  await page.route('**/*instagram.com/embed.js', route => { requests += 1; return route.fulfill({ status: 200, contentType: 'application/javascript', body: '' }); });
+  await page.goto('/');
+  const banner = page.getByRole('complementary', { name: 'Preferencias de privacidad' });
+  await expect(banner).toBeVisible();
+  await page.locator('#hablemos').scrollIntoViewIfNeeded();
+  expect(requests).toBe(0);
+  await banner.getByRole('button', { name: 'Rechazar todo' }).click();
+  await page.locator('#proceso').scrollIntoViewIfNeeded();
+  expect(requests).toBe(0);
+  await page.getByRole('button', { name: /Cargar reel:/ }).first().click();
+  await expect.poll(() => requests).toBe(1);
+  expect(await page.evaluate(() => localStorage.getItem('external-content-consent'))).toBe('rejected');
+});
+
+test('consentimiento: se pueden aceptar los reels sin activar analítica', async ({ page }) => {
+  let requests = 0;
+  await page.route('**/*instagram.com/embed.js', route => { requests += 1; return route.fulfill({ status: 200, contentType: 'application/javascript', body: '' }); });
+  await page.goto('/');
+  const banner = page.getByRole('complementary', { name: 'Preferencias de privacidad' });
+  await banner.getByLabel('Contenido externo').check();
+  await banner.getByRole('button', { name: 'Guardar preferencias' }).click();
+  await page.locator('#proceso').scrollIntoViewIfNeeded();
+  await expect.poll(() => requests).toBe(1);
+  expect(await page.evaluate(() => [localStorage.getItem('analytics-consent'), localStorage.getItem('external-content-consent')])).toEqual(['rejected', 'accepted']);
 });

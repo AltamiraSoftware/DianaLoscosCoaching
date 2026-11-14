@@ -1,6 +1,8 @@
 import { expect, test } from '@playwright/test';
 import { site } from '../lib/site';
 
+test.beforeEach(async ({ page }) => { await page.addInitScript(() => { localStorage.setItem('analytics-consent', 'rejected'); localStorage.setItem('external-content-consent', 'rejected'); }); });
+
 for (const width of [360, 390, 900, 1440]) {
   test(`WhatsApp permanece abajo a la izquierda al navegar a ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 844 });

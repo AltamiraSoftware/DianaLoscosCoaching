@@ -1,11 +1,9 @@
 'use client';
 
-import styles from './AnalyticsConsent.module.css';
-
-
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import styles from './AnalyticsConsent.module.css';
 
 const gaId = process.env.NEXT_PUBLIC_GA_ID;
 
@@ -23,19 +21,27 @@ function loadAnalytics() {
 }
 
 export function AnalyticsConsent() {
-  const [choice, setChoice] = useState<string | null>('pending');
+  const [visible, setVisible] = useState(false);
+  const [analytics, setAnalytics] = useState(false);
+  const [external, setExternal] = useState(false);
   useEffect(() => {
-    if (!gaId) return;
-    const saved = window.localStorage.getItem('analytics-consent');
-    const frame = window.requestAnimationFrame(() => setChoice(saved));
-    if (saved === 'accepted') loadAnalytics();
+    const savedAnalytics = window.localStorage.getItem('analytics-consent');
+    const savedExternal = window.localStorage.getItem('external-content-consent');
+    if (savedAnalytics === 'accepted') loadAnalytics();
+    const frame = window.requestAnimationFrame(() => {
+      setAnalytics(savedAnalytics === 'accepted');
+      setExternal(savedExternal === 'accepted');
+      setVisible(savedAnalytics === null || savedExternal === null);
+    });
     return () => window.cancelAnimationFrame(frame);
   }, []);
-  if (!gaId || choice !== null) return null;
-  const choose = (value: 'accepted' | 'rejected') => {
-    window.localStorage.setItem('analytics-consent', value);
-    setChoice(value);
-    if (value === 'accepted') loadAnalytics();
+  const save = (allowAnalytics: boolean, allowExternal: boolean) => {
+    window.localStorage.setItem('analytics-consent', allowAnalytics ? 'accepted' : 'rejected');
+    window.localStorage.setItem('external-content-consent', allowExternal ? 'accepted' : 'rejected');
+    if (allowAnalytics) loadAnalytics();
+    window.dispatchEvent(new Event('diana:consent-change'));
+    setVisible(false);
   };
-  return <aside className={`cookie-banner ${styles['cookie-banner']}`} aria-label="Preferencias de analítica"><p>¿Nos permites medir el uso de esta web para mejorarla? Solo activamos la analítica si aceptas. <Link href="/cookies/">Más información</Link>.</p><div><Button type="button" variant="secondary" onClick={() => choose('rejected')}>Rechazar</Button><Button type="button" onClick={() => choose('accepted')}>Aceptar</Button></div></aside>;
+  if (!visible) return null;
+  return <aside className={styles.banner} aria-label="Preferencias de privacidad"><p>Elige si permites la analítica y el contenido externo de Instagram. Puedes cargar cada reel sin aceptar todos. <Link href="/cookies/">Más información</Link>.</p><div className={styles.choices}><label><input type="checkbox" checked={analytics} onChange={event => setAnalytics(event.target.checked)} /> Analítica</label><label><input type="checkbox" checked={external} onChange={event => setExternal(event.target.checked)} /> Contenido externo</label></div><div className={styles.actions}><Button type="button" variant="secondary" onClick={() => save(false, false)}>Rechazar todo</Button><Button type="button" variant="secondary" onClick={() => save(analytics, external)}>Guardar preferencias</Button><Button type="button" onClick={() => save(true, true)}>Aceptar todo</Button></div></aside>;
 }
