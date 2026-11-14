@@ -1,0 +1,7 @@
+.section { background: var(--diana-page); }
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.tile { padding: 30px; border: 1px solid var(--diana-border); border-radius: 22px; background: var(--diana-white); color: var(--diana-story); box-shadow: 0 5px 18px rgb(30 82 85 / 4%); }
+.tile h3 { margin: 22px 0 9px; color: var(--diana-ink); font-family: var(--font-newsreader), Georgia, serif; font-size: 30px; font-weight: 500; }
+.tile p { margin: 0; color: var(--diana-graphite); font-size: 16px; line-height: 1.65; }
+.note { max-width: 62ch; margin: 26px 0 0; color: var(--diana-graphite); font-size: 14px; line-height: 1.6; }
+@media (max-width: 620px) { .grid { grid-template-columns: 1fr; } }

@@ -40,3 +40,7 @@
 .testimonial-card { align-items: center; text-align: center; }
 .testimonial-card blockquote { max-width: 34rem; }
 .testimonial-card figcaption { width: 100%; justify-content: center; }
+.homeCard { align-items: flex-start; min-height: 310px; padding: 30px; border-radius: 22px; text-align: left; }
+.homeCard blockquote { width: 100%; font-size: clamp(26px, 2.2vw, 34px); }
+.homeCard figcaption { justify-content: space-between; font-size: 14px; }
+.quoteMark { display: block; height: 52px; color: var(--diana-story); font-family: var(--font-newsreader), Georgia, serif; font-size: 76px; line-height: 1; }

@@ -21,3 +21,14 @@
 .situationsClosing { margin: 32px 0 0; padding: clamp(25px, 4vw, 48px); border-left: 4px solid var(--diana-story); border-radius: 0 20px 20px 0; background: var(--diana-mist); color: var(--diana-deep); font-family: var(--font-newsreader), Georgia, serif; font-size: clamp(26px, 3vw, 40px); line-height: 1.2; }
 @media (max-width: 860px) { .situationsGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 620px) { .situationsGrid { grid-template-columns: 1fr; } }
+
+.aboutNew { background: var(--diana-deep); color: var(--diana-white); }
+.aboutNewLayout { display: grid; grid-template-columns: minmax(240px, 360px) minmax(0, 620px); justify-content: center; align-items: center; gap: clamp(48px, 8vw, 120px); }
+.aboutPortrait { padding: 9px; border: 1px solid var(--diana-mint); outline: 1px solid rgb(210 244 238 / 45%); outline-offset: 8px; border-radius: 50%; }
+.aboutPortrait img { display: block; width: 100%; aspect-ratio: 1; border-radius: 50%; object-fit: cover; object-position: center 38%; }
+.aboutEyebrow { color: var(--diana-mint); font-size: 14px; font-weight: 800; letter-spacing: .1em; }
+.aboutNew h2 { margin: 0 0 26px; font-size: clamp(46px, 5.5vw, 76px); }
+.aboutLead { margin: 0 0 22px; max-width: 44ch; color: var(--diana-mint); font-family: var(--font-newsreader), Georgia, serif; font-size: clamp(25px, 2.5vw, 34px); line-height: 1.3; }
+.aboutText { margin: 0 0 16px; max-width: 60ch; color: var(--diana-white); font-size: 16px; line-height: 1.75; }
+.aboutNew a { margin-top: 12px; }
+@media (max-width: 620px) { .aboutNewLayout { grid-template-columns: 1fr; } .aboutPortrait { width: min(75%, 320px); justify-self: center; } }
