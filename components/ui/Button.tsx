@@ -2,37 +2,28 @@ import styles from './Button.module.css';
 import type { ButtonHTMLAttributes, ComponentProps, CSSProperties } from 'react';
 import { TrackedLink } from '@/components/ui/TrackedLink';
 
-export type ButtonVariant = 'primary' | 'secondary' | 'onDark';
-type ButtonLinkAppearance = ButtonVariant | 'light';
+export type ButtonVariant = 'primary' | 'secondary' | 'onDark' | 'light';
+type ButtonLinkAppearance = ButtonVariant;
 
+/**
+ * Sistema unificado de botones según el fondo donde se colocan.
+ *  - primary  : sobre fondo claro  → sólido petrol
+ *  - secondary: sobre fondo claro  → contorno (outline)
+ *  - onDark   : sobre fondo oscuro → claro/blanco
+ *  - light    : alias de onDark (fondo oscuro, botón claro)
+ */
 function buttonClass(variant: ButtonLinkAppearance, className?: string) {
-  return [
-    'diana-button',
-    variant === 'onDark' ? styles.onDark : `diana-button--${variant === 'light' ? 'primary' : variant}`,
-    variant === 'light' && 'button button-light',
-    className,
-  ].filter(Boolean).join(' ');
-}
-
-function buttonStyle(variant: ButtonLinkAppearance, style?: CSSProperties): CSSProperties | undefined {
-  if (variant === 'onDark') return style;
-  return {
-    borderRadius: 'var(--diana-radius-md)',
-    ...(variant === 'light' && {
-      backgroundColor: 'var(--diana-white)',
-      borderColor: 'var(--diana-white)',
-      color: 'var(--diana-petrol)',
-      boxShadow: 'none',
-    }),
-    ...style,
-  };
+  if (variant === 'onDark' || variant === 'light') {
+    return ['diana-button', styles.onDark, className].filter(Boolean).join(' ');
+  }
+  return ['diana-button', `diana-button--${variant}`, className].filter(Boolean).join(' ');
 }
 
 export function Button({ variant = 'primary', className, style, ...props }: ButtonHTMLAttributes<HTMLButtonElement> & { variant?: ButtonVariant }) {
-  return <button className={buttonClass(variant, className)} style={buttonStyle(variant, style)} {...props} />;
+  return <button className={buttonClass(variant, className)} style={style} {...props} />;
 }
 
-export function ButtonLink({ variant = 'primary', className, ...props }: ComponentProps<typeof TrackedLink> & { variant?: ButtonLinkAppearance }) {
-  const linkProps = { ...props, className: buttonClass(variant, className), style: buttonStyle(variant) };
+export function ButtonLink({ variant = 'primary', className, style, ...props }: ComponentProps<typeof TrackedLink> & { variant?: ButtonLinkAppearance; style?: CSSProperties }) {
+  const linkProps = { ...props, className: buttonClass(variant, className), style };
   return <TrackedLink {...linkProps} />;
 }

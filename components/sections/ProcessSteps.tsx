@@ -11,7 +11,7 @@ import styles from './ProcessSteps.module.css';
 export function ProcessSteps() {
   const reels = [instagramReels.home, instagramReels.personal, instagramReels.professional];
   return <section id="proceso" className={`section ${styles.section}`}><Container>
-    <MotionReveal><SectionHeading eyebrow={home.process.eyebrow} title={home.process.title} tone="light"><p>{home.process.description}</p></SectionHeading></MotionReveal>
+    <MotionReveal><SectionHeading eyebrow={home.process.eyebrow} title={home.process.title} tone="light" center><p>{home.process.description}</p></SectionHeading></MotionReveal>
     <ol className={styles.list}>{home.process.steps.map((step, index) => <li key={step.number}><ProcessReel reel={reels[index]} /><span className={styles.number}>{step.number}</span><h3>{step.title}</h3><p>{step.description}</p></li>)}</ol>
     <div className={styles.footer}><p>{home.process.trust}</p><ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="proceso">{home.process.action}</ButtonLink></div>
   </Container></section>;

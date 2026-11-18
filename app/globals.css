@@ -104,6 +104,12 @@ body { margin: 0; color: var(--diana-ink); font-family: var(--font-manrope), Ari
 .section-mist { background: var(--diana-mist); }
 .section-heading h2 { font-weight: 600; margin: 0; font-size: clamp(42px, 5vw, 72px); }
 .section-heading::after { content: ''; display: block; width: 70px; height: 3px; margin-top: 25px; border-radius: 999px; background: var(--diana-forest); }
+.section-heading-center { max-width: 980px; margin-inline: auto; text-align: center; }
+.section-heading-center .eyebrow { margin-inline: auto; }
+.section-heading-center h2 { text-wrap: balance; }
+.section-heading-center .section-lede { max-width: 640px; margin-inline: auto; }
+.section-heading-center::after { margin-inline: auto; }
+.section-heading-center .divider { display: flex; justify-content: center; }
 
 /* El activo procede de la ruta; la rotación procede solo de aria-expanded. */
 @keyframes nav-selected-underline {

@@ -17,5 +17,5 @@ export function BenefitTile({ item, index }: { item: BenefitCopy; index: number 
 }
 
 export function Benefits() {
-  return <section className={`section ${styles.section}`}><Container><SectionHeading eyebrow={home.benefits.eyebrow} title={home.benefits.title} tone="light"><p>{home.benefits.description}</p></SectionHeading><div className={styles.grid}>{home.benefits.items.map((item, index) => <BenefitTile key={item.title} item={item} index={index} />)}</div><p className={styles.note}>{home.benefits.note}</p></Container></section>;
+  return <section className={`section ${styles.section}`}><Container><SectionHeading eyebrow={home.benefits.eyebrow} title={home.benefits.title} tone="light" center><p>{home.benefits.description}</p></SectionHeading><div className={styles.grid}>{home.benefits.items.map((item, index) => <BenefitTile key={item.title} item={item} index={index} />)}</div><p className={styles.note}>{home.benefits.note}</p></Container></section>;
 }

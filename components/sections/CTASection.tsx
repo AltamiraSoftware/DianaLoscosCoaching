@@ -1,6 +1,5 @@
 import { Container } from '@/components/ui/Container';
 import { ButtonLink } from '@/components/ui/Button';
-import { ArrowIcon } from '@/components/ui/ArrowIcon';
 import { site } from '@/lib/site';
 import { InstagramReel, type Reel } from './InstagramReel';
 import styles from './CTASection.module.css';
@@ -23,9 +22,9 @@ export const instagramReels = {
 export function CTASection({ title = 'Tu siguiente paso puede empezar con una conversación.', copy = 'Reserva una sesión online y trae lo que hoy te ocupa. Empezaremos por ahí.', reel }: { title?: string; copy?: string; reel?: Reel }) {
   return <section id="contacto" className={`cta-section ${styles['cta-section']}`}><Container><p className="eyebrow">Hablemos</p>{reel
     ? <div className={styles.withReel}>
-      <div className={styles.copy} data-scroll-reveal="cta-copy"><h2>{title}</h2><p>{copy}</p><ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="final" variant="light">Reservar una sesión <ArrowIcon diagonal /></ButtonLink></div>
+      <div className={styles.copy} data-scroll-reveal="cta-copy"><h2>{title}</h2><p>{copy}</p><ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="final" variant="light">Reservar una sesión</ButtonLink></div>
       <InstagramReel reel={reel} />
     </div>
-    : <div className={`cta-layout ${styles['cta-layout']}`} data-scroll-reveal="cta-copy"><div><h2>{title}</h2><p>{copy}</p></div><ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="final" variant="light">Reservar una sesión <ArrowIcon diagonal /></ButtonLink></div>}
+    : <div className={`cta-layout ${styles['cta-layout']}`} data-scroll-reveal="cta-copy"><div><h2>{title}</h2><p>{copy}</p></div><ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="final" variant="light">Reservar una sesión</ButtonLink></div>}
   </Container></section>;
 }
