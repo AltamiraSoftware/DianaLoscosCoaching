@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
-const targets = '#main > section, #main article, #main #para-quien a, #main #proceso li, #main .service-grid > a, #main .testimonial-grid figure, #main [data-scroll-reveal]';
+const targets = '#main > section, #main article, #main #para-quien a, #main .service-grid > a, #main .testimonial-grid figure, #main .section-heading, #main .interior-grid > *, #main .contact-layout > *, #main [data-scroll-reveal]';
 
 export function ScrollAnimations() {
   const pathname = usePathname();
@@ -20,7 +20,7 @@ export function ScrollAnimations() {
         const isSection = node.tagName === 'SECTION';
         const siblings = node.parentElement ? Array.from(node.parentElement.children) : [];
         const delay = isSection ? 0 : Math.min(Math.max(siblings.indexOf(node), 0), 3) * 90;
-        const animation = node.animate([{ opacity: 0, transform: 'translateY(12px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 900, delay, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'backwards' });
+        const animation = node.animate([{ opacity: 0, transform: 'translateY(18px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 800, delay, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'backwards' });
         animations.add(animation);
       }
     }, { threshold: .08, rootMargin: '0px 0px -24px 0px' });

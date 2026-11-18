@@ -4,7 +4,7 @@ import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { trackEvent, type AnalyticsEvent } from '@/lib/analytics';
 
-type Props = { href: string; children: ReactNode; className?: string; event?: AnalyticsEvent; label?: string; external?: boolean; 'aria-label'?: string };
+type Props = { href: string; children: ReactNode; className?: string; event?: AnalyticsEvent; label?: string; external?: boolean; 'aria-label'?: string; 'data-scroll-reveal'?: string };
 
 export function TrackedLink({ href, children, className, event, label, external, ...rest }: Props) {
   const onClick = () => {

@@ -117,3 +117,14 @@
   .site-header .desktopBooking { display: none; }
   .mobile-nav .mobileBooking { display: flex; width: 100%; margin-top: 18px; min-height: 44px; }
 }
+
+/* Franja editorial y detalles de marca de la cabecera. */
+.site-header { height: auto; }
+.infoBar { background: var(--diana-deep); color: #f4f5ee; font-size: 11px; letter-spacing: .045em; }
+.infoInner { min-height: 30px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.infoInner > span { display: inline-flex; align-items: center; gap: 8px; }
+.infoDot { width: 7px; height: 7px; border-radius: 50%; background: #b9d9c8; box-shadow: 0 0 0 3px rgb(185 217 200 / 16%); }
+.brand { position: relative; }
+.brand::after { content: ''; position: absolute; right: -12px; height: 30px; width: 1px; background: var(--diana-border); }
+@media (max-width: 1120px) { .brand::after { display: none; } }
+@media (max-width: 860px) { .infoBar { display: none; } .site-header { height: 72px; } }

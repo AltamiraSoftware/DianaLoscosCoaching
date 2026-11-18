@@ -44,3 +44,7 @@
 .homeCard blockquote { width: 100%; font-size: clamp(26px, 2.2vw, 34px); }
 .homeCard figcaption { justify-content: space-between; font-size: 14px; }
 .quoteMark { display: block; height: 52px; color: var(--diana-story); font-family: var(--font-newsreader), Georgia, serif; font-size: 76px; line-height: 1; }
+
+.testimonial-card, .homeCard { align-items: center; text-align: center; }
+.testimonial-card figcaption, .homeCard figcaption { justify-content: center; flex-wrap: wrap; }
+.testimonial-card :global(.diana-button) { align-self: center; margin-top: 12px; }

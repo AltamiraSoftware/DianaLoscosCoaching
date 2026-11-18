@@ -6,6 +6,7 @@ test.beforeEach(async ({ page }, info) => { if (!info.title.startsWith('consenti
 const canonicalOrigin = (process.env.NEXT_PUBLIC_SITE_URL || 'https://dianaloscoscoach.com').replace(/\/$/, '');
 const pagePaths = [
   '/',
+  '/coaching-personal-online/',
   '/coaching-profesional/',
   '/cambio-profesional/',
   '/liderazgo-nuevos-managers/',
@@ -19,6 +20,7 @@ const pagePaths = [
   '/cookies/',
 ] as const;
 const servicePaths = new Set([
+  '/coaching-personal-online/',
   '/coaching-profesional/',
   '/cambio-profesional/',
   '/liderazgo-nuevos-managers/',
@@ -133,7 +135,7 @@ test.describe('experiencia y accesibilidad', () => {
     });
   }
 
-  for (const path of ['/', '/coaching-profesional/', '/contacto/']) {
+  for (const path of ['/', '/coaching-profesional/', '/contacto/', '/sobre-mi/']) {
     test('sin infracciones WCAG detectadas por axe en ' + path, async ({ page }) => {
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.goto(path);
@@ -191,24 +193,24 @@ test.describe('experiencia y accesibilidad', () => {
     await expect(sections.nth(0)).toHaveAttribute('id', 'inicio');
     await expect(sections.nth(1)).toHaveAttribute('id', 'contacto');
     await expect(sections.nth(1).locator('form')).toBeVisible();
-    await expect(sections).toHaveCount(11);
+    await expect(sections).toHaveCount(10);
     await expect(sections.nth(2)).toHaveAttribute('id', 'para-quien');
-    await expect(sections.nth(3)).toHaveAttribute('id', 'proceso');
-    await expect(sections.nth(4)).toContainText('¿Qué puedes llevarte de las sesiones?');
-    await expect(sections.nth(5)).toHaveAttribute('id', 'sobre-mi');
-    await expect(sections.nth(8)).toHaveAttribute('id', 'inversion');
-    await expect(sections.nth(9)).toContainText('Respuestas claras antes de empezar.');
-    await expect(sections.nth(10)).toHaveAttribute('id', 'hablemos');
+    await expect(page.getByRole('heading', { name: 'Un proceso centrado en tu situación' })).toHaveCount(0);
+    await expect(sections.nth(3)).toContainText('¿Qué puedes llevarte de las sesiones?');
+    await expect(sections.nth(4)).toHaveAttribute('id', 'sobre-mi');
+    await expect(sections.nth(7)).toHaveAttribute('id', 'inversion');
+    await expect(sections.nth(8)).toContainText('Respuestas claras antes de empezar.');
+    await expect(sections.nth(9)).toHaveAttribute('id', 'hablemos');
   });
 
-  test('la home presenta seis situaciones y tres reels antes de cargarlos', async ({ page }) => {
+  test('la home presenta seis situaciones y un reel antes de cargarlo', async ({ page }) => {
     await page.goto('/');
     const situations = page.locator('#para-quien');
     await expect(situations.getByRole('link', { name: /Explorar esta situación/ })).toHaveCount(6);
     await expect(situations.getByRole('link', { name: /Quieres avanzar en tu trabajo/ })).toHaveAttribute('href', '/coaching-profesional/');
-    const process = page.locator('#proceso');
-    await expect(process.getByRole('button', { name: /Cargar reel:/ })).toHaveCount(3);
-    await expect(process.locator('script[src*="instagram.com"]')).toHaveCount(0);
+    const closing = page.locator('#hablemos');
+    await expect(closing.getByRole('button', { name: /Cargar reel:/ })).toHaveCount(1);
+    await expect(closing.locator('script[src*="instagram.com"]')).toHaveCount(0);
   });
 
   test('las preguntas frecuentes comparten ocho respuestas y son accesibles', async ({ page }) => {
@@ -232,7 +234,22 @@ test.describe('experiencia y accesibilidad', () => {
     });
     await page.goto('/');
     await page.locator('[data-scroll-reveal="cta-copy"]').last().scrollIntoViewIfNeeded();
-    await expect.poll(() => page.locator('html').getAttribute('data-cta-animation')).toContain('translateY(12px)');
+    await expect.poll(() => page.locator('html').getAttribute('data-cta-animation')).toMatch(/translateY\(\d+px\)/);
+  });
+
+  test('Sobre mí anima el retrato y el texto al entrar en pantalla', async ({ page }) => {
+    await page.addInitScript(() => {
+      const animate = Element.prototype.animate;
+      Element.prototype.animate = function (keyframes, options) {
+        const name = this.getAttribute('data-scroll-reveal');
+        if (name === 'about-portrait' || name === 'about-story') document.documentElement.dataset[name === 'about-portrait' ? 'portraitAnimated' : 'storyAnimated'] = 'yes';
+        return animate.call(this, keyframes, options);
+      };
+    });
+    await page.goto('/sobre-mi/');
+    await page.locator('#diana').scrollIntoViewIfNeeded();
+    await expect.poll(() => page.locator('html').getAttribute('data-portrait-animated')).toBe('yes');
+    await expect.poll(() => page.locator('html').getAttribute('data-story-animated')).toBe('yes');
   });
 
   test('el movimiento reducido muestra contenido de inmediato', async ({ page }) => {
@@ -259,6 +276,34 @@ test.describe('experiencia y accesibilidad', () => {
     expect(motion?.clip).toBe('none');
     expect(motion?.revealOpacity).toBe('1');
   });
+});
+
+test('contacto presenta cuatro canales con destinos y formulario', async ({ page }) => {
+  await page.goto('/contacto/');
+  const cards = page.locator('[data-scroll-reveal="contact-channel"]');
+  await expect(cards).toHaveCount(4);
+  await expect(cards.nth(0)).toHaveAttribute('href', /doctoralia/);
+  await expect(cards.nth(1)).toHaveAttribute('href', /wa\.me/);
+  await expect(cards.nth(2)).toHaveAttribute('href', 'mailto:contacto@dianaloscoscoach.com');
+  await expect(cards.nth(3)).toHaveAttribute('href', /instagram\.com/);
+  await expect(page.locator('main > section').nth(1).locator('form')).toBeVisible();
+});
+
+test('contacto anima las tarjetas al entrar y respeta movimiento reducido', async ({ page }) => {
+  await page.addInitScript(() => {
+    const animate = Element.prototype.animate;
+    Element.prototype.animate = function (keyframes, options) {
+      if (this.getAttribute('data-scroll-reveal') === 'contact-channel') document.documentElement.dataset.contactAnimated = 'yes';
+      return animate.call(this, keyframes, options);
+    };
+  });
+  await page.goto('/contacto/');
+  await page.locator('[data-scroll-reveal="contact-channel"]').first().scrollIntoViewIfNeeded();
+  await expect.poll(() => page.locator('html').getAttribute('data-contact-animated')).toBe('yes');
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.reload();
+  await expect(page.locator('[data-scroll-reveal="contact-channel"]').first()).toBeVisible();
+  await expect(page.locator('html')).not.toHaveAttribute('data-contact-animated', 'yes');
 });
 
 test.describe('conversión', () => {
@@ -425,7 +470,7 @@ test('consentimiento: Instagram solo se carga al pulsar un reel', async ({ page 
   await page.locator('#hablemos').scrollIntoViewIfNeeded();
   expect(requests).toBe(0);
   await banner.getByRole('button', { name: 'Rechazar todo' }).click();
-  await page.locator('#proceso').scrollIntoViewIfNeeded();
+  await page.locator('#hablemos').scrollIntoViewIfNeeded();
   expect(requests).toBe(0);
   await page.getByRole('button', { name: /Cargar reel:/ }).first().click();
   await expect.poll(() => requests).toBe(1);
@@ -439,7 +484,7 @@ test('consentimiento: se pueden aceptar los reels sin activar analítica', async
   const banner = page.getByRole('complementary', { name: 'Preferencias de privacidad' });
   await banner.getByLabel('Contenido externo').check();
   await banner.getByRole('button', { name: 'Guardar preferencias' }).click();
-  await page.locator('#proceso').scrollIntoViewIfNeeded();
+  await page.locator('#hablemos').scrollIntoViewIfNeeded();
   await expect.poll(() => requests).toBe(1);
   expect(await page.evaluate(() => [localStorage.getItem('analytics-consent'), localStorage.getItem('external-content-consent')])).toEqual(['rejected', 'accepted']);
 });
@@ -451,4 +496,30 @@ test('consentimiento: el aviso es accesible con movimiento reducido', async ({ p
   await expect(page.getByRole('complementary', { name: 'Preferencias de privacidad' })).toBeVisible();
   const result = await new AxeBuilder({ page }).include('aside[aria-label="Preferencias de privacidad"]').withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
   expect(result.violations, JSON.stringify(result.violations, null, 2)).toEqual([]);
+});
+
+
+test('SEO: títulos, encabezados, servicios y enlaces corresponden a cada intención', async ({ page }) => {
+  const entries = [
+    ['/', 'Coaching personal y profesional online | Diana Loscos', 'Coaching personal y profesional online para tomar decisiones con claridad', ''],
+    ['/coaching-personal-online/', 'Coaching personal online | Diana Loscos', 'Coaching personal online para aclarar lo que necesitas cambiar', 'Coaching personal online'],
+    ['/coaching-profesional/', 'Coaching profesional online | Diana Loscos', 'Coaching profesional para tomar decisiones en el trabajo', 'Coaching profesional online'],
+    ['/cambio-profesional/', 'Cambio profesional y coaching online | Diana Loscos', 'Cambio profesional: encuentra tu siguiente paso sin decidir a ciegas', 'Coaching para cambio profesional'],
+    ['/liderazgo-nuevos-managers/', 'Coaching de liderazgo para nuevos managers | Diana Loscos', 'Coaching de liderazgo para nuevos managers', 'Coaching de liderazgo'],
+    ['/coaching-ejecutivo/', 'Coaching ejecutivo | Sesiones online con Diana Loscos', 'Coaching ejecutivo para liderar y decidir con perspectiva', 'Coaching ejecutivo online'],
+  ] as const;
+  for (const [path, title, heading, serviceType] of entries) {
+    await page.goto(path);
+    await expect(page).toHaveTitle(title);
+    await expect(page.locator('main h1')).toHaveText(heading);
+    await expect(page.locator('main > section').nth(1).locator('form')).toHaveCount(1);
+    if (serviceType) {
+      const scripts = await page.locator('script[type="application/ld+json"]').allTextContents();
+      expect(scripts.map(script => JSON.parse(script)).some(node => node['@type'] === 'Service' && node.serviceType === serviceType)).toBeTruthy();
+    }
+  }
+  await page.goto('/');
+  for (const [path] of entries.slice(1)) {
+    await expect(page.locator(`.service-grid a[href="${path}"]`)).toHaveCount(1);
+  }
 });

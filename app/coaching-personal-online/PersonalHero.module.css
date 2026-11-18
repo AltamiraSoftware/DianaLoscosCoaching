@@ -63,3 +63,7 @@
     margin-top: 0;
   }
 }
+
+.therapyHeading { font-family: var(--font-newsreader), Georgia, serif; font-size: clamp(28px, 3vw, 36px); font-weight: 500; line-height: 1.15; }
+
+.personalLink { color: var(--diana-story); text-decoration: underline; text-underline-offset: 3px; }

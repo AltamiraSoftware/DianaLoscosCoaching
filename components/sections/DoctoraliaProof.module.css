@@ -6,3 +6,6 @@
 .doctoralia-mark { gap: 6px; }
 .doctoralia-mark { display: inline-flex; align-items: center; }
 .doctoralia-mark :global(.arrow-icon) { width: 17px; height: 17px; }.note { max-width: 62ch; color: var(--diana-graphite); font-size: 14px; line-height: 1.6; }
+
+.profileButton { flex: none; margin-top: 12px; }
+@media (max-width: 620px) { .profileButton { margin: 0 0 24px; } }

@@ -167,6 +167,7 @@ export function Header() {
     });
 
   return <header className={`site-header ${scrolled ? 'is-scrolled' : ''} ${headerStyles['site-header']}`}>
+    <div className={headerStyles.infoBar}><div className={`container-site ${headerStyles.infoInner}`}><span><span className={headerStyles.infoDot} aria-hidden="true" />Un espacio para parar, pensar y avanzar</span><span>Sesiones online <span aria-hidden="true">·</span> 60 minutos</span></div></div>
     <div className={`container-site header-inner ${headerStyles['header-inner']}`}>
       <Link href="/" className={`brand ${headerStyles['brand']}`} aria-label="Diana Loscos, ir al inicio" onClick={closeNavigation}>
         <Image className={`brand-mark ${headerStyles['brand-mark']}`} src="/logo_diana_loscos.webp" alt="" unoptimized width={116} height={75} />

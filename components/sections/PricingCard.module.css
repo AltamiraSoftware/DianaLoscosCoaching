@@ -11,3 +11,7 @@
 .saving { display: inline-block; padding: 3px 10px; border-radius: 999px; background: var(--diana-mint); color: var(--diana-deep); font-size: 14px; font-weight: 700; }
 .note { max-width: 62ch; margin: 28px 0 0; color: var(--diana-graphite); font-size: 14px; line-height: 1.6; }
 @media (max-width: 860px) { .grid { grid-template-columns: 1fr; } }
+
+.card { align-items: center; text-align: center; box-shadow: 0 8px 28px rgb(30 82 85 / 5%); }
+.badge { align-self: center; }
+.card strong { margin-top: auto; }

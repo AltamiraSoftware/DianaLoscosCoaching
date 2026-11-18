@@ -4,7 +4,7 @@ import { absoluteUrl, site } from '@/lib/site';
 export function pageMetadata(title: string, description: string, path: string): Metadata {
   const canonical = absoluteUrl(path);
   return {
-    title,
+    title: title.includes('Diana Loscos') ? { absolute: title } : title,
     description,
     alternates: { canonical },
     openGraph: {
@@ -23,11 +23,11 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
   };
 }
 
-export function serviceSchema(name: string, description: string, path: string) {
+export function serviceSchema(name: string, description: string, path: string, serviceType = name) {
   return {
     '@context': 'https://schema.org', '@type': 'Service',
     name, description, url: absoluteUrl(path),
-    serviceType: 'Coaching profesional',
+    serviceType,
     provider: { '@type': 'Person', '@id': absoluteUrl('/sobre-mi/#diana'), name: site.name },
     areaServed: { '@type': 'Country', name: 'España' },
     availableChannel: { '@type': 'ServiceChannel', serviceUrl: site.bookingUrl },

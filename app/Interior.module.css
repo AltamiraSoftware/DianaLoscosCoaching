@@ -8,7 +8,7 @@
 }
 .breadcrumbs ol { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; color: var(--diana-graphite); font-size: 10px; font-weight: 700; font-size: 12px; }
 .feature-list article > span { color: var(--diana-clay-muted); font-family: var(--font-newsreader), Georgia, serif; font-size: 28px; color: #A0523F; }
-.credentials span { color: #A0523F; color: var(--diana-clay-muted); font-family: var(--font-newsreader), Georgia, serif; font-size: 22px; font-size: 30px; }
+.credentials > div > span { color: #A0523F; color: var(--diana-clay-muted); font-family: var(--font-newsreader), Georgia, serif; font-size: 22px; font-size: 30px; }
 .page-intro { padding: clamp(62px, 8vw, 116px) 0 clamp(70px, 8vw, 115px); background: var(--diana-cream); background: #f8faf9; }
 .breadcrumbs { background: var(--diana-cream); padding: 18px 0; border-bottom: 1px solid rgba(24,36,41,.1); background: #f8faf9; }
 .page-intro h1 { max-width: 1000px; margin: 0 0 28px; font-size: clamp(57px, 7.4vw, 110px); font-weight: 600; }
@@ -61,3 +61,8 @@
 @media (max-width: 620px) {
   .page-intro-copy > :global(.diana-button) { width: 100%; margin-top: 1.75rem; }
 }
+.feature-list article { display: flex; flex-direction: column; align-items: center; padding: 28px; border: 1px solid var(--diana-border); border-radius: 22px; background: var(--diana-white); text-align: center; }
+.feature-list article p { max-width: 38ch; }
+.credentials > :global(.diana-button) { margin-top: 20px; }
+.contact-options a.bookingOption { margin: 12px 0; padding: 18px 20px; border: 1px solid var(--diana-petrol); border-radius: 14px; background: var(--diana-white); }
+.contact-options a.bookingOption:hover, .contact-options a.bookingOption:focus-visible { background: var(--diana-mist); }

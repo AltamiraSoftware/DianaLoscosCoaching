@@ -6,16 +6,16 @@ export type TestimonialCopy = { quote: string; author: string; date: string };
 export type PriceCopy = { title: string; description: string; price: string; perSession?: string; saving?: string; action: string };
 
 export const home = {
-  seo: { title: 'Diana Loscos | Coach Ontológico Online y Desarrollo Personal', description: '¿Has conseguido tus objetivos y sientes que algo te falta? Sesiones de coaching online 1:1 para parar, mirar lo que evitas y dar un paso. Reserva en Doctoralia.' },
+  seo: { title: 'Coaching personal y profesional online | Diana Loscos', description: 'Coaching personal y profesional online para afrontar cambios y tomar decisiones. Sesiones individuales de 60 minutos con Diana Loscos. Reserva online.' },
   header: { navigation: ['Inicio', 'Servicios', 'Sobre mí', 'Opiniones', 'Preguntas frecuentes', 'Contacto'], services: ['Coaching personal', 'Coaching profesional y ejecutivo'], action: 'Reservar sesión', instagramUrl: 'https://www.instagram.com/dianaloscoscoach/' },
   hero: {
-    eyebrow: 'COACHING PERSONAL Y PROFESIONAL · DIANA LOSCOS',
-    title: '¿Has conseguido tus objetivos y sientes que',
-    titleAccent: 'algo te falta?',
-    description: 'Sesiones de coaching online 1:1 para parar, mirar lo que llevas tiempo evitando mirar y dar un paso que te acerque a donde quieres estar.',
+    eyebrow: 'COACHING PERSONAL Y PROFESIONAL · SESIONES ONLINE',
+    title: 'Coaching personal y profesional online para',
+    titleAccent: 'tomar decisiones con claridad',
+    description: '¿Hay una decisión que llevas tiempo posponiendo o una etapa que ya no encaja? En las sesiones trabajamos sobre lo que te ocurre, exploramos opciones y buscamos un siguiente paso que tenga sentido para ti.',
     credentials: 'Psicóloga · Col. M-45396 · Coach de desarrollo personal y profesional',
     note: 'Sesiones online de 60 minutos · Reserva en Doctoralia',
-    primaryAction: 'Reservar una sesión ↗', secondaryAction: 'Ver cómo trabajo →',
+    primaryAction: 'Consultar disponibilidad y reservar', secondaryAction: 'Descubre cómo puedo ayudarte →',
     photoCaption: 'DIANA LOSCOS · COACH DE DESARROLLO PERSONAL Y PROFESIONAL',
   },
   situations: {
@@ -33,8 +33,8 @@ export const home = {
     closing: 'Vivir en automático también cansa. No es falta de capacidad: es sobrecarga, exigencia y miedo.',
   },
   process: {
-    eyebrow: 'CÓMO TRABAJO', title: 'No te doy respuestas. Miramos eso que estás evitando mirar.',
-    description: 'En mis sesiones 1:1 online tienes un espacio seguro y confidencial, donde se escucha sin juicio. A través de preguntas, das un paso y cierras un compromiso.',
+    eyebrow: 'CÓMO TRABAJO', title: 'Un proceso centrado en tu situación',
+    description: 'Primero entendemos qué está pasando y qué necesitas abordar. Después exploramos alternativas y los criterios con los que quieres valorarlas. Si tiene sentido, terminamos con una acción concreta que puedas poner en práctica y revisar.',
     steps: [
       { number: '01', title: 'Empezar aunque haya miedo', description: 'Dar el primer paso no es no tener miedo: es decidir mirar lo que llevas tiempo evitando mirar.' },
       { number: '02', title: 'Suelta y confía', description: 'Soltar la necesidad de controlarlo todo y dejar de darle vueltas a lo mismo, para poder escucharte.' },
@@ -73,10 +73,13 @@ export const home = {
     action: 'Leer en Doctoralia', note: 'Extractos de opiniones públicas en Doctoralia. Cada experiencia es personal y no anticipa resultados.', allAction: 'Ver todas las opiniones en Doctoralia →',
   },
   services: {
-    eyebrow: 'FORMAS DE EMPEZAR', title: 'Una conversación, distintas situaciones.', description: 'Lo personal y lo profesional van de la mano: lo que te pasa en un lado se nota en el otro.', action: 'Conocer el servicio',
+    eyebrow: 'FORMAS DE EMPEZAR', title: '¿Qué necesitas trabajar en este momento?', description: 'No todas las situaciones requieren el mismo acompañamiento. Puedes empezar por la que mejor describa lo que estás viviendo.', action: 'Conocer el servicio',
     cards: [
-      { number: '01 / VIDA PERSONAL', title: 'Coaching personal', description: 'Para aclarar un bloqueo, una decisión o un cambio en tu vida y elegir un paso realista.', href: '/coaching-personal-online/' },
-      { number: '02 / VIDA PROFESIONAL', title: 'Coaching profesional y ejecutivo', description: 'Para ordenar un bloqueo, una decisión o una etapa de cambio en tu trabajo, y pensar tu manera de liderar.', href: '/coaching-profesional/' },
+      { number: '01 / VIDA PERSONAL', title: 'Coaching personal', description: 'Para tomar decisiones, poner límites y afrontar cambios en tu vida.', href: '/coaching-personal-online/' },
+      { number: '02 / VIDA PROFESIONAL', title: 'Coaching profesional', description: 'Para ordenar bloqueos, prioridades y decisiones relacionadas con el trabajo.', href: '/coaching-profesional/' },
+      { number: '03 / CAMBIO', title: 'Cambio profesional', description: 'Para explorar alternativas cuando te planteas cambiar de puesto, empresa o rumbo.', href: '/cambio-profesional/' },
+      { number: '04 / LIDERAZGO', title: 'Liderazgo para nuevos managers', description: 'Para afrontar las primeras responsabilidades de coordinación de personas.', href: '/liderazgo-nuevos-managers/' },
+      { number: '05 / DIRECCIÓN', title: 'Coaching ejecutivo', description: 'Para trabajar decisiones, relaciones y retos vinculados al liderazgo.', href: '/coaching-ejecutivo/' },
     ] satisfies readonly NumberedCard[],
   },
   pricing: {

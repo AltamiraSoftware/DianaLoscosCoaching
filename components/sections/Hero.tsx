@@ -16,7 +16,7 @@ export function Hero() {
         <StatusDots />
         <p className={styles.lede}>{copy.description}</p>
         <p className={styles.trustLine}>{copy.credentials}</p>
-        <div className={styles.actions}><ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="hero">{copy.primaryAction}</ButtonLink><ButtonLink href="/#proceso" variant="secondary">{copy.secondaryAction}</ButtonLink></div>
+        <div className={styles.actions}><ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="hero">{copy.primaryAction}</ButtonLink><ButtonLink href="/#para-quien" variant="secondary">{copy.secondaryAction}</ButtonLink></div>
         <p className={styles.note}>{copy.note}</p>
       </div>
       <figure className={styles.portrait}>

@@ -63,3 +63,8 @@
 .homeCard .situation-content strong { margin: 14px 0 6px; font-size: clamp(25px, 2.2vw, 32px); }
 .homeCard .situation-content > span:not(.situation-action) { margin: 0 0 20px; font-size: 16px; line-height: 1.65; }
 @media (max-width: 620px) { .homeCard { display: flex; min-height: 0; } }
+
+.situation-row, .homeCard { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.situation-content, .homeCard .situation-content { align-items: center; text-align: center; }
+.situation-content > span:not(.situation-action) { max-width: 38ch; }
+.situation-action { align-self: center; margin-top: auto; }
