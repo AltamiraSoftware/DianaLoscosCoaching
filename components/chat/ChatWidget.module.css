@@ -1,0 +1,166 @@
+.zone {
+  position: fixed;
+  z-index: 90;
+  right: calc(20px + env(safe-area-inset-right));
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.button {
+  display: flex;
+  width: 56px;
+  height: 56px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: var(--diana-petrol);
+  color: var(--diana-white);
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgb(16 63 60 / 22%);
+  transition: transform 250ms var(--diana-ease-standard), background-color 250ms var(--diana-ease-standard);
+}
+
+.button:hover { transform: translateY(-2px); background: var(--diana-ink-deep); }
+.button:active { transform: translateY(0); }
+.button:focus-visible { outline: 2px solid var(--diana-petrol); outline-offset: 3px; }
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  width: min(360px, calc(100vw - 32px));
+  max-height: min(560px, calc(100vh - 120px));
+  overflow: hidden;
+  border: 1px solid var(--diana-border);
+  border-radius: var(--diana-radius-lg);
+  background: var(--diana-white);
+  box-shadow: 0 20px 60px rgb(16 63 60 / 24%);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 16px;
+  background: var(--diana-deep);
+  color: var(--diana-white);
+}
+
+.avatar {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--diana-mint);
+  color: var(--diana-deep);
+  font-family: var(--font-newsreader), Georgia, serif;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.header strong { font-size: 15px; color: var(--diana-white); line-height: 1.25; }
+.status { display: block; margin-top: 2px; font-size: 12px; color: var(--diana-mist); opacity: 1; }
+.close {
+  margin-left: auto;
+  border: none;
+  background: transparent;
+  color: var(--diana-white);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+}
+.close:focus-visible { outline: 2px solid var(--diana-mint); outline-offset: 2px; border-radius: 4px; }
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  overflow-y: auto;
+  background: var(--diana-page);
+}
+
+.bubble {
+  max-width: 88%;
+  margin: 0;
+  padding: 11px 15px;
+  border-radius: var(--diana-radius-md);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--diana-deep);
+  background: var(--diana-mint);
+  border: 1px solid #c0ece2;
+}
+
+.bot { align-self: flex-start; border-bottom-left-radius: 4px; }
+.botSecondary { margin-top: 4px; opacity: .95; }
+
+.options { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.option {
+  padding: 12px 14px;
+  border: 1px solid var(--diana-border);
+  border-radius: var(--diana-radius-md);
+  background: var(--diana-white);
+  color: var(--diana-petrol);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 200ms, border-color 200ms, color 200ms;
+}
+.option:hover { background: var(--diana-mint); border-color: var(--diana-mint); color: var(--diana-deep); }
+.option:focus-visible { outline: 2px solid var(--diana-petrol); outline-offset: 2px; }
+
+.form { display: flex; flex-direction: column; gap: 6px; }
+.field { display: flex; flex-direction: column; gap: 4px; font-size: 13px; }
+.field span { font-weight: 700; color: var(--diana-ink); }
+.field input,
+.field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px 11px;
+  border: 1px solid var(--diana-border);
+  border-radius: var(--diana-radius-sm);
+  background: var(--diana-white);
+  font: inherit;
+  font-size: 14px;
+  color: var(--diana-ink);
+}
+.field input:focus,
+.field textarea:focus { outline: 2px solid var(--diana-petrol); outline-offset: 1px; border-color: transparent; }
+.field textarea { min-height: 72px; resize: vertical; }
+
+.fieldError { margin: 0; color: var(--diana-clay); font-size: 12px; }
+
+.send {
+  margin-top: 6px;
+  padding: 12px;
+  border: none;
+  border-radius: var(--diana-radius-md);
+  background: var(--diana-petrol);
+  color: var(--diana-white);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 200ms;
+}
+.send:hover:not(:disabled) { background: var(--diana-ink-deep); }
+.send:disabled { opacity: .6; cursor: default; }
+
+.formStatus { margin: 0; color: var(--diana-clay); font-size: 13px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .button, .option, .send { transition: none; }
+}
+
+@media (max-width: 620px) {
+  .panel { max-height: calc(100vh - 90px); }
+}

@@ -1,7 +1,8 @@
 export type AnalyticsEvent =
   | 'cta_booking_click' | 'doctoralia_click' | 'whatsapp_click' | 'email_click'
   | 'contact_form_start' | 'contact_form_submit' | 'service_view'
-  | 'pricing_view' | 'testimonial_view';
+  | 'pricing_view' | 'testimonial_view'
+  | 'chat_open' | 'chat_choice';
 
 declare global {
   interface Window {
