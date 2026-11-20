@@ -73,9 +73,9 @@ export function ChatWidget() {
                 <p className={`${styles.bubble} ${styles.bot}`}>{WELCOME[0]}</p>
                 <p className={`${styles.bubble} ${styles.bot} ${styles.botSecondary}`}>{WELCOME[1]}</p>
                 <div className={styles.options}>
-                  <button type="button" className={styles.option} onClick={() => choose('book')}>Reservar una sesión</button>
-                  <button type="button" className={styles.option} onClick={() => choose('form')}>Tengo una duda</button>
-                  <button type="button" className={styles.option} onClick={() => choose('whatsapp')}>Hablar por WhatsApp</button>
+                  <button type="button" className={`diana-button diana-button--primary ${styles.option}`} onClick={() => choose('book')}>Reservar una sesión</button>
+                  <button type="button" className={`diana-button diana-button--secondary ${styles.option}`} onClick={() => choose('form')}>Tengo una duda</button>
+                  <button type="button" className={`diana-button diana-button--secondary ${styles.option}`} onClick={() => choose('whatsapp')}>Hablar por WhatsApp</button>
                 </div>
               </>
             )}
@@ -91,7 +91,7 @@ export function ChatWidget() {
                 {errors.phone && <p className={styles.fieldError}>{errors.phone}</p>}
                 <label className={styles.field}><span>Tu mensaje</span><textarea name="message" minLength={10} maxLength={3000} required aria-invalid={!!errors.message} /></label>
                 {errors.message && <p className={styles.fieldError}>{errors.message}</p>}
-                <button type="submit" className={styles.send} disabled={busy}>{busy ? 'Enviando…' : 'Enviar consulta'}</button>
+                <button type="submit" className={`diana-button diana-button--primary ${styles.send}`} disabled={busy}>{busy ? 'Enviando…' : 'Enviar consulta'}</button>
                 {error && <p className={styles.formStatus} role="alert">{error}</p>}
               </form>
             )}
@@ -100,7 +100,7 @@ export function ChatWidget() {
               <>
                 <p className={`${styles.bubble} ${styles.bot}`}>¡Gracias! He recibido tu consulta. Te responderé en breve, normalmente en 24 h.</p>
                 <p className={`${styles.bubble} ${styles.bot} ${styles.botSecondary}`}>Si prefieres algo más inmediato, también puedes llamarme por WhatsApp.</p>
-                <button type="button" className={styles.option} onClick={() => choose('whatsapp')}>Abrir WhatsApp</button>
+                <button type="button" className={`diana-button diana-button--secondary ${styles.option}`} onClick={() => choose('whatsapp')}>Abrir WhatsApp</button>
               </>
             )}
           </div>

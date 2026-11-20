@@ -66,7 +66,7 @@ export default function Page() {
         <div className={`hero-copy ${styles.copy} ${heroBase['hero-copy']}`}>
           <p className="eyebrow">Coaching personal · Sesiones online</p>
           <h1 id="personal-hero-title">Coaching personal online para aclarar lo que necesitas cambiar</h1>
-          <p className={`hero-lede ${heroBase['hero-lede']}`}>Si estás ante una decisión, te cuesta poner límites o atraviesas un cambio de etapa, podemos dedicar un espacio a entender lo que te ocurre y valorar cómo avanzar.</p>
+          <p className={`hero-lede ${heroBase['hero-lede']}`}>Soy Diana Loscos, psicóloga y coach de desarrollo personal y profesional. Acompaño online, en sesiones 1:1 de 60 minutos, a personas que han conseguido lo que se proponían y sienten que algo falta, que están ante una decisión o un cambio, o que llevan tiempo dándole vueltas a todo sin fuerzas.</p>
           <p className={styles.trustLine}>Psicóloga · Col. M-45396 · Coach Ejecutiva</p>
           <div className={`hero-actions ${styles.actions} ${heroBase['hero-actions']}`}>
             <ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="coaching-personal-hero">Reservar una sesión de coaching personal</ButtonLink>
@@ -99,7 +99,7 @@ export default function Page() {
       <article><span>03</span><h3>Personalizadas y confidenciales</h3><p>La conversación parte de tu contexto y se desarrolla con respeto a tus decisiones y a tu privacidad.</p></article>
     </div></Container></section>
 
-    <section className="section section-mist"><Container className={`interior-grid ${interiorStyles['interior-grid']}`}><div className={`interior-copy ${interiorStyles['interior-copy']}`}><p className="eyebrow">Sobre Diana</p><h2>Una conversación con criterio y cercanía.</h2><p>Psicóloga · Col. M-45396 · Coach Ejecutiva</p><p>Diana acompaña online a personas que quieren ordenar una decisión o un cambio personal. Su formación en Psicología y Coaching Ejecutivo aporta escucha y estructura al proceso de coaching; estas sesiones no se presentan como atención psicológica.</p></div><Credentials /></Container></section>
+    <section className="section section-mist"><Container className={styles.dianaAbout}><figure className={styles.dianaPortrait}><Image src="/sOY-DIANA.jpeg" alt="Diana Loscos" width={1080} height={1356} sizes="(max-width: 860px) 78vw, 340px" /><figcaption>Diana Loscos <span>Psicóloga y coach</span></figcaption></figure><div className={`interior-copy ${interiorStyles['interior-copy']}`}><p className="eyebrow">Sobre Diana</p><h2>Formación para acompañar con criterio y cercanía.</h2><p>Diana acompaña online a personas que quieren ordenar una decisión o un cambio personal. Su formación en Psicología y Coaching Ejecutivo aporta escucha y estructura al proceso de coaching; estas sesiones no se presentan como atención psicológica.</p><Credentials /></div></Container></section>
 
     <DoctoraliaProof />
     <PricingCard />

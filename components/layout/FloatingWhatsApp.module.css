@@ -1,8 +1,8 @@
 .button {
   position: fixed;
   z-index: 70;
-  bottom: calc(20px + env(safe-area-inset-bottom));
-  left: calc(20px + env(safe-area-inset-left));
+  right: calc(20px + env(safe-area-inset-right));
+  bottom: calc(88px + env(safe-area-inset-bottom));
   display: flex;
   width: 56px;
   height: 56px;
@@ -11,7 +11,8 @@
   border-radius: 50%;
   background: #25d366;
   color: white;
-  box-shadow: 0 3px 10px rgb(16 63 60 / 16%);
+  border: 2px solid var(--diana-white);
+  box-shadow: 0 8px 24px rgb(16 63 60 / 22%);
   transition: transform 250ms, box-shadow 250ms;
 }
 

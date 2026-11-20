@@ -1,8 +1,9 @@
 import styles from './ContactChannels.module.css';
+import Image from 'next/image';
 import type { Metadata } from 'next';
-import { PageIntro } from '@/components/sections/PageIntro';
 import { ContactForm } from '@/components/sections/ContactForm';
 import { Container } from '@/components/ui/Container';
+import { Breadcrumbs } from '@/components/seo/Breadcrumbs';
 import { DoctoraliaLogo, InstagramLogo, WhatsAppLogo } from '@/components/ui/BrandLogos';
 import { TrackedLink } from '@/components/ui/TrackedLink';
 import { site } from '@/lib/site';
@@ -11,9 +12,8 @@ import { pageMetadata } from '@/lib/seo';
 export const metadata: Metadata = pageMetadata('Contacto y reserva', 'Reserva una sesión online de coaching profesional con Diana Loscos en Doctoralia o envía una consulta.', '/contacto/');
 export default function Page() {
   return <>
-    <PageIntro eyebrow="Contacto" title="Empecemos por una conversación." name="Contacto" path="/contacto/">
-      <p>Si ya quieres reservar, consulta disponibilidad en Doctoralia. Si necesitas preguntar algo antes, puedes escribirme aquí.</p>
-    </PageIntro>
+    <Breadcrumbs items={[{ name: 'Contacto', path: '/contacto/' }]} />
+    <section className={styles.contactHero}><Container className={styles.contactHeroLayout}><div className={styles.contactHeroCopy}><p className="eyebrow">Contacto</p><h1>Empecemos por una conversación.</h1><p>Si ya quieres reservar, consulta disponibilidad en Doctoralia. Si necesitas preguntar algo antes, puedes escribirme aquí.</p></div><figure className={styles.contactPortrait} data-scroll-reveal="contact-portrait"><Image src="/CONTACTO-DianaLoscosCoach.jpeg" alt="Diana Loscos" width={1080} height={1158} priority sizes="(max-width: 860px) 84vw, 46vw" /></figure></Container></section>
     <section className={`section ${styles.section}`} aria-labelledby="contact-channels-title">
       <Container className={`contact-layout ${styles.layout}`}>
         <div className={styles.channels}>

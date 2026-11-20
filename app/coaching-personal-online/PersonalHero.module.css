@@ -2,7 +2,7 @@
   grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr);
   gap: clamp(32px, 5vw, 72px);
   min-height: min(680px, calc(100svh - 120px));
-  padding-top: clamp(48px, 7vw, 88px);
+  padding-top: clamp(30px, 4vw, 56px);
   padding-bottom: clamp(48px, 7vw, 88px);
 }
 
@@ -67,3 +67,5 @@
 .therapyHeading { font-family: var(--font-newsreader), Georgia, serif; font-size: clamp(28px, 3vw, 36px); font-weight: 500; line-height: 1.15; }
 
 .personalLink { color: var(--diana-story); text-decoration: underline; text-underline-offset: 3px; }
+.dianaAbout { display: grid; grid-template-columns: minmax(240px, 340px) minmax(0, 1fr); align-items: center; gap: clamp(40px, 8vw, 120px); }.dianaPortrait { margin: 0; padding: 10px; border: 1px solid var(--diana-border); border-radius: 24px; background: var(--diana-white); box-shadow: var(--diana-shadow-card); }.dianaPortrait img { display: block; width: 100%; border-radius: 15px; }.dianaPortrait figcaption { display: flex; justify-content: space-between; gap: 10px; padding: 14px 4px 4px; color: var(--diana-deep); font-size: 13px; font-weight: 700; }.dianaPortrait figcaption span { color: var(--diana-graphite); font-size: 12px; font-weight: 500; text-align: right; }
+@media (max-width: 860px) { .dianaAbout { grid-template-columns: 1fr; } .dianaPortrait { width: min(100%, 340px); } }

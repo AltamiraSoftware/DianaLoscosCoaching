@@ -9,10 +9,10 @@ import styles from './FAQ.module.css';
 
 type FAQItem = { question: string; answer: string };
 
-export function FAQ({ standalone = false, items = faqs }: { standalone?: boolean; items?: readonly FAQItem[] }) {
+export function FAQ({ standalone = false, items = faqs, center = false }: { standalone?: boolean; items?: readonly FAQItem[]; center?: boolean }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const prefix = useId();
-  return <section className={`section ${styles.section}`}><Container className={styles.layout}><div className={styles.heading}><SectionHeading eyebrow={home.faq.eyebrow} title={home.faq.title} tone="light" /></div><div className={styles.list}>{items.map((item, index) => {
+  return <section className={`section ${styles.section}`}><Container className={`${styles.layout} ${center ? styles.centered : ''}`}><div className={styles.heading}><SectionHeading eyebrow={home.faq.eyebrow} title={home.faq.title} tone="light" center={center} /></div><div className={styles.list}>{items.map((item, index) => {
     const open = openIndex === index;
     const panelId = `${prefix}-answer-${index}`;
     const buttonId = `${prefix}-question-${index}`;

@@ -110,6 +110,10 @@ body { margin: 0; color: var(--diana-ink); font-family: var(--font-manrope), Ari
 .section-heading-center .section-lede { max-width: 640px; margin-inline: auto; }
 .section-heading-center::after { margin-inline: auto; }
 .section-heading-center .divider { display: flex; justify-content: center; }
+.section-heading-dark { color: var(--diana-white); }
+.section-heading-dark .eyebrow { color: var(--diana-mint); }
+.section-heading-dark .section-lede { color: #e2efec; }
+.section-heading-dark::after { background: var(--diana-mint); }
 
 /* El activo procede de la ruta; la rotación procede solo de aria-expanded. */
 @keyframes nav-selected-underline {
@@ -133,3 +137,7 @@ body { margin: 0; color: var(--diana-ink); font-family: var(--font-manrope), Ari
   .brand-link::after { transform: scaleX(.28) !important; }
   .brand-link:is(:hover, :focus-visible)::after { transform: scaleX(1) !important; }
 }
+
+/* Colores explícitos para encabezados sobre superficies oscuras. */
+.section-heading.section-heading-dark .eyebrow { color: var(--diana-mint); }
+.section-heading.section-heading-dark .section-lede { color: #e2efec; }

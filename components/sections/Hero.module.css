@@ -1,8 +1,9 @@
 .hero { position: relative; overflow: hidden; background: var(--diana-page); }
-.layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); align-items: center; gap: clamp(40px, 6vw, 96px); padding-block: clamp(76px, 9vw, 128px); }
+.layout { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(280px, .8fr); align-items: center; gap: clamp(40px, 6vw, 96px); padding-block: clamp(48px, 6vw, 88px); }
 .copy { max-width: 720px; }
 .eyebrow { display: inline-flex; margin: 0 0 24px; padding: 10px 16px; border-radius: 999px; background: var(--diana-mint); color: var(--diana-deep); font-size: 14px; line-height: 1.5; font-weight: 800; letter-spacing: .08em; }
 .copy h1 { margin: 0 0 24px; font-size: clamp(48px, 4.8vw, 70px); font-weight: 600; line-height: 1.06; }
+.statusDots { width: 154px; height: 31px; margin: 0 0 22px; }
 .copy h1 em { color: var(--diana-story); font-weight: 500; }
 .lede { max-width: 58ch; margin: 26px 0 0; color: var(--diana-graphite); font-size: clamp(16px, 1.5vw, 19px); line-height: 1.7; }
 .trustLine { margin: 24px 0 0; padding-left: 14px; border-left: 2px solid var(--diana-clay); color: var(--diana-petrol); font-size: 14px; font-weight: 700; line-height: 1.5; }

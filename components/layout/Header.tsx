@@ -22,15 +22,15 @@ const navigation: readonly NavItem[] = [
   { type: 'link', label: 'Inicio', href: '/' },
   {
     type: 'dropdown', id: 'coaching', label: 'Coaching profesional', children: [
-      { type: 'link', label: 'Coaching profesional', href: '/coaching-profesional/', detail: 'Cambio, bloqueo y decisiones' },
       { type: 'link', label: 'Coaching personal', href: '/coaching-personal-online/', detail: 'Decisiones y cambios personales' },
+      { type: 'link', label: 'Coaching profesional', href: '/coaching-profesional/', detail: 'Cambio, bloqueo y decisiones' },
       { type: 'link', label: 'Cambio profesional', href: '/cambio-profesional/', detail: 'Cuando algo ha cambiado en tu trabajo' },
       { type: 'link', label: 'Liderazgo para nuevos managers', href: '/liderazgo-nuevos-managers/', detail: 'Empiezas a liderar' },
       { type: 'link', label: 'Coaching ejecutivo', href: '/coaching-ejecutivo/', detail: 'Decisiones con responsabilidad' },
     ],
   },
   { type: 'link', label: 'Sobre mí', href: '/sobre-mi/' },
-  { type: 'link', label: 'Opiniones', href: '/opiniones/' },
+
   { type: 'link', label: 'Preguntas frecuentes', href: '/preguntas-frecuentes/', mobileOnly: true },
   { type: 'link', label: 'Contacto', href: '/contacto/' },
 ];

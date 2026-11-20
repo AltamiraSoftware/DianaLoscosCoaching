@@ -9,13 +9,13 @@ export const home = {
   seo: { title: 'Coaching personal y profesional online | Diana Loscos', description: 'Coaching personal y profesional online para afrontar cambios y tomar decisiones. Sesiones individuales de 60 minutos con Diana Loscos. Reserva online.' },
   header: { navigation: ['Inicio', 'Servicios', 'Sobre mí', 'Opiniones', 'Preguntas frecuentes', 'Contacto'], services: ['Coaching personal', 'Coaching profesional y ejecutivo'], action: 'Reservar sesión', instagramUrl: 'https://www.instagram.com/dianaloscoscoach/' },
   hero: {
-    eyebrow: 'COACHING PERSONAL Y PROFESIONAL · SESIONES ONLINE',
-    title: 'Coaching personal y profesional online para',
-    titleAccent: 'tomar decisiones con claridad',
-    description: '¿Hay una decisión que llevas tiempo posponiendo o una etapa que ya no encaja? En las sesiones trabajamos sobre lo que te ocurre, exploramos opciones y buscamos un siguiente paso que tenga sentido para ti.',
+    eyebrow: 'COACHING PERSONAL Y PROFESIONAL · DIANA LOSCOS',
+    title: '¿Has conseguido tus objetivos y sientes que',
+    titleAccent: 'algo te falta?',
+    description: 'Sesiones de coaching online 1:1 para parar, mirar lo que llevas tiempo evitando mirar y dar un paso que te acerque a donde quieres estar.',
     credentials: 'Psicóloga · Col. M-45396 · Coach de desarrollo personal y profesional',
     note: 'Sesiones online de 60 minutos · Reserva en Doctoralia',
-    primaryAction: 'Consultar disponibilidad y reservar', secondaryAction: 'Descubre cómo puedo ayudarte →',
+    primaryAction: 'Reservar una sesión ↗', secondaryAction: 'Ver cómo trabajo →',
     photoCaption: 'DIANA LOSCOS · COACH DE DESARROLLO PERSONAL Y PROFESIONAL',
   },
   situations: {

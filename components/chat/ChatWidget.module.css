@@ -16,15 +16,16 @@
   align-items: center;
   justify-content: center;
   border: none;
-  border-radius: 50%;
-  background: var(--diana-petrol);
+  border: 2px solid var(--diana-white);
+  border-radius: 18px;
+  background: linear-gradient(145deg, var(--diana-deep), var(--diana-petrol));
   color: var(--diana-white);
   cursor: pointer;
   box-shadow: 0 8px 24px rgb(16 63 60 / 22%);
   transition: transform 250ms var(--diana-ease-standard), background-color 250ms var(--diana-ease-standard);
 }
 
-.button:hover { transform: translateY(-2px); background: var(--diana-ink-deep); }
+.button:hover { transform: translateY(-2px) scale(1.03); background: var(--diana-ink-deep); }
 .button:active { transform: translateY(0); }
 .button:focus-visible { outline: 2px solid var(--diana-petrol); outline-offset: 3px; }
 
@@ -104,14 +105,12 @@
 .options { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
 .option {
   padding: 12px 14px;
-  border: 1px solid var(--diana-border);
-  border-radius: var(--diana-radius-md);
-  background: var(--diana-white);
-  color: var(--diana-petrol);
+  width: 100%;
+  min-height: 44px;
   font: inherit;
   font-size: 14px;
   font-weight: 700;
-  text-align: left;
+  text-align: center;
   cursor: pointer;
   transition: background-color 200ms, border-color 200ms, color 200ms;
 }
@@ -142,10 +141,7 @@
 .send {
   margin-top: 6px;
   padding: 12px;
-  border: none;
-  border-radius: var(--diana-radius-md);
-  background: var(--diana-petrol);
-  color: var(--diana-white);
+  width: 100%;
   font: inherit;
   font-size: 14px;
   font-weight: 700;

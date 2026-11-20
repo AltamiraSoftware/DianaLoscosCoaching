@@ -1,6 +1,7 @@
 .section { background: var(--diana-cream); }
 .layout { display: grid; grid-template-columns: minmax(250px, .8fr) minmax(0, 1.2fr); gap: clamp(40px, 8vw, 110px); align-items: start; }
 .heading { position: sticky; top: 110px; }
+.centered { grid-template-columns: 1fr; max-width: 860px; }.centered .heading { position: static; text-align: center; }.centered .list { width: 100%; }.centered .item p { margin-inline: auto; padding-left: 34px; }
 .list { border-top: 1px solid var(--diana-border); }
 .item { border-bottom: 1px solid var(--diana-border); }
 .question { display: flex; width: 100%; min-height: 72px; align-items: center; justify-content: space-between; gap: 20px; padding: 20px 0; border: 0; background: transparent; color: var(--diana-ink); font-size: 16px; font-weight: 700; line-height: 1.5; text-align: left; }

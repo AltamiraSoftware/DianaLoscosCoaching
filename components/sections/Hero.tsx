@@ -13,7 +13,7 @@ export function Hero() {
       <div className={styles.copy}>
         <p className={styles.eyebrow}>{copy.eyebrow}</p>
         <h1 id="hero-title">{copy.title} <em>{copy.titleAccent}</em></h1>
-        <StatusDots />
+        <StatusDots className={styles.statusDots} />
         <p className={styles.lede}>{copy.description}</p>
         <p className={styles.trustLine}>{copy.credentials}</p>
         <div className={styles.actions}><ButtonLink href={site.bookingUrl} external event="cta_booking_click" label="hero">{copy.primaryAction}</ButtonLink><ButtonLink href="/#para-quien" variant="secondary">{copy.secondaryAction}</ButtonLink></div>

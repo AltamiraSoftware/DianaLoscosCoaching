@@ -26,7 +26,7 @@ export const routes = [
   { href: '/liderazgo-nuevos-managers/', label: 'Nuevo liderazgo' },
   { href: '/coaching-ejecutivo/', label: 'Coaching ejecutivo' },
   { href: '/sobre-mi/', label: 'Sobre Diana' },
-  { href: '/opiniones/', label: 'Opiniones' },
+
   { href: '/preguntas-frecuentes/', label: 'Preguntas frecuentes' },
   { href: '/contacto/', label: 'Contacto' },
 ] as const;
